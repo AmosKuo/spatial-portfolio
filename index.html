@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ghspatial 光盒影像 | Spatial Photography</title>
+    <meta name="description" content="High-end spatial and architectural photography by ghspatial 光盒影像.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .splash-screen {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: var(--bg-color);
+            position: relative;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            color: #bbb;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            animation: fadeInOut 2s infinite;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(10px); }
+        }
+        .home-nav {
+            padding: 3rem 0;
+            text-align: center;
+            background: var(--bg-color);
+        }
+    </style>
+</head>
+<body class="page-body">
+
+    <div class="splash-screen fade-up">
+        <img src="assets/logo.jpg" alt="GH Spatial 光盒影像" style="height: 480px; mix-blend-mode: multiply; margin-top: -60px;">
+        <div class="scroll-indicator">SCROLL</div>
+    </div>
+
+    <header class="site-header fade-up delay-1" style="padding: 2rem 5% 4rem;">
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="portfolio.html">空間作品集</a></li>
+                <li><a href="about.html">關於光盒</a></li>
+                <li><a href="pricing.html">價目表</a></li>
+                <li><a href="contact.html">聯絡我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content" style="padding-top: 0;">
+        <div class="gallery fade-up delay-2">
+            <!-- Portfolio Item 1 -->
+            <a href="roman_holiday.html" class="gallery-item">
+                <img src="assets/roman_holiday/DSC02068-HDR.jpg" alt="羅馬假期精緻小宅">
+                <div class="overlay">
+                    <h3>羅馬假期精緻小宅</h3>
+                    <p>鼎禾設計</p>
+                </div>
+            </a>
+            
+            <!-- Portfolio Item 2 -->
+            <a href="pan_pan.html" class="gallery-item">
+                <img src="assets/pan_pan/立得建設-盼盼-18.jpg" alt="盼盼透天建案">
+                <div class="overlay">
+                    <h3>盼盼透天建案</h3>
+                    <p>立得建設</p>
+                </div>
+            </a>
+            
+            <!-- Portfolio Item 3 -->
+            <a href="underpass.html" class="gallery-item">
+                <img src="assets/underpass/A1_06169.jpg" alt="中正東路地下道">
+                <div class="overlay">
+                    <h3>中正東路地下道</h3>
+                    <p>公共工程紀錄</p>
+                </div>
+            </a>
+            
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="socials">
+            <a href="https://www.facebook.com/burberryamos" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/amos_kuo/" target="_blank">Instagram</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ghspatial 光盒影像. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

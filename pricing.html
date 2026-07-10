@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>價目表 | ghspatial 光盒影像</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .info-section {
+            max-width: 900px;
+            margin: 4rem auto;
+            background: #f9f9f9;
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .info-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #111;
+            text-align: center;
+        }
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #444;
+        }
+        .info-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .info-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #888;
+        }
+        .process-list {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            color: #444;
+            font-size: 0.95rem;
+        }
+        .process-list li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            padding-left: 0.5rem;
+        }
+        .plan-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            min-height: 70px;
+        }
+        .pricing-card ul {
+            text-align: left;
+            padding-left: 1rem;
+        }
+        .pricing-card ul li {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .pricing-card ul li small {
+            color: #777;
+            display: block;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body class="page-body">
+    <header class="site-header fade-up">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.jpg" alt="GH Spatial 光盒影像" style="height: 240px; margin: -40px 0; mix-blend-mode: multiply;">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="portfolio.html">空間作品集</a></li>
+                <li><a href="about.html">關於光盒</a></li>
+                <li><a href="pricing.html" class="active">價目表</a></li>
+                <li><a href="contact.html">聯絡我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <h1 class="page-title fade-up">拍攝方案</h1>
+        
+        <div class="pricing-container">
+            <!-- 小坪數方案 -->
+            <div class="pricing-card fade-up">
+                <h3>小坪數方案</h3>
+                <div class="price">$ 18,000<span> / 元</span></div>
+                <p class="plan-desc">我們最受歡迎的方案，適合單一空間或小型住宅案的完整紀錄，完美呈現你的設計細節。</p>
+                <ul>
+                    <li>現場拍攝最多 4 小時 <small>(超時一小時 1200 元)</small></li>
+                    <li>可挑選高解析度精修圖 15 張 <small>(加挑張數 1200 元/張計費)</small></li>
+                    <li>超時費可以折抵加挑照片之費用</li>
+                    <li>專屬線上雲端圖庫供預覽與下載 <small>(挑片檔僅供挑片不得轉載使用，如需購買另洽費用)</small></li>
+                    <li>10 個工作日提供挑片檔案，挑片後 10 個工作日交付成品</li>
+                </ul>
+                <a href="contact.html" class="btn" style="margin-top: 1rem;">預約諮詢</a>
+            </div>
+            
+            <!-- 大坪數方案 -->
+            <div class="pricing-card fade-up delay-1">
+                <h3>大坪數方案</h3>
+                <div class="price">$ 36,000<span> / 元</span></div>
+                <p class="plan-desc">針對多空間、全戶設計或商業空間的深度拍攝，提供最完整的影像紀錄與最高規格的服務。</p>
+                <ul>
+                    <li>現場拍攝最多 8 小時 (全天) <small>超時一小時 1200 元 (含現場擺設調整時間)</small></li>
+                    <li>可挑選高解析度精修圖 30 張 <small>(加挑張數 1200 元/張計費)</small></li>
+                    <li>超時費可以折抵加挑照片之費用</li>
+                    <li>專屬線上雲端圖庫供預覽與下載 <small>(挑片檔僅供挑片不得轉載使用，如需購買另洽費用)</small></li>
+                    <li>含進階修圖與社群媒體適用尺寸</li>
+                </ul>
+                <a href="contact.html" class="btn" style="margin-top: 1rem;">預約諮詢</a>
+            </div>
+        </div>
+
+        <div class="info-section fade-up">
+            <h2>注意事項</h2>
+            <ul class="info-list">
+                <li>上述報價為未稅價，拍攝計費以案場計算，不得多場合併計算。</li>
+                <li>建築或競賽行拍攝價格另洽。</li>
+                <li>檔期確認後會先預收 5000 元訂金，尾款為挑片確認張數後結算。</li>
+                <li>目前僅提供平面拍攝服務，現場軟裝佈置需客戶自理，拍攝時會視情況調整現有擺設。</li>
+                <li>拍攝前請客戶先行完成清潔及軟裝佈置，以免影響拍攝進度。</li>
+                <li>為了維持客戶對環境顏色及燈光配置的原貌，拍攝方式會以現場光為主(不打攝影燈)，所以照片都會經過標準顏色校正及基本調光修片。但修片不包含變造及改變原拍攝物樣貌顏色或合成，如有特殊需求另行報價。</li>
+                <li>交件時間約一個月內 (挑片時間不計)，實際交件期限會是淡旺季略調整。</li>
+                <li>新竹市、竹北市以外車馬費另計：台南高雄 4000，台北彰雲嘉 3000，新北台中 2000，桃園苗栗 1000。宜花東其他地區及山區另洽。</li>
+                <li>照片買斷版權及特殊時段外拍出機 (早上 7 點或晚上 9 點後) 費用另洽。</li>
+                <li>拍攝期間如需過夜，客戶需負責提供相關工作人員食宿。</li>
+                <li>攝影著作及其他著作權僅為光盒影像攝影師 郭耿宏 所有，客戶在自身行銷及宣傳等目的範圍內均可利用，但客戶不得將本著作權轉授權第三人利用。如需公開、口述、播送、上映、演出、傳輸、展示、發表使用，應告知攝影師，經攝影師同意，亦可使用。</li>
+                <li>拍攝費用未付清或是票據未兌現前，攝影師保有該影像之所有權。</li>
+            </ul>
+        </div>
+
+        <div class="info-section fade-up" style="margin-top: 2rem;">
+            <h2>預約及拍攝執行流程</h2>
+            <ol class="process-list">
+                <li>填寫預約表單 (建議拍攝前一個月預約)</li>
+                <li>雙方約定拍攝日期並確認相關拍攝資訊</li>
+                <li>收取拍攝訂金 5000 元以保留檔期</li>
+                <li>請客戶提供現場照片或影片 (手機拍攝即可)，如有模擬圖也請提供攝影師了解空間樣貌</li>
+                <li>執行拍攝 (如遇不可抗力之因素需延期，請於 2 週前告知)</li>
+                <li>「挑片檔」於拍攝後約 2 週提供客戶挑片使用</li>
+                <li>「交件檔」於客戶挑片後約 2-3 週提雲端下載並作確認</li>
+                <li>拍攝尾款請於交件前結清費用，如客戶有固定請款作業請事先告知</li>
+            </ol>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="socials">
+            <a href="https://www.facebook.com/burberryamos" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/amos_kuo/" target="_blank">Instagram</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ghspatial 光盒影像. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

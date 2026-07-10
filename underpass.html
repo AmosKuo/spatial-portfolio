@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中正東路地下道@竹北 | ghspatial 光盒影像</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-header {
+            text-align: center;
+            padding: 3rem 5% 2rem;
+        }
+        .project-title {
+            font-size: 2rem;
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+        .project-meta {
+            font-size: 1rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        
+        /* Main Image Viewer */
+        .project-viewer {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            padding: 0 2%;
+        }
+        .main-image-container {
+            width: 100%;
+            height: 75vh;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.2s ease-in-out;
+        }
+        
+        /* Thumbnails Gallery */
+        .thumbnail-gallery {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            -webkit-overflow-scrolling: touch;
+        }
+        .thumbnail {
+            height: 90px;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            object-fit: cover;
+        }
+        .thumbnail:hover {
+            opacity: 0.8;
+        }
+        .thumbnail.active {
+            opacity: 1;
+            border-color: #222;
+        }
+        
+        /* Custom Scrollbar for thumbnails */
+        .thumbnail-gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+        .thumbnail-gallery::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .thumbnail-gallery::-webkit-scrollbar-thumb {
+            background: #ccc; 
+            border-radius: 3px;
+        }
+        .thumbnail-gallery::-webkit-scrollbar-thumb:hover {
+            background: #999; 
+        }
+    </style>
+</head>
+<body class="page-body">
+    <header class="site-header fade-up">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.jpg" alt="GH Spatial 光盒影像" style="height: 240px; margin: -40px 0; mix-blend-mode: multiply;">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="portfolio.html" class="active">空間作品集</a></li>
+                <li><a href="about.html">關於光盒</a></li>
+                <li><a href="pricing.html">價目表</a></li>
+                <li><a href="contact.html">聯絡我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <div class="project-header fade-up delay-1">
+            <h1 class="project-title">中正東路地下道</h1>
+            <p class="project-meta">竹北 | 公共工程紀錄</p>
+        </div>
+        
+        <div class="project-viewer fade-up delay-2">
+            <!-- Main Image -->
+            <div class="main-image-container">
+                <img id="main-image" class="main-image" src="assets/underpass/A1_06169.jpg" alt="中正東路地下道">
+            </div>
+            
+            <!-- Thumbnails -->
+            <div class="thumbnail-gallery" id="thumbnail-gallery">
+                <img class="thumbnail active" src="assets/underpass/A1_06169.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06170.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06172.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06184.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06190.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06196.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06202.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06208.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06226.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06232.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06244.jpg" loading="lazy">
+                <img class="thumbnail" src="assets/underpass/A1_06268.jpg" loading="lazy">
+            </div>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="socials">
+            <a href="https://www.facebook.com/burberryamos" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/amos_kuo/" target="_blank">Instagram</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ghspatial 光盒影像. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="main.js"></script>
+    <script>
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('main-image');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                // If it's already active, do nothing
+                if (this.classList.contains('active')) return;
+                
+                // Smooth fade out
+                mainImage.style.opacity = 0;
+                
+                // Change source and fade in after a short delay
+                setTimeout(() => {
+                    mainImage.src = this.src;
+                    mainImage.style.opacity = 1;
+                }, 200);
+                
+                // Update active thumbnail styling
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Automatically scroll the active thumbnail into view horizontally without jumping the page vertically
+                const gallery = document.getElementById('thumbnail-gallery');
+                const scrollLeft = this.offsetLeft - (gallery.offsetWidth / 2) + (this.offsetWidth / 2);
+                gallery.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
