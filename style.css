@@ -172,7 +172,7 @@ h1, h2, h3 {
 /* Portfolio Section */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
@@ -451,6 +451,9 @@ footer {
     }
     .hero-content h1 {
         font-size: 2.5rem;
+    }
+    .gallery {
+        grid-template-columns: 1fr;
     }
     .gallery-item {
         aspect-ratio: 4/3;
