@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0;
+            width: 1080px; height: 1920px;
+            background: #FAFAFA;
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #111;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            padding: 160px 100px;
+        }
+
+        h1 { font-size: 64px; font-weight: 400; letter-spacing: 12px; margin: 0 0 100px 0; color: #111;}
+        
+        .list-container {
+            display: flex; flex-direction: column; gap: 50px;
+        }
+        .list-item {
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .item-header {
+            display: flex; align-items: center; width: 100%;
+        }
+        .item-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px; font-weight: 500; letter-spacing: 2px;
+            width: 90px; color: #111;
+        }
+        .item-title {
+            font-size: 38px; font-weight: 400; letter-spacing: 8px; color: #111;
+        }
+        .line {
+            flex: 1; height: 1px; background: #E0E0E0; margin-left: 30px; margin-right: 0px;
+        }
+        .item-desc {
+            padding-left: 90px; font-size: 26px; line-height: 1.7; color: #555; letter-spacing: 2px; font-weight: 300;
+        }
+    
+        .brand-container {
+            display: flex;
+            margin-bottom: 60px;
+        }
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            letter-spacing: 8px;
+            color: #444;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+            <div class="brand-container">
+        <div class="brand-name">GH SPATIAL</div>
+    </div>
+    <h1>注意事項</h1>
+    
+    <div class="list-container" style="gap: 65px;">
+        <div class="list-item">
+            <div class="item-header">
+                <span class="item-number">01.</span><span class="item-title">關於報價</span><span class="line"></span>
+            </div>
+            <div class="item-desc">報價為未稅價，以單一案場計算不得合併<br>建築或競賽類拍攝價格另洽</div>
+        </div>
+        <div class="list-item">
+            <div class="item-header">
+                <span class="item-number">02.</span><span class="item-title">軟裝佈置</span><span class="line"></span>
+            </div>
+            <div class="item-desc">目前僅提供平面攝影，現場軟裝需客戶自理<br>拍攝前請先完成清潔及佈置以免影響進度</div>
+        </div>
+        <div class="list-item">
+            <div class="item-header">
+                <span class="item-number">03.</span><span class="item-title">光線與修片</span><span class="line"></span>
+            </div>
+            <div class="item-desc">為維持原貌，拍攝以現場光為主 (不打燈)<br>照片皆標準校色，不含變造樣貌顏色之合成</div>
+        </div>
+        <div class="list-item">
+            <div class="item-header">
+                <span class="item-number">04.</span><span class="item-title">車馬費用</span><span class="line"></span>
+            </div>
+            <div class="item-desc">台南高雄 4000 / 台北彰雲嘉 3000<br>新北台中 2000 / 桃園苗栗 1000</div>
+        </div>
+        <div class="list-item">
+            <div class="item-header">
+                <span class="item-number">05.</span><span class="item-title">著作版權</span><span class="line"></span>
+            </div>
+            <div class="item-desc">著作權為攝影師所有，客戶可於行銷範圍內利用<br>但不得轉授權第三人使用</div>
+        </div>
+    </div>
+</body>
+</html>

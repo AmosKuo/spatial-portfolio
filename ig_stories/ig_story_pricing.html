@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0;
+            width: 1080px; height: 1920px;
+            background: #FAFAFA;
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #111;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            padding: 160px 100px;
+        }
+
+        h1 { font-size: 64px; font-weight: 400; letter-spacing: 12px; margin: 0 0 100px 0; color: #111;}
+        
+        .list-container {
+            display: flex; flex-direction: column; gap: 80px;
+        }
+        .list-item {
+            display: flex; flex-direction: column; gap: 20px;
+        }
+        .item-header {
+            display: flex; align-items: center; width: 100%;
+        }
+        .item-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px; font-weight: 500; letter-spacing: 2px;
+            width: 90px; color: #111;
+        }
+        .item-title {
+            font-size: 38px; font-weight: 400; letter-spacing: 8px; color: #111;
+        }
+        .line {
+            flex: 1; height: 1px; background: #E0E0E0; margin-left: 30px; margin-right: 0px;
+        }
+        .item-desc {
+            padding-left: 90px; font-size: 28px; line-height: 1.8; color: #555; letter-spacing: 2px; font-weight: 300;
+        }
+    
+        .brand-container {
+            display: flex;
+            margin-bottom: 60px;
+        }
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            letter-spacing: 8px;
+            color: #444;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+            <div class="brand-container">
+        <div class="brand-name">GH SPATIAL</div>
+    </div>
+    <h1>拍攝方案</h1>
+    
+    <div class="list-container">
+        <div class="list-item">
+            <div class="item-header">
+                <span class="item-number">01.</span><span class="item-title">小坪數方案</span><span class="line"></span>
+            </div>
+            <div class="item-desc" style="color: #111; font-size: 32px; margin-bottom: 10px; font-weight: 500;">報價請私訊洽詢</div>
+            <div class="item-desc">
+                適合單一空間或小型住宅案的完整紀錄。<br><br>
+                • 現場拍攝最多 4 小時 <span style="font-size:24px;color:#888;">(超時 1200/hr)</span><br>
+                • 提供高解析度精修圖 15 張<br>
+                • 專屬線上雲端圖庫供預覽與下載<br>
+                • 10 個工作日提供挑片，挑片後 10 日交件
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <div class="item-header">
+                <span class="item-number">02.</span><span class="item-title">大坪數方案</span><span class="line"></span>
+            </div>
+            <div class="item-desc" style="color: #111; font-size: 32px; margin-bottom: 10px; font-weight: 500;">報價請私訊洽詢</div>
+            <div class="item-desc">
+                針對多空間、全戶設計或商空的最高規格服務。<br><br>
+                • 現場全天拍攝最多 8 小時 <span style="font-size:24px;color:#888;">(超時 1200/hr)</span><br>
+                • 提供高解析度精修圖 30 張<br>
+                • 專屬線上雲端圖庫供預覽與下載<br>
+                • 含進階修圖與社群媒體適用尺寸
+            </div>
+        </div>
+    </div>
+</body>
+</html>

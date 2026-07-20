@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0;
+            width: 1080px; height: 1920px;
+            background: #FAFAFA;
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #111;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            padding: 160px 100px;
+        }
+        
+        .brand-container {
+            display: flex;
+            margin-bottom: 80px;
+        }
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            letter-spacing: 8px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        h1 { font-size: 72px; font-weight: 500; letter-spacing: 12px; margin: 0 0 20px 0; color: #111;}
+        .subtitle { font-size: 34px; letter-spacing: 4px; color: #666; margin-bottom: 80px; font-weight: 300;}
+        
+        .promo-card {
+            background: #fff;
+            border: 3px solid #111;
+            padding: 70px 60px;
+            display: flex; flex-direction: column; gap: 40px;
+            position: relative;
+            box-shadow: 20px 20px 0px #EEEEEE;
+        }
+        .badge {
+            position: absolute;
+            top: -30px; right: 50px;
+            background: #111; color: #fff;
+            padding: 12px 30px; font-size: 28px;
+            letter-spacing: 4px; font-weight: 400;
+        }
+        
+        .price-section {
+            border-bottom: 1px solid #EEE;
+            padding-bottom: 30px;
+        }
+        .price {
+            font-family: 'Inter', sans-serif;
+            font-size: 72px; font-weight: 300; color: #111;
+        }
+        .price span { font-size: 36px; color: #888; font-family: 'Noto Sans TC'; }
+        
+        .feature {
+            display: flex; align-items: flex-start; gap: 20px;
+        }
+        .check {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px; color: #111; margin-top: -5px;
+        }
+        .feature-text {
+            font-size: 32px; line-height: 1.6; color: #333; letter-spacing: 2px;
+        }
+        .highlight {
+            font-weight: 500; color: #111;
+            background: linear-gradient(180deg, transparent 60%, #E0E0E0 40%);
+            display: inline;
+        }
+        
+        .footer-note {
+            margin-top: auto;
+            text-align: center;
+            font-size: 28px; letter-spacing: 6px; color: #888;
+            border-top: 1px solid #EEE;
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="brand-container">
+        <div class="brand-name">GH SPATIAL</div>
+    </div>
+    
+    <h1>首次合作升級方案</h1>
+    <div class="subtitle">專為初次配合設計師打造的迎新專案</div>
+    
+    <div class="promo-card">
+        <div class="badge">限定優惠</div>
+        
+        <div class="price-section">
+            <div class="price" style="font-size: 48px; font-family: 'Noto Sans TC', sans-serif; font-weight: 500; letter-spacing: 6px;">依專案內容專屬報價</div>
+        </div>
+        
+        <div class="feature">
+            <div class="check">✓</div>
+            <div class="feature-text">基本拍攝 4 小時<br>+ <span class="highlight">免費贈送 1 小時軟裝微調</span></div>
+        </div>
+        
+        <div class="feature">
+            <div class="check">✓</div>
+            <div class="feature-text">高解析度精修圖 15 張<br>+ <span class="highlight">加碼贈送 3 張 (等值 $3,600)</span></div>
+        </div>
+        
+        <div class="feature">
+            <div class="check">✓</div>
+            <div class="feature-text" style="color: #666;">專屬線上雲端圖庫供預覽與下載</div>
+        </div>
+        
+        <div class="feature">
+            <div class="check">✓</div>
+            <div class="feature-text" style="color: #666;">10 日提供挑片，挑片後 10 日交件</div>
+        </div>
+    </div>
+    
+    <div class="footer-note">
+        預約諮詢請私訊小盒子
+    </div>
+</body>
+</html>
