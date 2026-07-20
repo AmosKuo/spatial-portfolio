@@ -307,7 +307,7 @@ h1, h2, h3 {
 
 .pricing-card {
     background-color: #fff;
-    padding: 3rem;
+    padding: 2.5rem 2rem;
     border: 1px solid #eee;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
