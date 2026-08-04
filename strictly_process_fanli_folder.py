@@ -1,4 +1,45 @@
-<!DOCTYPE html>
+import os, glob, shutil
+from PIL import Image
+
+spatial_dir = "/Users/kuoamos/Desktop/spatial-portfolio"
+assets_dst = os.path.join(spatial_dir, "assets", "cafe_social")
+cafe_page_path = os.path.join(spatial_dir, "cafe_social.html")
+
+target_dir = "/Users/kuoamos/Library/CloudStorage/GoogleDrive-burberryamos@gmail.com/我的雲端硬碟/光盒影像—空間攝影/室內設計拍攝工作檔案夾/社群素材/咖啡廳社群素材/範例"
+
+# Clear destination directory completely
+if os.path.exists(assets_dst):
+    shutil.rmtree(assets_dst)
+os.makedirs(assets_dst, exist_ok=True)
+
+files = sorted(glob.glob(os.path.join(target_dir, "*.jpg")) + glob.glob(os.path.join(target_dir, "*.png")) + glob.glob(os.path.join(target_dir, "*.jpeg")))
+
+print(f"Strictly processing {len(files)} photos from target folder: {target_dir}")
+
+processed_files = []
+
+for i, fpath in enumerate(files):
+    out_name = f"cafe_{i+1:02d}.jpg"
+    dst_path = os.path.join(assets_dst, out_name)
+    try:
+        im = Image.open(fpath)
+        if im.mode != "RGB":
+            im = im.convert("RGB")
+        im.thumbnail((2048, 2048), Image.Resampling.LANCZOS)
+        im.save(dst_path, "JPEG", quality=90)
+        processed_files.append(f"assets/cafe_social/{out_name}")
+        print(f"  [{i+1}/20] Processed {os.path.basename(fpath)} -> {out_name}")
+    except Exception as e:
+        print(f"Error {fpath}: {e}")
+
+# Build pure photo cafe_social.html
+photo_items_html = ""
+for idx, rel_path in enumerate(processed_files):
+    photo_items_html += f'            <div class="cafe-photo-item" data-index="{idx}" data-img="{rel_path}">\n'
+    photo_items_html += f'                <img src="{rel_path}" alt="咖啡廳社群氛圍素材 {idx+1}" loading="lazy">\n'
+    photo_items_html += f'            </div>\n'
+
+pure_cafe_html = """<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -146,67 +187,7 @@
         <h1 class="page-title fade-up">咖啡廳社群氛圍素材</h1>
 
         <div class="cafe-pure-grid fade-up delay-1">
-            <div class="cafe-photo-item" data-index="0" data-img="assets/cafe_social/cafe_01.jpg">
-                <img src="assets/cafe_social/cafe_01.jpg" alt="咖啡廳社群氛圍素材 1" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="1" data-img="assets/cafe_social/cafe_02.jpg">
-                <img src="assets/cafe_social/cafe_02.jpg" alt="咖啡廳社群氛圍素材 2" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="2" data-img="assets/cafe_social/cafe_03.jpg">
-                <img src="assets/cafe_social/cafe_03.jpg" alt="咖啡廳社群氛圍素材 3" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="3" data-img="assets/cafe_social/cafe_04.jpg">
-                <img src="assets/cafe_social/cafe_04.jpg" alt="咖啡廳社群氛圍素材 4" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="4" data-img="assets/cafe_social/cafe_05.jpg">
-                <img src="assets/cafe_social/cafe_05.jpg" alt="咖啡廳社群氛圍素材 5" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="5" data-img="assets/cafe_social/cafe_06.jpg">
-                <img src="assets/cafe_social/cafe_06.jpg" alt="咖啡廳社群氛圍素材 6" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="6" data-img="assets/cafe_social/cafe_07.jpg">
-                <img src="assets/cafe_social/cafe_07.jpg" alt="咖啡廳社群氛圍素材 7" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="7" data-img="assets/cafe_social/cafe_08.jpg">
-                <img src="assets/cafe_social/cafe_08.jpg" alt="咖啡廳社群氛圍素材 8" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="8" data-img="assets/cafe_social/cafe_09.jpg">
-                <img src="assets/cafe_social/cafe_09.jpg" alt="咖啡廳社群氛圍素材 9" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="9" data-img="assets/cafe_social/cafe_10.jpg">
-                <img src="assets/cafe_social/cafe_10.jpg" alt="咖啡廳社群氛圍素材 10" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="10" data-img="assets/cafe_social/cafe_11.jpg">
-                <img src="assets/cafe_social/cafe_11.jpg" alt="咖啡廳社群氛圍素材 11" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="11" data-img="assets/cafe_social/cafe_12.jpg">
-                <img src="assets/cafe_social/cafe_12.jpg" alt="咖啡廳社群氛圍素材 12" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="12" data-img="assets/cafe_social/cafe_13.jpg">
-                <img src="assets/cafe_social/cafe_13.jpg" alt="咖啡廳社群氛圍素材 13" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="13" data-img="assets/cafe_social/cafe_14.jpg">
-                <img src="assets/cafe_social/cafe_14.jpg" alt="咖啡廳社群氛圍素材 14" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="14" data-img="assets/cafe_social/cafe_15.jpg">
-                <img src="assets/cafe_social/cafe_15.jpg" alt="咖啡廳社群氛圍素材 15" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="15" data-img="assets/cafe_social/cafe_16.jpg">
-                <img src="assets/cafe_social/cafe_16.jpg" alt="咖啡廳社群氛圍素材 16" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="16" data-img="assets/cafe_social/cafe_17.jpg">
-                <img src="assets/cafe_social/cafe_17.jpg" alt="咖啡廳社群氛圍素材 17" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="17" data-img="assets/cafe_social/cafe_18.jpg">
-                <img src="assets/cafe_social/cafe_18.jpg" alt="咖啡廳社群氛圍素材 18" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="18" data-img="assets/cafe_social/cafe_19.jpg">
-                <img src="assets/cafe_social/cafe_19.jpg" alt="咖啡廳社群氛圍素材 19" loading="lazy">
-            </div>
-            <div class="cafe-photo-item" data-index="19" data-img="assets/cafe_social/cafe_20.jpg">
-                <img src="assets/cafe_social/cafe_20.jpg" alt="咖啡廳社群氛圍素材 20" loading="lazy">
-            </div>
-        </div>
+""" + photo_items_html + """        </div>
     </main>
 
     <!-- Lightbox Modal (Pure Photo View) -->
@@ -280,3 +261,9 @@
     </script>
 </body>
 </html>
+"""
+
+with open(cafe_page_path, "w", encoding="utf-8") as f:
+    f.write(pure_cafe_html)
+
+print("Successfully rebuilt cafe_social.html with strictly the 20 photos from the 範例 folder!")
