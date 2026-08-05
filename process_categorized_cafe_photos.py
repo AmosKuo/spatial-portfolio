@@ -1,4 +1,65 @@
-<!DOCTYPE html>
+import os, glob, shutil
+from PIL import Image
+
+spatial_dir = "/Users/kuoamos/Desktop/spatial-portfolio"
+assets_dst = os.path.join(spatial_dir, "assets", "cafe_social")
+cafe_page_path = os.path.join(spatial_dir, "cafe_social.html")
+
+base_space = "/Users/kuoamos/Library/CloudStorage/GoogleDrive-burberryamos@gmail.com/我的雲端硬碟/光盒影像—空間攝影/室內設計拍攝工作檔案夾/社群素材/咖啡廳社群素材/範例/空間氛圍"
+base_food = "/Users/kuoamos/Library/CloudStorage/GoogleDrive-burberryamos@gmail.com/我的雲端硬碟/光盒影像—空間攝影/室內設計拍攝工作檔案夾/社群素材/咖啡廳社群素材/範例/食物"
+
+# Reset assets directory
+if os.path.exists(assets_dst):
+    shutil.rmtree(assets_dst)
+os.makedirs(assets_dst, exist_ok=True)
+
+space_files = sorted([os.path.join(base_space, f) for f in os.listdir(base_space) if not f.startswith(".") and f.lower().endswith(('.jpg', '.png', '.jpeg'))])
+food_files = sorted([os.path.join(base_food, f) for f in os.listdir(base_food) if not f.startswith(".") and f.lower().endswith(('.jpg', '.png', '.jpeg'))])
+
+print(f"Processing {len(space_files)} space photos and {len(food_files)} food photos.")
+
+space_processed = []
+food_processed = []
+
+# Process Space Photos
+for i, fpath in enumerate(space_files):
+    out_name = f"space_{i+1:02d}.jpg"
+    dst_path = os.path.join(assets_dst, out_name)
+    im = Image.open(fpath)
+    if im.mode != "RGB":
+        im = im.convert("RGB")
+    im.thumbnail((2048, 2048), Image.Resampling.LANCZOS)
+    im.save(dst_path, "JPEG", quality=90)
+    space_processed.append(f"assets/cafe_social/{out_name}")
+    print(f"  [Space {i+1}] {os.path.basename(fpath)} -> {out_name}")
+
+# Process Food Photos
+for i, fpath in enumerate(food_files):
+    out_name = f"food_{i+1:02d}.jpg"
+    dst_path = os.path.join(assets_dst, out_name)
+    im = Image.open(fpath)
+    if im.mode != "RGB":
+        im = im.convert("RGB")
+    im.thumbnail((2048, 2048), Image.Resampling.LANCZOS)
+    im.save(dst_path, "JPEG", quality=90)
+    food_processed.append(f"assets/cafe_social/{out_name}")
+    print(f"  [Food {i+1}] {os.path.basename(fpath)} -> {out_name}")
+
+total_count = len(space_processed) + len(food_processed)
+
+space_cards_html = ""
+for idx, src in enumerate(space_processed):
+    space_cards_html += f'                    <div class="cafe-photo-item" data-cat="space" data-img="{src}">\n'
+    space_cards_html += f'                        <img src="{src}" alt="空間氛圍 {idx+1}" loading="lazy">\n'
+    space_cards_html += f'                    </div>\n'
+
+food_cards_html = ""
+for idx, src in enumerate(food_processed):
+    food_cards_html += f'                    <div class="cafe-photo-item" data-cat="food" data-img="{src}">\n'
+    food_cards_html += f'                        <img src="{src}" alt="食物與餐點 {idx+1}" loading="lazy">\n'
+    food_cards_html += f'                    </div>\n'
+
+html_head = """<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -194,9 +255,9 @@
 
         <!-- Filter Tab Buttons -->
         <div class="filter-nav fade-up delay-1">
-            <button class="filter-btn active" data-filter="all">全部 ALL (22)</button>
-            <button class="filter-btn" data-filter="space">01. 空間氛圍 (16)</button>
-            <button class="filter-btn" data-filter="food">02. 食物 (6)</button>
+            <button class="filter-btn active" data-filter="all">全部 ALL (""" + str(total_count) + """)</button>
+            <button class="filter-btn" data-filter="space">01. 空間氛圍 (""" + str(len(space_processed)) + """)</button>
+            <button class="filter-btn" data-filter="food">02. 食物 (""" + str(len(food_processed)) + """)</button>
         </div>
 
         <div style="max-width: 1350px; margin: 0 auto; padding: 0 1.5rem;">
@@ -208,55 +269,7 @@
                     <div class="category-badge">SPACE & AMBIENCE</div>
                 </div>
                 <div class="cafe-grid">
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_01.jpg">
-                        <img src="assets/cafe_social/space_01.jpg" alt="空間氛圍 1" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_02.jpg">
-                        <img src="assets/cafe_social/space_02.jpg" alt="空間氛圍 2" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_03.jpg">
-                        <img src="assets/cafe_social/space_03.jpg" alt="空間氛圍 3" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_04.jpg">
-                        <img src="assets/cafe_social/space_04.jpg" alt="空間氛圍 4" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_05.jpg">
-                        <img src="assets/cafe_social/space_05.jpg" alt="空間氛圍 5" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_06.jpg">
-                        <img src="assets/cafe_social/space_06.jpg" alt="空間氛圍 6" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_07.jpg">
-                        <img src="assets/cafe_social/space_07.jpg" alt="空間氛圍 7" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_08.jpg">
-                        <img src="assets/cafe_social/space_08.jpg" alt="空間氛圍 8" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_09.jpg">
-                        <img src="assets/cafe_social/space_09.jpg" alt="空間氛圍 9" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_10.jpg">
-                        <img src="assets/cafe_social/space_10.jpg" alt="空間氛圍 10" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_11.jpg">
-                        <img src="assets/cafe_social/space_11.jpg" alt="空間氛圍 11" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_12.jpg">
-                        <img src="assets/cafe_social/space_12.jpg" alt="空間氛圍 12" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_13.jpg">
-                        <img src="assets/cafe_social/space_13.jpg" alt="空間氛圍 13" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_14.jpg">
-                        <img src="assets/cafe_social/space_14.jpg" alt="空間氛圍 14" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_15.jpg">
-                        <img src="assets/cafe_social/space_15.jpg" alt="空間氛圍 15" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="space" data-img="assets/cafe_social/space_16.jpg">
-                        <img src="assets/cafe_social/space_16.jpg" alt="空間氛圍 16" loading="lazy">
-                    </div>
-                </div>
+""" + space_cards_html + """                </div>
             </div>
 
             <!-- Category 2: 食物 -->
@@ -266,25 +279,7 @@
                     <div class="category-badge">FOOD & DISHES</div>
                 </div>
                 <div class="cafe-grid">
-                    <div class="cafe-photo-item" data-cat="food" data-img="assets/cafe_social/food_01.jpg">
-                        <img src="assets/cafe_social/food_01.jpg" alt="食物與餐點 1" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="food" data-img="assets/cafe_social/food_02.jpg">
-                        <img src="assets/cafe_social/food_02.jpg" alt="食物與餐點 2" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="food" data-img="assets/cafe_social/food_03.jpg">
-                        <img src="assets/cafe_social/food_03.jpg" alt="食物與餐點 3" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="food" data-img="assets/cafe_social/food_04.jpg">
-                        <img src="assets/cafe_social/food_04.jpg" alt="食物與餐點 4" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="food" data-img="assets/cafe_social/food_05.jpg">
-                        <img src="assets/cafe_social/food_05.jpg" alt="食物與餐點 5" loading="lazy">
-                    </div>
-                    <div class="cafe-photo-item" data-cat="food" data-img="assets/cafe_social/food_06.jpg">
-                        <img src="assets/cafe_social/food_06.jpg" alt="食物與餐點 6" loading="lazy">
-                    </div>
-                </div>
+""" + food_cards_html + """                </div>
             </div>
 
         </div>
@@ -390,3 +385,9 @@
     </script>
 </body>
 </html>
+"""
+
+with open(cafe_page_path, "w", encoding="utf-8") as f:
+    f.write(html_head)
+
+print("Successfully generated categorized cafe_social.html!")
