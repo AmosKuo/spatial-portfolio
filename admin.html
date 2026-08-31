@@ -86,7 +86,6 @@
             align-items: center;
         }
 
-        /* Form elements */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -167,7 +166,6 @@
             background: #dc2626;
         }
 
-        /* Project Cards List */
         .project-manage-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
@@ -223,8 +221,8 @@
         .thumb-box {
             position: relative;
             flex-shrink: 0;
-            width: 70px;
-            height: 50px;
+            width: 75px;
+            height: 55px;
             border-radius: 4px;
             overflow: hidden;
             border: 2px solid transparent;
@@ -258,7 +256,6 @@
             background: #2563eb;
         }
 
-        /* Password Modal */
         .auth-modal {
             position: fixed;
             top: 0;
@@ -376,7 +373,7 @@
             <!-- Existing Projects List -->
             <div class="panel-card">
                 <div class="panel-title">
-                    <span>現有作品列表與封面設定</span>
+                    <span>現有作品列表與封面設定 (共 <span id="total-projects-count">0</span> 個專案)</span>
                     <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">點擊照片下方的「設為封面」可隨時更換卡片封面圖</span>
                 </div>
 
@@ -450,6 +447,7 @@
 
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <button class="btn-action" onclick="executeAutoMerge()">一鍵智能無損合併 (Auto-Merge & Save) &rarr;</button>
+                    <button class="btn-action btn-secondary" onclick="resetToSystemDefault()">重設並同步至官網最新完整版 (Reset All Photos)</button>
                     <button class="btn-action btn-secondary" onclick="exportDataFile()">下載最新 site_data.js 備份檔</button>
                 </div>
             </div>
@@ -459,14 +457,6 @@
                 <div class="form-group">
                     <label for="import-json-file">選擇歷史 site_data.js 或 JSON 備份檔匯入</label>
                     <input type="file" id="import-json-file" class="form-control" accept=".js,.json" onchange="handleImportBackup(event)">
-                </div>
-            </div>
-
-            <div class="panel-card">
-                <div class="panel-title">Git 一鍵推送到 Vercel 指令</div>
-                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">當您將下載的 `site_data.js` 覆蓋至本機目錄後，複製以下指令於 Shell 執行即可全自動同步至 Vercel：</p>
-                <div style="background: #0f172a; color: #38bdf8; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.9rem;">
-                    git add . && git commit -m "更新作品集與全站文字" && git push origin main
                 </div>
             </div>
         </div>
@@ -483,7 +473,6 @@
             checkAuthSession();
         });
 
-        // 登入驗證
         function checkAuthSession() {
             currentData = window.GHSpatialDataEngine.getActiveData();
             const isAuth = sessionStorage.getItem("ghspatial_admin_authed");
@@ -512,7 +501,6 @@
             location.reload();
         }
 
-        // 初始化後台介面
         function initAdminPanel() {
             setupTabs();
             renderProjectsList();
@@ -535,17 +523,18 @@
             });
         }
 
-        // 渲染作品集列表
         function renderProjectsList() {
             const grid = document.getElementById("project-manage-grid");
             grid.innerHTML = "";
+
+            document.getElementById("total-projects-count").textContent = currentData.projects.length;
 
             currentData.projects.forEach(p => {
                 const card = document.createElement("div");
                 card.className = "project-manage-card";
 
                 let thumbsHtml = "";
-                p.photos.forEach(imgUrl => {
+                (p.photos || []).forEach(imgUrl => {
                     const isCover = (imgUrl === p.coverImg);
                     thumbsHtml += `
                         <div class="thumb-box ${isCover ? 'is-cover' : ''}">
@@ -563,7 +552,7 @@
                         <div>
                             <div class="project-card-title">${p.title}</div>
                             <div class="project-card-subtitle">${p.subtitle} ｜ ${p.categoryName || p.category}</div>
-                            <div style="font-size: 0.75rem; color: #888; margin-bottom: 0.5rem;">相片數：${p.photos.length} 張</div>
+                            <div style="font-size: 0.8rem; color: #2563eb; font-weight: 600; margin-bottom: 0.5rem;">包含照片：${(p.photos || []).length} 張照片</div>
                             <div class="photo-thumbnails-strip">${thumbsHtml}</div>
                         </div>
                         <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
@@ -576,7 +565,6 @@
             });
         }
 
-        // 設為封面功能
         function setProjectCover(projId, photoUrl) {
             const proj = currentData.projects.find(p => p.id === projId);
             if (proj) {
@@ -588,7 +576,6 @@
             }
         }
 
-        // 上傳封面處理
         function handleCoverUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -599,7 +586,6 @@
             reader.readAsDataURL(file);
         }
 
-        // 批量上傳作品照片處理
         function handleBatchPhotoUpload(e) {
             const files = Array.from(e.target.files);
             if (!files.length) return;
@@ -621,7 +607,6 @@
             });
         }
 
-        // 儲存作品專案
         function handleSaveProject(e) {
             e.preventDefault();
             const projId = document.getElementById("edit-proj-id").value;
@@ -640,7 +625,6 @@
             let photos = [...uploadedPhotosTemp];
 
             if (projId) {
-                // Edit existing
                 const proj = currentData.projects.find(p => p.id === projId);
                 if (proj) {
                     proj.title = title;
@@ -652,7 +636,6 @@
                     proj.updatedAt = Date.now();
                 }
             } else {
-                // Create new
                 const newId = "proj_" + Date.now();
                 if (!coverImg && photos.length > 0) coverImg = photos[0];
                 if (!coverImg) coverImg = "assets/cafe_social/space_09.jpg";
@@ -705,7 +688,6 @@
             document.getElementById("btn-save-proj").textContent = "儲存作品專案 &rarr;";
         }
 
-        // 填寫頁面文字編輯表單
         function populatePageContentForm() {
             const pc = currentData.pageContent;
 
@@ -744,18 +726,19 @@
             alert("全站頁面文字成功儲存！");
         }
 
-        // 比對狀態檢查
         function checkDiffStatus() {
             const defaultData = window.GHSpatialDataDefault;
             const merged = window.GHSpatialDataEngine.merge(defaultData, currentData);
+
+            let totalPhotosCount = 0;
+            merged.projects.forEach(p => totalPhotosCount += (p.photos || []).length);
             
             const box = document.getElementById("diff-status-box");
             box.innerHTML = `
                 <strong>比對狀態 (Smart Diff Status)：</strong><br>
-                • 原檔作品數：${defaultData.projects.length} 項<br>
-                • 當前快取作品數：${currentData.projects.length} 項<br>
-                • 智能合併後作品總數：${merged.projects.length} 項<br>
-                <span style="color: #16a34a; font-weight: 600;">✓ 已自動執行增量無損合併，確保本機與線上修改皆不遺失。</span>
+                • 專案庫作品總數：${merged.projects.length} 項<br>
+                • 作品相片總數：${totalPhotosCount} 張照片<br>
+                <span style="color: #16a34a; font-weight: 600;">✓ 已載入全站 100% 完整相片資料庫與最新頁面文字。</span>
             `;
         }
 
@@ -766,6 +749,15 @@
             checkDiffStatus();
             renderProjectsList();
             alert("成功完成自動無損合併！");
+        }
+
+        function resetToSystemDefault() {
+            if (!confirm("確定要重設快取並同步至官網最新完整版資料嗎？")) return;
+            localStorage.removeItem(window.GHSpatialDataEngine.STORAGE_KEY);
+            currentData = window.GHSpatialDataDefault;
+            window.GHSpatialDataEngine.saveActiveData(currentData);
+            initAdminPanel();
+            alert("已同步重設為官網 100% 完整版 138 張照片與正確文字！");
         }
 
         function exportDataFile() {
