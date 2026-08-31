@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. 動態渲染作品集畫廊 (portfolio.html & index.html)
         const galleryContainer = document.querySelector('.gallery');
         if (galleryContainer && activeData.projects) {
-            // 保留原本特定頁面的單一專案內文，僅針對全站畫廊主容器進行動態更新
             if (window.location.pathname.endsWith('portfolio.html') || window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('spatial-portfolio/')) {
                 galleryContainer.innerHTML = '';
                 activeData.projects.forEach(p => {
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 2. 動態渲染全站頁面文字 (Page Text Content)
+        // 2. 動態渲染全站頁面文字與價目表細項 (Page Text & Fine Pricing Details)
         const pc = activeData.pageContent;
         if (pc) {
             // 首頁
@@ -62,13 +61,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (pc.about) {
                     const pageTitle = document.querySelector('.page-title');
                     if (pageTitle && pc.about.heading) pageTitle.textContent = pc.about.heading;
+                    const ps = document.querySelectorAll('.about-content p');
+                    if (ps.length >= 1 && pc.about.intro1) ps[0].textContent = pc.about.intro1;
+                    if (ps.length >= 2 && pc.about.intro2) ps[1].textContent = pc.about.intro2;
                 }
             }
-            // 價目表頁面
+            // 價目表頁面 (全細項動態綁定)
             if (window.location.pathname.endsWith('pricing.html')) {
                 if (pc.pricing) {
+                    const pr = pc.pricing;
+
                     const pageTitle = document.querySelector('.page-title');
-                    if (pageTitle && pc.pricing.heading) pageTitle.textContent = pc.pricing.heading;
+                    if (pageTitle && pr.heading) pageTitle.textContent = pr.heading;
+
+                    // 首次合作方案
+                    const featCard = document.querySelector('.pricing-card[style*="border: 2px solid"]');
+                    if (featCard && pr.featuredPlan) {
+                        const h3 = featCard.querySelector('h3');
+                        if (h3 && pr.featuredPlan.title) h3.textContent = pr.featuredPlan.title;
+                        const price = featCard.querySelector('.price');
+                        if (price && pr.featuredPlan.price) price.textContent = pr.featuredPlan.price;
+                        const desc = featCard.querySelector('.plan-desc');
+                        if (desc && pr.featuredPlan.desc) desc.textContent = pr.featuredPlan.desc;
+                        const ul = featCard.querySelector('ul');
+                        if (ul && pr.featuredPlan.items) {
+                            ul.innerHTML = pr.featuredPlan.items.map((item, idx) => `
+                                <li style="border-bottom: ${idx < pr.featuredPlan.items.length - 1 ? '1px solid #eee' : 'none'}; padding-bottom: 1rem;">
+                                    ${item}
+                                </li>
+                            `).join('');
+                        }
+                    }
+
+                    // 小坪數 & 大坪數方案
+                    const cards = document.querySelectorAll('.pricing-container .pricing-card');
+                    if (cards.length >= 2) {
+                        // 小坪數
+                        if (pr.planSmall) {
+                            const c = cards[0];
+                            if (pr.planSmall.title) c.querySelector('h3').textContent = pr.planSmall.title;
+                            if (pr.planSmall.price) c.querySelector('.price').innerHTML = pr.planSmall.price + '<span> / 元</span>';
+                            if (pr.planSmall.desc) c.querySelector('.plan-desc').textContent = pr.planSmall.desc;
+                            if (pr.planSmall.items) {
+                                c.querySelector('ul').innerHTML = pr.planSmall.items.map(item => `<li>${item}</li>`).join('');
+                            }
+                        }
+                        // 大坪數
+                        if (pr.planLarge) {
+                            const c = cards[1];
+                            if (pr.planLarge.title) c.querySelector('h3').textContent = pr.planLarge.title;
+                            if (pr.planLarge.price) c.querySelector('.price').innerHTML = pr.planLarge.price + '<span> / 元</span>';
+                            if (pr.planLarge.desc) c.querySelector('.plan-desc').textContent = pr.planLarge.desc;
+                            if (pr.planLarge.items) {
+                                c.querySelector('ul').innerHTML = pr.planLarge.items.map(item => `<li>${item}</li>`).join('');
+                            }
+                        }
+                    }
+
+                    // 注意事項
+                    const infoSections = document.querySelectorAll('.info-section');
+                    if (infoSections.length >= 1 && pr.notes) {
+                        const ul = infoSections[0].querySelector('ul.info-list');
+                        if (ul) {
+                            ul.innerHTML = pr.notes.map(n => `<li>${n}</li>`).join('');
+                        }
+                    }
+
+                    // 預約執行流程
+                    if (infoSections.length >= 2 && pr.process) {
+                        const ol = infoSections[1].querySelector('ol.process-list');
+                        if (ol) {
+                            ol.innerHTML = pr.process.map(step => `<li>${step}</li>`).join('');
+                        }
+                    }
                 }
             }
         }

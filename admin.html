@@ -124,7 +124,7 @@
         }
 
         textarea.form-control {
-            min-height: 90px;
+            min-height: 100px;
             resize: vertical;
         }
 
@@ -341,7 +341,7 @@
         </div>
         <nav class="admin-nav">
             <button class="admin-tab-btn active" data-tab="tab-projects">專案作品與封面/分類管理</button>
-            <button class="admin-tab-btn" data-tab="tab-pages">全站頁面文字編輯</button>
+            <button class="admin-tab-btn" data-tab="tab-pages">全站頁面文字與價目表細項編輯</button>
             <button class="admin-tab-btn" data-tab="tab-sync">同步前比對與備份匯出</button>
             <button class="admin-tab-btn btn-secondary" onclick="logoutAdmin()">登出</button>
         </nav>
@@ -418,7 +418,7 @@
             </div>
         </div>
 
-        <!-- TAB 2: 全站頁面文字編輯 -->
+        <!-- TAB 2: 全站頁面文字與價目表細項編輯 -->
         <div class="tab-content" id="tab-pages" style="display: none;">
             <div class="panel-card">
                 <div class="panel-title">首頁文字編輯 (HOME)</div>
@@ -452,22 +452,100 @@
                 </div>
             </div>
 
+            <!-- PRICING FULL EDIT -->
             <div class="panel-card">
-                <div class="panel-title">價目表文字編輯 (PRICING)</div>
+                <div class="panel-title">價目表全細項編輯 (PRICING)</div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="page-pricing-heading">價目表主標題</label>
+                        <label for="page-pricing-heading">價目表頁面大標題</label>
                         <input type="text" id="page-pricing-heading" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="page-pricing-subheading">價目表副標題</label>
+                        <label for="page-pricing-subheading">價目表副標題 / 說明</label>
                         <input type="text" id="page-pricing-subheading" class="form-control">
+                    </div>
+
+                    <!-- 首次合作方案 -->
+                    <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: #2563eb;">1. 設計師首次合作方案 (主打卡片)</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-feat-title">方案標題</label>
+                        <input type="text" id="pr-feat-title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-feat-price">方案價格 (例如：請預約洽詢)</label>
+                        <input type="text" id="pr-feat-price" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-feat-desc">方案簡述</label>
+                        <input type="text" id="pr-feat-desc" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-feat-items">包含細項 (每行一個細項點)</label>
+                        <textarea id="pr-feat-items" class="form-control" style="min-height: 120px;"></textarea>
+                    </div>
+
+                    <!-- 小坪數方案 -->
+                    <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: #111;">2. 小坪數方案</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-small-title">方案標題</label>
+                        <input type="text" id="pr-small-title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-small-price">方案價格 (例如：$ 18,000)</label>
+                        <input type="text" id="pr-small-price" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-small-desc">方案簡述</label>
+                        <input type="text" id="pr-small-desc" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-small-items">包含細項 (每行一個細項點)</label>
+                        <textarea id="pr-small-items" class="form-control" style="min-height: 120px;"></textarea>
+                    </div>
+
+                    <!-- 大坪數方案 -->
+                    <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: #111;">3. 大坪數方案</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-large-title">方案標題</label>
+                        <input type="text" id="pr-large-title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-large-price">方案價格 (例如：$ 36,000)</label>
+                        <input type="text" id="pr-large-price" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-large-desc">方案簡述</label>
+                        <input type="text" id="pr-large-desc" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-large-items">包含細項 (每行一個細項點)</label>
+                        <textarea id="pr-large-items" class="form-control" style="min-height: 120px;"></textarea>
+                    </div>
+
+                    <!-- 注意事項清單 -->
+                    <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: #dc2626;">4. 注意事項細項清單</h4>
+                        <label for="pr-notes">注意事項細項 (每行一個條款說明點)</label>
+                        <textarea id="pr-notes" class="form-control" style="min-height: 180px;"></textarea>
+                    </div>
+
+                    <!-- 預約與執行流程 -->
+                    <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: #16a34a;">5. 預約及拍攝執行流程步驟</h4>
+                        <label for="pr-process">執行流程步驟 (每行一個步驟細項)</label>
+                        <textarea id="pr-process" class="form-control" style="min-height: 150px;"></textarea>
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: right; margin-top: 1rem;">
-                <button type="button" class="btn-action" onclick="savePageContentEdits()">儲存頁面文字修改 &rarr;</button>
+            <div style="text-align: right; margin-top: 1.5rem;">
+                <button type="button" class="btn-action" onclick="savePageContentEdits()">儲存所有全站文字與價目表細項 &rarr;</button>
             </div>
         </div>
 
@@ -505,14 +583,11 @@
         let uploadedPhotosTemp = [];
 
         document.addEventListener("DOMContentLoaded", function() {
-            // 安全載入與自動診斷修正
             currentData = window.GHSpatialDataDefault;
             if (window.GHSpatialDataEngine) {
-                // 自動清理過期舊快取並獲取最新無損資料
                 currentData = window.GHSpatialDataEngine.getActiveData();
             }
 
-            // 事件代理 (避免圖片路徑引號破壞 HTML 語法)
             document.getElementById("project-manage-grid").addEventListener("click", function(e) {
                 const btn = e.target.closest(".thumb-set-cover-btn");
                 if (btn) {
@@ -806,8 +881,35 @@
                 document.getElementById("page-about-intro2").value = pc.about.intro2 || "";
             }
             if (pc.pricing) {
-                document.getElementById("page-pricing-heading").value = pc.pricing.heading || "";
-                document.getElementById("page-pricing-subheading").value = pc.pricing.subheading || "";
+                const pr = pc.pricing;
+                document.getElementById("page-pricing-heading").value = pr.heading || "";
+                document.getElementById("page-pricing-subheading").value = pr.subheading || "";
+
+                if (pr.featuredPlan) {
+                    document.getElementById("pr-feat-title").value = pr.featuredPlan.title || "";
+                    document.getElementById("pr-feat-price").value = pr.featuredPlan.price || "";
+                    document.getElementById("pr-feat-desc").value = pr.featuredPlan.desc || "";
+                    document.getElementById("pr-feat-items").value = (pr.featuredPlan.items || []).join("\n");
+                }
+                if (pr.planSmall) {
+                    document.getElementById("pr-small-title").value = pr.planSmall.title || "";
+                    document.getElementById("pr-small-price").value = pr.planSmall.price || "";
+                    document.getElementById("pr-small-desc").value = pr.planSmall.desc || "";
+                    document.getElementById("pr-small-items").value = (pr.planSmall.items || []).join("\n");
+                }
+                if (pr.planLarge) {
+                    document.getElementById("pr-large-title").value = pr.planLarge.title || "";
+                    document.getElementById("pr-large-price").value = pr.planLarge.price || "";
+                    document.getElementById("pr-large-desc").value = pr.planLarge.desc || "";
+                    document.getElementById("pr-large-items").value = (pr.planLarge.items || []).join("\n");
+                }
+
+                if (pr.notes) {
+                    document.getElementById("pr-notes").value = (pr.notes || []).join("\n");
+                }
+                if (pr.process) {
+                    document.getElementById("pr-process").value = (pr.process || []).join("\n");
+                }
             }
         }
 
@@ -826,12 +928,34 @@
             pc.about.updatedAt = Date.now();
 
             if (!pc.pricing) pc.pricing = {};
-            pc.pricing.heading = document.getElementById("page-pricing-heading").value;
-            pc.pricing.subheading = document.getElementById("page-pricing-subheading").value;
-            pc.pricing.updatedAt = Date.now();
+            const pr = pc.pricing;
+            pr.heading = document.getElementById("page-pricing-heading").value;
+            pr.subheading = document.getElementById("page-pricing-subheading").value;
+
+            if (!pr.featuredPlan) pr.featuredPlan = {};
+            pr.featuredPlan.title = document.getElementById("pr-feat-title").value;
+            pr.featuredPlan.price = document.getElementById("pr-feat-price").value;
+            pr.featuredPlan.desc = document.getElementById("pr-feat-desc").value;
+            pr.featuredPlan.items = document.getElementById("pr-feat-items").value.split("\n").filter(i => i.trim());
+
+            if (!pr.planSmall) pr.planSmall = {};
+            pr.planSmall.title = document.getElementById("pr-small-title").value;
+            pr.planSmall.price = document.getElementById("pr-small-price").value;
+            pr.planSmall.desc = document.getElementById("pr-small-desc").value;
+            pr.planSmall.items = document.getElementById("pr-small-items").value.split("\n").filter(i => i.trim());
+
+            if (!pr.planLarge) pr.planLarge = {};
+            pr.planLarge.title = document.getElementById("pr-large-title").value;
+            pr.planLarge.price = document.getElementById("pr-large-price").value;
+            pr.planLarge.desc = document.getElementById("pr-large-desc").value;
+            pr.planLarge.items = document.getElementById("pr-large-items").value.split("\n").filter(i => i.trim());
+
+            pr.notes = document.getElementById("pr-notes").value.split("\n").filter(i => i.trim());
+            pr.process = document.getElementById("pr-process").value.split("\n").filter(i => i.trim());
+            pr.updatedAt = Date.now();
 
             window.GHSpatialDataEngine.saveActiveData(currentData);
-            alert("全站頁面文字成功儲存！");
+            alert("全站頁面文字與價目表所有細項成功儲存！");
         }
 
         function checkDiffStatus() {
@@ -845,8 +969,9 @@
             box.innerHTML = `
                 <strong>比對狀態 (Smart Diff Status)：</strong><br>
                 • 專案庫作品總數：${merged.projects.length} 項<br>
-                • 作品相片總數：${totalPhotosCount} 張照片 (含「空間氛圍 16張」與「食物 6張」子分類標籤)<br>
-                <span style="color: #16a34a; font-weight: 600;">✓ 已載入全站 100% 完整子分類相片資料庫。</span>
+                • 作品相片總數：${totalPhotosCount} 張照片<br>
+                • 價目表細項：包含 3 大方案細項 + 12 項注意事項 + 8 步預約流程皆可完全自訂編輯<br>
+                <span style="color: #16a34a; font-weight: 600;">✓ 已載入價目表全細項編輯引擎。</span>
             `;
         }
 
@@ -864,7 +989,7 @@
             currentData = window.GHSpatialDataDefault;
             window.GHSpatialDataEngine.saveActiveData(currentData);
             initAdminPanel();
-            alert("已同步重設為官網 100% 完整版 138 張照片（含空間氛圍/食物分類）與正確文字！");
+            alert("已同步重設為官網 100% 完整版！");
         }
 
         function exportDataFile() {
