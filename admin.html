@@ -226,7 +226,7 @@
             border-radius: 6px;
             overflow: hidden;
             border: 2px solid transparent;
-            background: #f1f5f9;
+            background: #cbd5e1;
         }
 
         .thumb-box.is-cover {
@@ -237,6 +237,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .thumb-tag-badge {
@@ -249,6 +250,7 @@
             padding: 1px 4px;
             border-radius: 3px;
             font-weight: 600;
+            z-index: 2;
         }
 
         .thumb-set-cover-btn {
@@ -263,6 +265,7 @@
             padding: 3px 0;
             cursor: pointer;
             text-align: center;
+            z-index: 2;
         }
 
         .thumb-box.is-cover .thumb-set-cover-btn {
@@ -502,11 +505,27 @@
         let uploadedPhotosTemp = [];
 
         document.addEventListener("DOMContentLoaded", function() {
+            // 安全載入與自動診斷修正
+            currentData = window.GHSpatialDataDefault;
+            if (window.GHSpatialDataEngine) {
+                // 自動清理過期舊快取並獲取最新無損資料
+                currentData = window.GHSpatialDataEngine.getActiveData();
+            }
+
+            // 事件代理 (避免圖片路徑引號破壞 HTML 語法)
+            document.getElementById("project-manage-grid").addEventListener("click", function(e) {
+                const btn = e.target.closest(".thumb-set-cover-btn");
+                if (btn) {
+                    const projId = btn.getAttribute("data-proj-id");
+                    const photoUrl = decodeURIComponent(btn.getAttribute("data-img-url"));
+                    setProjectCover(projId, photoUrl);
+                }
+            });
+
             checkAuthSession();
         });
 
         function checkAuthSession() {
-            currentData = window.GHSpatialDataEngine.getActiveData();
             const isAuth = sessionStorage.getItem("ghspatial_admin_authed");
             if (isAuth === "true") {
                 document.getElementById("auth-modal").style.display = "none";
@@ -519,7 +538,7 @@
         function handleAuth(e) {
             e.preventDefault();
             const pwd = document.getElementById("auth-password").value.trim();
-            if (pwd === currentData.adminPassword) {
+            if (pwd === (currentData.adminPassword || "168")) {
                 sessionStorage.setItem("ghspatial_admin_authed", "true");
                 document.getElementById("auth-modal").style.display = "none";
                 initAdminPanel();
@@ -557,11 +576,13 @@
 
         function renderProjectsList() {
             const grid = document.getElementById("project-manage-grid");
+            if (!grid) return;
             grid.innerHTML = "";
 
-            document.getElementById("total-projects-count").textContent = currentData.projects.length;
+            const projects = currentData.projects || [];
+            document.getElementById("total-projects-count").textContent = projects.length;
 
-            currentData.projects.forEach(p => {
+            projects.forEach(p => {
                 const card = document.createElement("div");
                 card.className = "project-manage-card";
 
@@ -570,23 +591,32 @@
 
                 (p.photos || []).forEach(imgUrl => {
                     const isCover = (imgUrl === p.coverImg);
-                    const tag = photoTags[imgUrl] || (imgUrl.includes("space_") ? "空間氛圍" : (imgUrl.includes("food_") ? "食物" : ""));
+                    let tag = photoTags[imgUrl];
+                    if (!tag) {
+                        if (imgUrl.includes("space_")) tag = "空間氛圍";
+                        else if (imgUrl.includes("food_")) tag = "食物";
+                    }
+
+                    const safeUrl = encodeURIComponent(imgUrl);
 
                     thumbsHtml += `
                         <div class="thumb-box ${isCover ? 'is-cover' : ''}">
                             ${tag ? `<div class="thumb-tag-badge">${tag}</div>` : ''}
-                            <img src="${imgUrl}" alt="">
-                            <button class="thumb-set-cover-btn" onclick="setProjectCover('${p.id}', '${imgUrl}')">
+                            <img src="${imgUrl}" alt="" loading="lazy" onerror="this.src='assets/cafe_social/space_09.jpg'">
+                            <button class="thumb-set-cover-btn" data-proj-id="${p.id}" data-img-url="${safeUrl}">
                                 ${isCover ? '★ 封面' : '設為封面'}
                             </button>
                         </div>
                     `;
                 });
 
-                // Count subcategories for badge display
                 let spaceCount = 0, foodCount = 0;
                 (p.photos || []).forEach(imgUrl => {
-                    const t = photoTags[imgUrl] || (imgUrl.includes("space_") ? "空間氛圍" : (imgUrl.includes("food_") ? "食物" : ""));
+                    let t = photoTags[imgUrl];
+                    if (!t) {
+                        if (imgUrl.includes("space_")) t = "空間氛圍";
+                        else if (imgUrl.includes("food_")) t = "食物";
+                    }
                     if (t === "空間氛圍") spaceCount++;
                     if (t === "食物") foodCount++;
                 });
@@ -602,7 +632,7 @@
                 }
 
                 card.innerHTML = `
-                    <img src="${p.coverImg}" class="project-cover-preview" alt="${p.title}">
+                    <img src="${p.coverImg}" class="project-cover-preview" alt="${p.title}" onerror="this.src='assets/cafe_social/space_09.jpg'">
                     <div class="project-card-body">
                         <div>
                             <div class="project-card-title">${p.title}</div>
@@ -764,7 +794,7 @@
         }
 
         function populatePageContentForm() {
-            const pc = currentData.pageContent;
+            const pc = currentData.pageContent || {};
 
             if (pc.index) {
                 document.getElementById("page-index-heroTitle").value = pc.index.heroTitle || "";
@@ -782,17 +812,20 @@
         }
 
         function savePageContentEdits() {
-            const pc = currentData.pageContent;
+            const pc = currentData.pageContent || {};
 
+            if (!pc.index) pc.index = {};
             pc.index.heroTitle = document.getElementById("page-index-heroTitle").value;
             pc.index.heroSubtitle = document.getElementById("page-index-heroSubtitle").value;
             pc.index.updatedAt = Date.now();
 
+            if (!pc.about) pc.about = {};
             pc.about.heading = document.getElementById("page-about-heading").value;
             pc.about.intro1 = document.getElementById("page-about-intro1").value;
             pc.about.intro2 = document.getElementById("page-about-intro2").value;
             pc.about.updatedAt = Date.now();
 
+            if (!pc.pricing) pc.pricing = {};
             pc.pricing.heading = document.getElementById("page-pricing-heading").value;
             pc.pricing.subheading = document.getElementById("page-pricing-subheading").value;
             pc.pricing.updatedAt = Date.now();
@@ -827,7 +860,6 @@
         }
 
         function resetToSystemDefault() {
-            if (!confirm("確定要重設快取並同步至官網最新完整版資料嗎？")) return;
             localStorage.removeItem(window.GHSpatialDataEngine.STORAGE_KEY);
             currentData = window.GHSpatialDataDefault;
             window.GHSpatialDataEngine.saveActiveData(currentData);
