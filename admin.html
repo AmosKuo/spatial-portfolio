@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台管理系統 | ghspatial 光盒影像</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f4f5f7;
+            color: #1a1a1a;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding-bottom: 5rem;
+        }
+
+        .admin-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1.2rem 3%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .admin-brand {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #111;
+        }
+
+        .admin-nav {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .admin-tab-btn {
+            background: transparent;
+            border: 1px solid #ddd;
+            padding: 0.6rem 1.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .admin-tab-btn.active, .admin-tab-btn:hover {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .admin-container {
+            max-width: 1250px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .panel-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Form elements */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-control {
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #111;
+        }
+
+        textarea.form-control {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .btn-action {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.6rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-action:hover {
+            background: #333;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        /* Project Cards List */
+        .project-manage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-manage-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-cover-preview {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            background: #e2e8f0;
+        }
+
+        .project-card-body {
+            padding: 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-card-subtitle {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .photo-thumbnails-strip {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .thumb-box {
+            position: relative;
+            flex-shrink: 0;
+            width: 70px;
+            height: 50px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .thumb-box.is-cover {
+            border-color: #2563eb;
+        }
+
+        .thumb-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumb-set-cover-btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            font-size: 0.65rem;
+            border: none;
+            padding: 2px 0;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .thumb-box.is-cover .thumb-set-cover-btn {
+            background: #2563eb;
+        }
+
+        /* Password Modal */
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-box {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .diff-status-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-left: 4px solid #2563eb;
+            padding: 1.2rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-box">
+            <h2 style="margin-bottom: 0.5rem; font-weight: 600;">後台管理登入</h2>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">請輸入管理員密碼（預設密碼：168）</p>
+            <form id="auth-form" onsubmit="handleAuth(event)">
+                <div class="form-group">
+                    <input type="password" id="auth-password" class="form-control" placeholder="請輸入密碼..." required autofocus>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; justify-content: center; margin-top: 0.5rem;">登入後台管理 &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Header Navigation -->
+    <header class="admin-header">
+        <div class="admin-brand">
+            ghspatial 光盒影像 ｜ 後台管理
+        </div>
+        <nav class="admin-nav">
+            <button class="admin-tab-btn active" data-tab="tab-projects">專案作品與封面管理</button>
+            <button class="admin-tab-btn" data-tab="tab-pages">全站頁面文字編輯</button>
+            <button class="admin-tab-btn" data-tab="tab-sync">同步前比對與備份匯出</button>
+            <button class="admin-tab-btn btn-secondary" onclick="logoutAdmin()">登出</button>
+        </nav>
+    </header>
+
+    <div class="admin-container">
+
+        <!-- TAB 1: 專案作品與封面管理 -->
+        <div class="tab-content" id="tab-projects">
+            <div class="panel-card">
+                <div class="panel-title">
+                    <span>新增作品專案</span>
+                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">填寫作品資訊並指定專屬封面照片</span>
+                </div>
+
+                <form id="add-project-form" onsubmit="handleSaveProject(event)">
+                    <input type="hidden" id="edit-proj-id" value="">
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="proj-title">作品名稱 *</label>
+                            <input type="text" id="proj-title" class="form-control" placeholder="例如：純粹光影住宅_竹北" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="proj-subtitle">設計團隊 / 備註 *</label>
+                            <input type="text" id="proj-subtitle" class="form-control" placeholder="例如：軟裝設計 FIFI DECO" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="proj-category">作品分類 *</label>
+                            <select id="proj-category" class="form-control" required>
+                                <option value="residential">住宅室內 (Residential)</option>
+                                <option value="commercial">商業空間 (Commercial)</option>
+                                <option value="cafe">社群素材 (Café / Social)</option>
+                                <option value="architecture">建築與公共設施 (Architecture)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="proj-cover-input">指定封面照片 (上傳或檔案路徑)</label>
+                            <input type="file" id="proj-cover-file" class="form-control" accept="image/*" onchange="handleCoverUpload(event)">
+                            <input type="text" id="proj-cover-url" class="form-control" style="margin-top: 5px;" placeholder="或輸入照片相對路徑 assets/..." >
+                        </div>
+                        <div class="form-group full">
+                            <label for="proj-photos-file">批量上傳作品照片 (可選擇多張照片)</label>
+                            <input type="file" id="proj-photos-file" class="form-control" accept="image/*" multiple onchange="handleBatchPhotoUpload(event)">
+                            <div id="photos-preview-strip" class="photo-thumbnails-strip" style="margin-top: 10px;"></div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button type="submit" class="btn-action" id="btn-save-proj">儲存作品專案 &rarr;</button>
+                        <button type="button" class="btn-action btn-secondary" onclick="resetProjectForm()">清空重新填寫</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Existing Projects List -->
+            <div class="panel-card">
+                <div class="panel-title">
+                    <span>現有作品列表與封面設定</span>
+                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">點擊照片下方的「設為封面」可隨時更換卡片封面圖</span>
+                </div>
+
+                <div class="project-manage-grid" id="project-manage-grid">
+                    <!-- Dynamic project cards rendered via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: 全站頁面文字編輯 -->
+        <div class="tab-content" id="tab-pages" style="display: none;">
+            <div class="panel-card">
+                <div class="panel-title">首頁文字編輯 (HOME)</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="page-index-heroTitle">首頁大標題</label>
+                        <input type="text" id="page-index-heroTitle" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="page-index-heroSubtitle">首頁副標題 / 描述</label>
+                        <input type="text" id="page-index-heroSubtitle" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-title">關於光盒文字編輯 (ABOUT)</div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="page-about-heading">主標題</label>
+                        <input type="text" id="page-about-heading" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="page-about-intro1">理念內文 第一段</label>
+                        <textarea id="page-about-intro1" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label for="page-about-intro2">理念內文 第二段</label>
+                        <textarea id="page-about-intro2" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-title">價目表文字編輯 (PRICING)</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="page-pricing-heading">價目表主標題</label>
+                        <input type="text" id="page-pricing-heading" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="page-pricing-subheading">價目表副標題</label>
+                        <input type="text" id="page-pricing-subheading" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 1rem;">
+                <button type="button" class="btn-action" onclick="savePageContentEdits()">儲存頁面文字修改 &rarr;</button>
+            </div>
+        </div>
+
+        <!-- TAB 3: 同步前比對與備份匯出 -->
+        <div class="tab-content" id="tab-sync" style="display: none;">
+            <div class="panel-card">
+                <div class="panel-title">同步前自動比對與無損合併引擎 (Pre-Sync Smart Diff)</div>
+                
+                <div class="diff-status-box" id="diff-status-box">
+                    正在比對專案庫原檔 (site_data.js) 與瀏覽器快取 (LocalStorage)...
+                </div>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-action" onclick="executeAutoMerge()">一鍵智能無損合併 (Auto-Merge & Save) &rarr;</button>
+                    <button class="btn-action btn-secondary" onclick="exportDataFile()">下載最新 site_data.js 備份檔</button>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-title">備份資料匯入 (Import Backup)</div>
+                <div class="form-group">
+                    <label for="import-json-file">選擇歷史 site_data.js 或 JSON 備份檔匯入</label>
+                    <input type="file" id="import-json-file" class="form-control" accept=".js,.json" onchange="handleImportBackup(event)">
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-title">Git 一鍵推送到 Vercel 指令</div>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">當您將下載的 `site_data.js` 覆蓋至本機目錄後，複製以下指令於 Shell 執行即可全自動同步至 Vercel：</p>
+                <div style="background: #0f172a; color: #38bdf8; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.9rem;">
+                    git add . && git commit -m "更新作品集與全站文字" && git push origin main
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="site_data.js"></script>
+    <script>
+        let currentData = null;
+        let uploadedPhotosTemp = [];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            checkAuthSession();
+        });
+
+        // 登入驗證
+        function checkAuthSession() {
+            currentData = window.GHSpatialDataEngine.getActiveData();
+            const isAuth = sessionStorage.getItem("ghspatial_admin_authed");
+            if (isAuth === "true") {
+                document.getElementById("auth-modal").style.display = "none";
+                initAdminPanel();
+            } else {
+                document.getElementById("auth-modal").style.display = "flex";
+            }
+        }
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const pwd = document.getElementById("auth-password").value.trim();
+            if (pwd === currentData.adminPassword) {
+                sessionStorage.setItem("ghspatial_admin_authed", "true");
+                document.getElementById("auth-modal").style.display = "none";
+                initAdminPanel();
+            } else {
+                alert("密碼錯誤，請重新輸入！");
+            }
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem("ghspatial_admin_authed");
+            location.reload();
+        }
+
+        // 初始化後台介面
+        function initAdminPanel() {
+            setupTabs();
+            renderProjectsList();
+            populatePageContentForm();
+            checkDiffStatus();
+        }
+
+        function setupTabs() {
+            const tabs = document.querySelectorAll(".admin-tab-btn[data-tab]");
+            tabs.forEach(tab => {
+                tab.addEventListener("click", function() {
+                    tabs.forEach(t => t.classList.remove("active"));
+                    this.classList.add("active");
+
+                    const targetId = this.getAttribute("data-tab");
+                    document.querySelectorAll(".tab-content").forEach(tc => {
+                        tc.style.display = (tc.id === targetId) ? "block" : "none";
+                    });
+                });
+            });
+        }
+
+        // 渲染作品集列表
+        function renderProjectsList() {
+            const grid = document.getElementById("project-manage-grid");
+            grid.innerHTML = "";
+
+            currentData.projects.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "project-manage-card";
+
+                let thumbsHtml = "";
+                p.photos.forEach(imgUrl => {
+                    const isCover = (imgUrl === p.coverImg);
+                    thumbsHtml += `
+                        <div class="thumb-box ${isCover ? 'is-cover' : ''}">
+                            <img src="${imgUrl}" alt="">
+                            <button class="thumb-set-cover-btn" onclick="setProjectCover('${p.id}', '${imgUrl}')">
+                                ${isCover ? '★ 封面' : '設為封面'}
+                            </button>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <img src="${p.coverImg}" class="project-cover-preview" alt="${p.title}">
+                    <div class="project-card-body">
+                        <div>
+                            <div class="project-card-title">${p.title}</div>
+                            <div class="project-card-subtitle">${p.subtitle} ｜ ${p.categoryName || p.category}</div>
+                            <div style="font-size: 0.75rem; color: #888; margin-bottom: 0.5rem;">相片數：${p.photos.length} 張</div>
+                            <div class="photo-thumbnails-strip">${thumbsHtml}</div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <button class="btn-action btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="editProject('${p.id}')">編輯專案</button>
+                            <button class="btn-action btn-danger" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="deleteProject('${p.id}')">刪除作品</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 設為封面功能
+        function setProjectCover(projId, photoUrl) {
+            const proj = currentData.projects.find(p => p.id === projId);
+            if (proj) {
+                proj.coverImg = photoUrl;
+                proj.updatedAt = Date.now();
+                window.GHSpatialDataEngine.saveActiveData(currentData);
+                renderProjectsList();
+                alert(`已將該照片設為「${proj.title}」的封面！`);
+            }
+        }
+
+        // 上傳封面處理
+        function handleCoverUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                document.getElementById("proj-cover-url").value = evt.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 批量上傳作品照片處理
+        function handleBatchPhotoUpload(e) {
+            const files = Array.from(e.target.files);
+            if (!files.length) return;
+
+            const strip = document.getElementById("photos-preview-strip");
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const dataUrl = evt.target.result;
+                    uploadedPhotosTemp.push(dataUrl);
+
+                    const thumb = document.createElement("div");
+                    thumb.className = "thumb-box";
+                    thumb.innerHTML = `<img src="${dataUrl}">`;
+                    strip.appendChild(thumb);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // 儲存作品專案
+        function handleSaveProject(e) {
+            e.preventDefault();
+            const projId = document.getElementById("edit-proj-id").value;
+            const title = document.getElementById("proj-title").value.trim();
+            const subtitle = document.getElementById("proj-subtitle").value.trim();
+            const category = document.getElementById("proj-category").value;
+            let coverImg = document.getElementById("proj-cover-url").value.trim();
+
+            const catMap = {
+                residential: "住宅室內",
+                commercial: "商業空間",
+                cafe: "社群素材",
+                architecture: "建築與公共設施"
+            };
+
+            let photos = [...uploadedPhotosTemp];
+
+            if (projId) {
+                // Edit existing
+                const proj = currentData.projects.find(p => p.id === projId);
+                if (proj) {
+                    proj.title = title;
+                    proj.subtitle = subtitle;
+                    proj.category = category;
+                    proj.categoryName = catMap[category] || category;
+                    if (coverImg) proj.coverImg = coverImg;
+                    if (photos.length > 0) proj.photos = [...proj.photos, ...photos];
+                    proj.updatedAt = Date.now();
+                }
+            } else {
+                // Create new
+                const newId = "proj_" + Date.now();
+                if (!coverImg && photos.length > 0) coverImg = photos[0];
+                if (!coverImg) coverImg = "assets/cafe_social/space_09.jpg";
+
+                currentData.projects.unshift({
+                    id: newId,
+                    updatedAt: Date.now(),
+                    title: title,
+                    subtitle: subtitle,
+                    category: category,
+                    categoryName: catMap[category] || category,
+                    coverImg: coverImg,
+                    link: "#",
+                    photos: (photos.length > 0) ? photos : [coverImg]
+                });
+            }
+
+            window.GHSpatialDataEngine.saveActiveData(currentData);
+            resetProjectForm();
+            renderProjectsList();
+            alert("專案作品成功儲存！前端頁面已連動更新！");
+        }
+
+        function editProject(id) {
+            const proj = currentData.projects.find(p => p.id === id);
+            if (!proj) return;
+
+            document.getElementById("edit-proj-id").value = proj.id;
+            document.getElementById("proj-title").value = proj.title;
+            document.getElementById("proj-subtitle").value = proj.subtitle;
+            document.getElementById("proj-category").value = proj.category;
+            document.getElementById("proj-cover-url").value = proj.coverImg;
+            document.getElementById("btn-save-proj").textContent = "更新專案資料 &rarr;";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteProject(id) {
+            if (!confirm("確定要刪除此作品專案嗎？此操作無法復原。")) return;
+            currentData.projects = currentData.projects.filter(p => p.id !== id);
+            window.GHSpatialDataEngine.saveActiveData(currentData);
+            renderProjectsList();
+        }
+
+        function resetProjectForm() {
+            document.getElementById("add-project-form").reset();
+            document.getElementById("edit-proj-id").value = "";
+            document.getElementById("proj-cover-url").value = "";
+            document.getElementById("photos-preview-strip").innerHTML = "";
+            uploadedPhotosTemp = [];
+            document.getElementById("btn-save-proj").textContent = "儲存作品專案 &rarr;";
+        }
+
+        // 填寫頁面文字編輯表單
+        function populatePageContentForm() {
+            const pc = currentData.pageContent;
+
+            if (pc.index) {
+                document.getElementById("page-index-heroTitle").value = pc.index.heroTitle || "";
+                document.getElementById("page-index-heroSubtitle").value = pc.index.heroSubtitle || "";
+            }
+            if (pc.about) {
+                document.getElementById("page-about-heading").value = pc.about.heading || "";
+                document.getElementById("page-about-intro1").value = pc.about.intro1 || "";
+                document.getElementById("page-about-intro2").value = pc.about.intro2 || "";
+            }
+            if (pc.pricing) {
+                document.getElementById("page-pricing-heading").value = pc.pricing.heading || "";
+                document.getElementById("page-pricing-subheading").value = pc.pricing.subheading || "";
+            }
+        }
+
+        function savePageContentEdits() {
+            const pc = currentData.pageContent;
+
+            pc.index.heroTitle = document.getElementById("page-index-heroTitle").value;
+            pc.index.heroSubtitle = document.getElementById("page-index-heroSubtitle").value;
+            pc.index.updatedAt = Date.now();
+
+            pc.about.heading = document.getElementById("page-about-heading").value;
+            pc.about.intro1 = document.getElementById("page-about-intro1").value;
+            pc.about.intro2 = document.getElementById("page-about-intro2").value;
+            pc.about.updatedAt = Date.now();
+
+            pc.pricing.heading = document.getElementById("page-pricing-heading").value;
+            pc.pricing.subheading = document.getElementById("page-pricing-subheading").value;
+            pc.pricing.updatedAt = Date.now();
+
+            window.GHSpatialDataEngine.saveActiveData(currentData);
+            alert("全站頁面文字成功儲存！");
+        }
+
+        // 比對狀態檢查
+        function checkDiffStatus() {
+            const defaultData = window.GHSpatialDataDefault;
+            const merged = window.GHSpatialDataEngine.merge(defaultData, currentData);
+            
+            const box = document.getElementById("diff-status-box");
+            box.innerHTML = `
+                <strong>比對狀態 (Smart Diff Status)：</strong><br>
+                • 原檔作品數：${defaultData.projects.length} 項<br>
+                • 當前快取作品數：${currentData.projects.length} 項<br>
+                • 智能合併後作品總數：${merged.projects.length} 項<br>
+                <span style="color: #16a34a; font-weight: 600;">✓ 已自動執行增量無損合併，確保本機與線上修改皆不遺失。</span>
+            `;
+        }
+
+        function executeAutoMerge() {
+            const defaultData = window.GHSpatialDataDefault;
+            currentData = window.GHSpatialDataEngine.merge(defaultData, currentData);
+            window.GHSpatialDataEngine.saveActiveData(currentData);
+            checkDiffStatus();
+            renderProjectsList();
+            alert("成功完成自動無損合併！");
+        }
+
+        function exportDataFile() {
+            const scriptStr = window.GHSpatialDataEngine.exportScriptContent(currentData);
+            const blob = new Blob([scriptStr], { type: "application/javascript" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "site_data.js";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function handleImportBackup(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    let content = evt.target.result;
+                    if (content.includes("window.GHSpatialDataDefault")) {
+                        content = content.replace("window.GHSpatialDataDefault =", "").replace(";", "");
+                    }
+                    const imported = JSON.parse(content);
+                    currentData = window.GHSpatialDataEngine.merge(currentData, imported);
+                    window.GHSpatialDataEngine.saveActiveData(currentData);
+                    initAdminPanel();
+                    alert("歷史備份資料成功匯入並增量合併！");
+                } catch (err) {
+                    alert("匯入失敗，請確認檔案格式是否正確。");
+                }
+            };
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
