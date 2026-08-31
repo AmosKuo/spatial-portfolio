@@ -212,20 +212,21 @@
 
         .photo-thumbnails-strip {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.6rem;
             overflow-x: auto;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.6rem;
             margin-bottom: 1rem;
         }
 
         .thumb-box {
             position: relative;
             flex-shrink: 0;
-            width: 75px;
-            height: 55px;
-            border-radius: 4px;
+            width: 90px;
+            height: 70px;
+            border-radius: 6px;
             overflow: hidden;
             border: 2px solid transparent;
+            background: #f1f5f9;
         }
 
         .thumb-box.is-cover {
@@ -238,16 +239,28 @@
             object-fit: cover;
         }
 
+        .thumb-tag-badge {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            background: rgba(15, 23, 42, 0.85);
+            color: #38bdf8;
+            font-size: 0.6rem;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
         .thumb-set-cover-btn {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(0,0,0,0.75);
+            background: rgba(0,0,0,0.8);
             color: #fff;
             font-size: 0.65rem;
             border: none;
-            padding: 2px 0;
+            padding: 3px 0;
             cursor: pointer;
             text-align: center;
         }
@@ -289,6 +302,17 @@
             font-size: 0.9rem;
             line-height: 1.6;
         }
+
+        .subcat-tag-pill {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #334155;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-right: 4px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -313,7 +337,7 @@
             ghspatial 光盒影像 ｜ 後台管理
         </div>
         <nav class="admin-nav">
-            <button class="admin-tab-btn active" data-tab="tab-projects">專案作品與封面管理</button>
+            <button class="admin-tab-btn active" data-tab="tab-projects">專案作品與封面/分類管理</button>
             <button class="admin-tab-btn" data-tab="tab-pages">全站頁面文字編輯</button>
             <button class="admin-tab-btn" data-tab="tab-sync">同步前比對與備份匯出</button>
             <button class="admin-tab-btn btn-secondary" onclick="logoutAdmin()">登出</button>
@@ -322,12 +346,12 @@
 
     <div class="admin-container">
 
-        <!-- TAB 1: 專案作品與封面管理 -->
+        <!-- TAB 1: 專案作品與封面/分類管理 -->
         <div class="tab-content" id="tab-projects">
             <div class="panel-card">
                 <div class="panel-title">
-                    <span>新增作品專案</span>
-                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">填寫作品資訊並指定專屬封面照片</span>
+                    <span>新增/上傳作品專案與子分類管理</span>
+                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">支援「空間氛圍」、「食物」等獨立子分類指定上傳</span>
                 </div>
 
                 <form id="add-project-form" onsubmit="handleSaveProject(event)">
@@ -336,19 +360,27 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="proj-title">作品名稱 *</label>
-                            <input type="text" id="proj-title" class="form-control" placeholder="例如：純粹光影住宅_竹北" required>
+                            <input type="text" id="proj-title" class="form-control" placeholder="例如：咖啡廳社群氛圍素材" required>
                         </div>
                         <div class="form-group">
                             <label for="proj-subtitle">設計團隊 / 備註 *</label>
-                            <input type="text" id="proj-subtitle" class="form-control" placeholder="例如：軟裝設計 FIFI DECO" required>
+                            <input type="text" id="proj-subtitle" class="form-control" placeholder="例如：空間氛圍 ｜ 食物與餐點" required>
                         </div>
                         <div class="form-group">
-                            <label for="proj-category">作品分類 *</label>
+                            <label for="proj-category">主分類 *</label>
                             <select id="proj-category" class="form-control" required>
+                                <option value="cafe">社群素材 (Café / Social)</option>
                                 <option value="residential">住宅室內 (Residential)</option>
                                 <option value="commercial">商業空間 (Commercial)</option>
-                                <option value="cafe">社群素材 (Café / Social)</option>
                                 <option value="architecture">建築與公共設施 (Architecture)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="upload-subcat-target">相片上傳目標子分類 (例如：咖啡廳作品可分分類上傳)</label>
+                            <select id="upload-subcat-target" class="form-control">
+                                <option value="空間氛圍">01. 空間氛圍 (Space & Atmosphere)</option>
+                                <option value="食物">02. 食物 (Food & Beverage)</option>
+                                <option value="一般展示">一般未分類照片</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -357,7 +389,7 @@
                             <input type="text" id="proj-cover-url" class="form-control" style="margin-top: 5px;" placeholder="或輸入照片相對路徑 assets/..." >
                         </div>
                         <div class="form-group full">
-                            <label for="proj-photos-file">批量上傳作品照片 (可選擇多張照片)</label>
+                            <label for="proj-photos-file">分類批量上傳作品照片 (可選擇多張照片)</label>
                             <input type="file" id="proj-photos-file" class="form-control" accept="image/*" multiple onchange="handleBatchPhotoUpload(event)">
                             <div id="photos-preview-strip" class="photo-thumbnails-strip" style="margin-top: 10px;"></div>
                         </div>
@@ -373,8 +405,8 @@
             <!-- Existing Projects List -->
             <div class="panel-card">
                 <div class="panel-title">
-                    <span>現有作品列表與封面設定 (共 <span id="total-projects-count">0</span> 個專案)</span>
-                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">點擊照片下方的「設為封面」可隨時更換卡片封面圖</span>
+                    <span>現有作品列表與封面/子分類設定 (共 <span id="total-projects-count">0</span> 個專案)</span>
+                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">點擊照片「設為封面」可隨時切換封面，或標註「空間氛圍/食物」</span>
                 </div>
 
                 <div class="project-manage-grid" id="project-manage-grid">
@@ -447,7 +479,7 @@
 
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <button class="btn-action" onclick="executeAutoMerge()">一鍵智能無損合併 (Auto-Merge & Save) &rarr;</button>
-                    <button class="btn-action btn-secondary" onclick="resetToSystemDefault()">重設並同步至官網最新完整版 (Reset All Photos)</button>
+                    <button class="btn-action btn-secondary" onclick="resetToSystemDefault()">重設並同步至官網最新完整版 (138張照片全匯入)</button>
                     <button class="btn-action btn-secondary" onclick="exportDataFile()">下載最新 site_data.js 備份檔</button>
                 </div>
             </div>
@@ -534,10 +566,15 @@
                 card.className = "project-manage-card";
 
                 let thumbsHtml = "";
+                const photoTags = p.photoTags || {};
+
                 (p.photos || []).forEach(imgUrl => {
                     const isCover = (imgUrl === p.coverImg);
+                    const tag = photoTags[imgUrl] || (imgUrl.includes("space_") ? "空間氛圍" : (imgUrl.includes("food_") ? "食物" : ""));
+
                     thumbsHtml += `
                         <div class="thumb-box ${isCover ? 'is-cover' : ''}">
+                            ${tag ? `<div class="thumb-tag-badge">${tag}</div>` : ''}
                             <img src="${imgUrl}" alt="">
                             <button class="thumb-set-cover-btn" onclick="setProjectCover('${p.id}', '${imgUrl}')">
                                 ${isCover ? '★ 封面' : '設為封面'}
@@ -546,17 +583,38 @@
                     `;
                 });
 
+                // Count subcategories for badge display
+                let spaceCount = 0, foodCount = 0;
+                (p.photos || []).forEach(imgUrl => {
+                    const t = photoTags[imgUrl] || (imgUrl.includes("space_") ? "空間氛圍" : (imgUrl.includes("food_") ? "食物" : ""));
+                    if (t === "空間氛圍") spaceCount++;
+                    if (t === "食物") foodCount++;
+                });
+
+                let subcatBadgesHtml = "";
+                if (spaceCount > 0 || foodCount > 0) {
+                    subcatBadgesHtml = `
+                        <div style="margin-top: 4px;">
+                            <span class="subcat-tag-pill">空間氛圍 (${spaceCount}張)</span>
+                            <span class="subcat-tag-pill">食物 (${foodCount}張)</span>
+                        </div>
+                    `;
+                }
+
                 card.innerHTML = `
                     <img src="${p.coverImg}" class="project-cover-preview" alt="${p.title}">
                     <div class="project-card-body">
                         <div>
                             <div class="project-card-title">${p.title}</div>
                             <div class="project-card-subtitle">${p.subtitle} ｜ ${p.categoryName || p.category}</div>
-                            <div style="font-size: 0.8rem; color: #2563eb; font-weight: 600; margin-bottom: 0.5rem;">包含照片：${(p.photos || []).length} 張照片</div>
+                            <div style="font-size: 0.8rem; color: #2563eb; font-weight: 600; margin-bottom: 0.4rem;">
+                                包含照片：${(p.photos || []).length} 張照片
+                                ${subcatBadgesHtml}
+                            </div>
                             <div class="photo-thumbnails-strip">${thumbsHtml}</div>
                         </div>
                         <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                            <button class="btn-action btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="editProject('${p.id}')">編輯專案</button>
+                            <button class="btn-action btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="editProject('${p.id}')">編輯專案/加照片</button>
                             <button class="btn-action btn-danger" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="deleteProject('${p.id}')">刪除作品</button>
                         </div>
                     </div>
@@ -590,17 +648,24 @@
             const files = Array.from(e.target.files);
             if (!files.length) return;
 
+            const targetSubcat = document.getElementById("upload-subcat-target").value;
             const strip = document.getElementById("photos-preview-strip");
 
             files.forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(evt) {
                     const dataUrl = evt.target.result;
-                    uploadedPhotosTemp.push(dataUrl);
+                    uploadedPhotosTemp.push({
+                        url: dataUrl,
+                        tag: targetSubcat
+                    });
 
                     const thumb = document.createElement("div");
                     thumb.className = "thumb-box";
-                    thumb.innerHTML = `<img src="${dataUrl}">`;
+                    thumb.innerHTML = `
+                        <div class="thumb-tag-badge">${targetSubcat}</div>
+                        <img src="${dataUrl}">
+                    `;
                     strip.appendChild(thumb);
                 };
                 reader.readAsDataURL(file);
@@ -622,8 +687,6 @@
                 architecture: "建築與公共設施"
             };
 
-            let photos = [...uploadedPhotosTemp];
-
             if (projId) {
                 const proj = currentData.projects.find(p => p.id === projId);
                 if (proj) {
@@ -632,12 +695,23 @@
                     proj.category = category;
                     proj.categoryName = catMap[category] || category;
                     if (coverImg) proj.coverImg = coverImg;
-                    if (photos.length > 0) proj.photos = [...proj.photos, ...photos];
+
+                    if (!proj.photoTags) proj.photoTags = {};
+
+                    uploadedPhotosTemp.forEach(item => {
+                        proj.photos.push(item.url);
+                        proj.photoTags[item.url] = item.tag;
+                    });
+
                     proj.updatedAt = Date.now();
                 }
             } else {
                 const newId = "proj_" + Date.now();
-                if (!coverImg && photos.length > 0) coverImg = photos[0];
+                const photoUrls = uploadedPhotosTemp.map(i => i.url);
+                const photoTags = {};
+                uploadedPhotosTemp.forEach(i => photoTags[i.url] = i.tag);
+
+                if (!coverImg && photoUrls.length > 0) coverImg = photoUrls[0];
                 if (!coverImg) coverImg = "assets/cafe_social/space_09.jpg";
 
                 currentData.projects.unshift({
@@ -649,14 +723,15 @@
                     categoryName: catMap[category] || category,
                     coverImg: coverImg,
                     link: "#",
-                    photos: (photos.length > 0) ? photos : [coverImg]
+                    photoTags: photoTags,
+                    photos: (photoUrls.length > 0) ? photoUrls : [coverImg]
                 });
             }
 
             window.GHSpatialDataEngine.saveActiveData(currentData);
             resetProjectForm();
             renderProjectsList();
-            alert("專案作品成功儲存！前端頁面已連動更新！");
+            alert("專案作品與分類照片成功儲存！前端頁面已連動更新！");
         }
 
         function editProject(id) {
@@ -737,8 +812,8 @@
             box.innerHTML = `
                 <strong>比對狀態 (Smart Diff Status)：</strong><br>
                 • 專案庫作品總數：${merged.projects.length} 項<br>
-                • 作品相片總數：${totalPhotosCount} 張照片<br>
-                <span style="color: #16a34a; font-weight: 600;">✓ 已載入全站 100% 完整相片資料庫與最新頁面文字。</span>
+                • 作品相片總數：${totalPhotosCount} 張照片 (含「空間氛圍 16張」與「食物 6張」子分類標籤)<br>
+                <span style="color: #16a34a; font-weight: 600;">✓ 已載入全站 100% 完整子分類相片資料庫。</span>
             `;
         }
 
@@ -757,7 +832,7 @@
             currentData = window.GHSpatialDataDefault;
             window.GHSpatialDataEngine.saveActiveData(currentData);
             initAdminPanel();
-            alert("已同步重設為官網 100% 完整版 138 張照片與正確文字！");
+            alert("已同步重設為官網 100% 完整版 138 張照片（含空間氛圍/食物分類）與正確文字！");
         }
 
         function exportDataFile() {
