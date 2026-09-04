@@ -187,9 +187,10 @@ function initZhubeiSlider(totalItems) {
 
     let currentIndex = 0;
     function getVisibleCount() {
-        if (window.innerWidth <= 768) return 1;
-        if (window.innerWidth <= 1024) return 2;
-        return 3;
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        if (window.innerWidth <= 1200) return 3;
+        return 4;
     }
 
     const maxIndex = () => Math.max(0, totalItems - getVisibleCount());
