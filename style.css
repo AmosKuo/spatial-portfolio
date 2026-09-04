@@ -37,28 +37,49 @@ h1, h2, h3 {
     font-weight: 400;
 }
 
-/* Navigation (Centered Minimal Header) */
+/* Navigation (Header Bar with Logo Left & Nav Right) */
 .site-header {
-    text-align: center;
-    padding: 6rem 5% 3rem;
+    width: 100%;
+    padding: 1.5rem 4%;
     background-color: var(--bg-color);
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.header-container {
+    max-width: 1700px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .site-header .logo {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .site-header .logo a {
-    color: var(--text-color);
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 500;
-    letter-spacing: 4px;
+}
+
+.site-header .logo img {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 0.3s ease;
+}
+
+.site-header .logo img:hover {
+    transform: scale(1.03);
 }
 
 .site-header .nav-links {
     display: flex;
-    justify-content: center;
+    align-items: center;
     list-style: none;
     gap: 3rem;
 }
@@ -68,12 +89,14 @@ h1, h2, h3 {
     text-decoration: none;
     font-size: 0.95rem;
     letter-spacing: 2px;
+    font-weight: 400;
     transition: color 0.3s ease;
 }
 
 .site-header .nav-links a:hover,
 .site-header .nav-links a.active {
     color: var(--text-color);
+    font-weight: 500;
 }
 
 /* Hero Section (Index) */
