@@ -418,55 +418,22 @@
                 </div>
         </div>
 
-        <!-- TAB 4: 看見竹北之美連載管理 -->
+        <!-- TAB 4: 看見竹北之美 照片輪播管理 -->
         <div class="tab-content" id="tab-zhubei" style="display: none;">
             <div class="panel-card">
                 <div class="panel-title">
-                    <span>新增/編輯「看見竹北之美」Threads 照片連載</span>
-                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">即時更新首頁精選動態連載專區</span>
+                    <span>「看見竹北之美」首頁照片輪播管理 (共 <span id="zhubei-photos-count">0</span> 張)</span>
+                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">自動載入 Google Drive 連載資料夾 20 張相片，可隨時新增或移除照片</span>
                 </div>
 
-                <form id="add-zhubei-form" onsubmit="handleSaveZhubei(event)">
-                    <input type="hidden" id="edit-zhubei-id" value="">
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="zhubei-episode">集數標題 (例如：#04) *</label>
-                            <input type="text" id="zhubei-episode" class="form-control" placeholder="例如：#04" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="zhubei-title">連載篇名 *</label>
-                            <input type="text" id="zhubei-title" class="form-control" placeholder="例如：竹北高鐵特區的夕陽餘暉" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="zhubei-date">發布日期 *</label>
-                            <input type="date" id="zhubei-date" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="zhubei-threads-url">Threads 貼文網址 (選填)</label>
-                            <input type="url" id="zhubei-threads-url" class="form-control" placeholder="https://www.threads.net/@your_account/post/...">
-                        </div>
-                        <div class="form-group full">
-                            <label for="zhubei-photo-path">精選相片路徑或上傳 *</label>
-                            <input type="file" id="zhubei-photo-file" class="form-control" accept="image/*" onchange="handleZhubeiPhotoUpload(event)">
-                            <input type="text" id="zhubei-photo-path" class="form-control" style="margin-top: 5px;" placeholder="例如：assets/luoyushan/A1_06285-編輯.jpg" required>
-                        </div>
-                        <div class="form-group full">
-                            <label for="zhubei-excerpt"> Threads 內文節錄 / 攝影隨筆 (3~5句) *</label>
-                            <textarea id="zhubei-excerpt" class="form-control" rows="3" placeholder="寫下您在 Threads 貼文中的精選節錄..." required></textarea>
-                        </div>
-                    </div>
+                <div class="form-group full" style="margin-bottom: 1.5rem;">
+                    <label>上傳新照片至「看見竹北之美」輪播列</label>
+                    <input type="file" class="form-control" accept="image/*" multiple onchange="handleZhubeiBatchUpload(event)">
+                </div>
 
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-                        <button type="submit" class="btn-action">儲存/發布連載篇章 &rarr;</button>
-                        <button type="button" class="btn-secondary" onclick="resetZhubeiForm()">清空表單</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="panel-card">
-                <div class="panel-title">目前已發布的「看見竹北之美」連載章節</div>
-                <div id="zhubei-list-container"></div>
+                <div id="zhubei-photos-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.2rem;">
+                    <!-- Photo thumbnails rendered via JS -->
+                </div>
             </div>
         </div>
 
@@ -1079,102 +1046,57 @@
             reader.readAsText(file);
         }
 
-        /* --- 看見竹北之美 連載管理 Functions --- */
+        /* --- 看見竹北之美 照片輪播管理 Functions --- */
         function renderZhubeiList() {
-            const container = document.getElementById('zhubei-list-container');
+            const container = document.getElementById('zhubei-photos-grid-container');
+            const countSpan = document.getElementById('zhubei-photos-count');
             if (!container) return;
-            const series = currentData.zhubeiSeries || [];
-            if (series.length === 0) {
-                container.innerHTML = '<p style="color: #64748b; padding: 1rem 0;">目前尚無連載篇章。</p>';
+            const photos = currentData.zhubeiPhotos || [];
+            if (countSpan) countSpan.textContent = photos.length;
+
+            if (photos.length === 0) {
+                container.innerHTML = '<p style="color: #64748b; padding: 1rem 0; grid-column: 1/-1;">目前輪播內尚無相片。</p>';
                 return;
             }
-            container.innerHTML = series.map(s => `
-                <div style="display: flex; gap: 1.5rem; padding: 1.2rem; border: 1px solid #eee; border-radius: 8px; margin-bottom: 1rem; align-items: center; background: #fafafa;">
-                    <img src="${s.photo}" style="width: 100px; height: 65px; object-fit: cover; border-radius: 6px;" onerror="this.src='assets/cafe_social/space_09.jpg'">
-                    <div style="flex-grow: 1;">
-                        <div style="font-weight: 600; font-size: 1.05rem; color: #111;">
-                            <span style="background: #111; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-right: 6px;">${s.episode || ''}</span>
-                            ${s.title || ''}
-                        </div>
-                        <div style="font-size: 0.85rem; color: #666; margin-top: 4px;">${s.excerpt || ''}</div>
-                        <div style="font-size: 0.75rem; color: #888; margin-top: 4px;">${s.date || ''} ${s.threadsUrl ? ' ｜ <a href="' + s.threadsUrl + '" target="_blank" style="color: #2563eb;">Threads 連結</a>' : ''}</div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button type="button" class="btn-secondary" onclick="editZhubei('${s.id}')">編輯</button>
-                        <button type="button" class="btn-secondary" style="color: #dc2626; border-color: #fca5a5;" onclick="deleteZhubei('${s.id}')">刪除</button>
+
+            container.innerHTML = photos.map((pUrl, idx) => `
+                <div style="position: relative; border-radius: 8px; overflow: hidden; border: 1px solid #ddd; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                    <img src="${pUrl}" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;" onerror="this.src='assets/cafe_social/space_09.jpg'">
+                    <div style="padding: 0.5rem; display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-top: 1px solid #eee;">
+                        <span style="font-size: 0.75rem; color: #666; font-weight: 500;">#${idx + 1}</span>
+                        <button type="button" class="btn-secondary" style="color: #dc2626; border-color: #fca5a5; padding: 2px 8px; font-size: 0.75rem;" onclick="deleteZhubeiPhoto(${idx})">移除</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function handleSaveZhubei(e) {
-            e.preventDefault();
-            if (!currentData.zhubeiSeries) currentData.zhubeiSeries = [];
-            const editId = document.getElementById('edit-zhubei-id').value;
-            const episode = document.getElementById('zhubei-episode').value;
-            const title = document.getElementById('zhubei-title').value;
-            const date = document.getElementById('zhubei-date').value;
-            const threadsUrl = document.getElementById('zhubei-threads-url').value;
-            const photo = document.getElementById('zhubei-photo-path').value;
-            const excerpt = document.getElementById('zhubei-excerpt').value;
+        function handleZhubeiBatchUpload(e) {
+            const files = Array.from(e.target.files);
+            if (!files.length) return;
+            if (!currentData.zhubeiPhotos) currentData.zhubeiPhotos = [];
 
-            if (editId) {
-                const idx = currentData.zhubeiSeries.findIndex(s => s.id === editId);
-                if (idx !== -1) {
-                    currentData.zhubeiSeries[idx] = {
-                        ...currentData.zhubeiSeries[idx],
-                        episode, title, date, threadsUrl, photo, excerpt,
-                        updatedAt: Date.now()
-                    };
-                }
-            } else {
-                const newId = "zhubei-" + Date.now();
-                currentData.zhubeiSeries.unshift({
-                    id: newId,
-                    episode, title, date, threadsUrl, photo, excerpt,
-                    updatedAt: Date.now()
-                });
-            }
-
-            window.GHSpatialDataEngine.saveActiveData(currentData);
-            resetZhubeiForm();
-            renderZhubeiList();
-            alert("成功儲存「看見竹北之美」連載篇章！已同步更新至官網首頁！");
-        }
-
-        function editZhubei(id) {
-            const item = (currentData.zhubeiSeries || []).find(s => s.id === id);
-            if (!item) return;
-            document.getElementById('edit-zhubei-id').value = item.id;
-            document.getElementById('zhubei-episode').value = item.episode || '';
-            document.getElementById('zhubei-title').value = item.title || '';
-            document.getElementById('zhubei-date').value = item.date || '';
-            document.getElementById('zhubei-threads-url').value = item.threadsUrl || '';
-            document.getElementById('zhubei-photo-path').value = item.photo || '';
-            document.getElementById('zhubei-excerpt').value = item.excerpt || '';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function deleteZhubei(id) {
-            if (!confirm("確定要刪除此篇連載嗎？")) return;
-            currentData.zhubeiSeries = (currentData.zhubeiSeries || []).filter(s => s.id !== id);
-            window.GHSpatialDataEngine.saveActiveData(currentData);
-            renderZhubeiList();
-        }
-
-        function resetZhubeiForm() {
-            document.getElementById('edit-zhubei-id').value = '';
-            document.getElementById('add-zhubei-form').reset();
-        }
-
-        function handleZhubeiPhotoUpload(e) {
-            const file = e.target.files[0];
-            if (file) {
+            let loaded = 0;
+            files.forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(evt) {
-                    document.getElementById('zhubei-photo-path').value = evt.target.result;
+                    currentData.zhubeiPhotos.push(evt.target.result);
+                    loaded++;
+                    if (loaded === files.length) {
+                        window.GHSpatialDataEngine.saveActiveData(currentData);
+                        renderZhubeiList();
+                        alert(`成功上傳 ${files.length} 張輪播照片！已即時更新首頁！`);
+                    }
                 };
                 reader.readAsDataURL(file);
+            });
+        }
+
+        function deleteZhubeiPhoto(index) {
+            if (!confirm("確定要將這張照片從「看見竹北之美」輪播中移除嗎？")) return;
+            if (currentData.zhubeiPhotos) {
+                currentData.zhubeiPhotos.splice(index, 1);
+                window.GHSpatialDataEngine.saveActiveData(currentData);
+                renderZhubeiList();
             }
         }
     </script>

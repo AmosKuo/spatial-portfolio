@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 1. 動態渲染作品集畫廊 (portfolio.html & index.html)
         const galleryContainer = document.querySelector('.gallery');
-        if (galleryContainer && activeData.projects) {
+        if (galleryContainer && activeData.projects && activeData.projects.length > 0) {
             if (window.location.pathname.endsWith('portfolio.html') || window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('spatial-portfolio/')) {
                 galleryContainer.innerHTML = '';
                 activeData.projects.forEach(p => {
                     const itemA = document.createElement('a');
                     itemA.href = p.link || '#';
-                    itemA.className = 'gallery-item fade-up';
+                    itemA.className = 'gallery-item fade-up visible';
                     itemA.innerHTML = `
                         <img src="${p.coverImg}" alt="${p.title}" loading="lazy">
                         <div class="overlay">
@@ -42,31 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     galleryContainer.appendChild(itemA);
                 });
             }
-        // 1.5 動態渲染「看見竹北之美」Threads 照片連載區塊
-        const zhubeiContainer = document.getElementById('zhubeiContainer');
-        if (zhubeiContainer && activeData.zhubeiSeries) {
-            zhubeiContainer.innerHTML = '';
-            activeData.zhubeiSeries.forEach(s => {
-                const card = document.createElement('article');
-                card.className = 'zhubei-card fade-up';
-                card.innerHTML = `
-                    <div class="zhubei-card-img-wrapper">
-                        <span class="zhubei-episode-tag">${s.episode || ''}</span>
-                        <img src="${s.photo}" alt="${s.title}" loading="lazy">
-                    </div>
-                    <div class="zhubei-card-body">
-                        <h3 class="zhubei-card-title">${s.title}</h3>
-                        <p class="zhubei-card-excerpt">${s.excerpt}</p>
-                        <div class="zhubei-card-footer">
-                            <span>${s.date || ''}</span>
-                            <a href="${s.threadsUrl || 'https://www.threads.net/'}" target="_blank" rel="noopener" class="zhubei-threads-btn">
-                                在 Threads 閱讀 ↗
-                            </a>
-                        </div>
+        }
+
+        // 1.5 動態渲染「看見竹北之美」相片輪播 Slider
+        const sliderTrack = document.getElementById('zhubeiSliderTrack');
+        if (sliderTrack && activeData.zhubeiPhotos) {
+            sliderTrack.innerHTML = '';
+            activeData.zhubeiPhotos.forEach((photoPath, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-slide';
+                slide.innerHTML = `
+                    <div class="slider-slide-inner">
+                        <img src="${photoPath}" alt="看見竹北之美 輪播相片 ${idx + 1}" loading="lazy">
                     </div>
                 `;
-                zhubeiContainer.appendChild(card);
+                sliderTrack.appendChild(slide);
             });
+
+            // Initialize Carousel Controls
+            initZhubeiSlider(activeData.zhubeiPhotos.length);
         }
 
         // 2. 動態渲染全站頁面文字與價目表細項 (Page Text & Fine Pricing Details)
@@ -183,3 +177,85 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.fade-up');
     fadeElements.forEach(el => observer.observe(el));
 });
+
+function initZhubeiSlider(totalItems) {
+    const track = document.getElementById('zhubeiSliderTrack');
+    const prevBtn = document.getElementById('sliderPrevBtn');
+    const nextBtn = document.getElementById('sliderNextBtn');
+    const dotsContainer = document.getElementById('sliderDots');
+    if (!track || totalItems === 0) return;
+
+    let currentIndex = 0;
+    function getVisibleCount() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+    }
+
+    const maxIndex = () => Math.max(0, totalItems - getVisibleCount());
+
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        const totalDots = maxIndex() + 1;
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('div');
+            dot.className = `slider-dot ${i === currentIndex ? 'active' : ''}`;
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateSlider() {
+        const visibleCount = getVisibleCount();
+        const slideWidthPercent = 100 / visibleCount;
+        track.style.transform = `translateX(-${currentIndex * slideWidthPercent}%)`;
+
+        if (dotsContainer) {
+            createDots();
+        }
+    }
+
+    function goToSlide(idx) {
+        currentIndex = Math.min(Math.max(0, idx), maxIndex());
+        updateSlider();
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex <= 0) ? maxIndex() : currentIndex - 1;
+            updateSlider();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex >= maxIndex()) ? 0 : currentIndex + 1;
+            updateSlider();
+        });
+    }
+
+    let autoPlayInterval = setInterval(() => {
+        currentIndex = (currentIndex >= maxIndex()) ? 0 : currentIndex + 1;
+        updateSlider();
+    }, 3500);
+
+    const container = track.closest('.zhubei-slider-container');
+    if (container) {
+        container.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        container.addEventListener('mouseleave', () => {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(() => {
+                currentIndex = (currentIndex >= maxIndex()) ? 0 : currentIndex + 1;
+                updateSlider();
+            }, 3500);
+        });
+    }
+
+    window.addEventListener('resize', () => {
+        if (currentIndex > maxIndex()) currentIndex = maxIndex();
+        updateSlider();
+    });
+
+    updateSlider();
+}

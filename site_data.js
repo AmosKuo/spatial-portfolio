@@ -255,37 +255,27 @@ window.GHSpatialDataDefault = {
         }
     ],
 
-    zhubeiSeries: [
-        {
-            id: "zhubei-01",
-            updatedAt: 1725116400000,
-            episode: "#01",
-            title: "高鐵特區的日光幾何",
-            excerpt: "午後三點的光線切過玻璃幕牆，在新舊街廓交界處灑下一片暖金。這座城市的節奏，總在垂直水平的結構線條裡找到呼吸。",
-            photo: "assets/luoyushan/A1_06285-編輯.jpg",
-            date: "2026-08-28",
-            threadsUrl: "https://www.threads.net/"
-        },
-        {
-            id: "zhubei-02",
-            updatedAt: 1725116400000,
-            episode: "#02",
-            title: "水圳邊的光影透色",
-            excerpt: "紅磚與格柵對話，陽光透過老樹在水泥牆上記錄下時光的軌跡。傳統紋理與現代空間的自然調和。",
-            photo: "assets/keelung/基隆櫻桃家小圖-7.jpg",
-            date: "2026-08-15",
-            threadsUrl: "https://www.threads.net/"
-        },
-        {
-            id: "zhubei-03",
-            updatedAt: 1725116400000,
-            episode: "#03",
-            title: "街角咖啡館的晨光微醺",
-            excerpt: "清晨透光的薄紗簾過濾掉城市喧囂，將光線柔化成溫潤層次。空間不只是建築，更是生活場域的容器。",
-            photo: "assets/cafe_social/space_09.jpg",
-            date: "2026-08-01",
-            threadsUrl: "https://www.threads.net/"
-        }
+    zhubeiPhotos: [
+        "assets/zhubei_series/328.png",
+        "assets/zhubei_series/composecoffe.png",
+        "assets/zhubei_series/keu日本抹茶.jpg",
+        "assets/zhubei_series/光鮮綠蔬.png",
+        "assets/zhubei_series/卷卷烘焙.png",
+        "assets/zhubei_series/坤山君峰.png",
+        "assets/zhubei_series/客肉.png",
+        "assets/zhubei_series/客肉2.png",
+        "assets/zhubei_series/平室.png",
+        "assets/zhubei_series/星球公園.png",
+        "assets/zhubei_series/橋恩咖啡.png",
+        "assets/zhubei_series/民宅樹影.png",
+        "assets/zhubei_series/瓦法.png",
+        "assets/zhubei_series/瓦法局部.png",
+        "assets/zhubei_series/若一設計.png",
+        "assets/zhubei_series/若一設計角落.png",
+        "assets/zhubei_series/茶棧.png",
+        "assets/zhubei_series/藍佐牛排.png",
+        "assets/zhubei_series/蘭英麵食館六家店.png",
+        "assets/zhubei_series/隱焱匠.png"
     ]
 };
 
@@ -325,7 +315,7 @@ window.GHSpatialDataEngine = {
             adminPassword: incomingData.adminPassword || baseData.adminPassword,
             pageContent: {},
             projects: [],
-            zhubeiSeries: []
+            zhubeiPhotos: baseData.zhubeiPhotos || []
         };
 
         const baseContent = baseData.pageContent || {};
