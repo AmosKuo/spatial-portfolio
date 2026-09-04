@@ -253,6 +253,39 @@ window.GHSpatialDataDefault = {
                 "assets/kualalumpur/DSC06629.jpg", "assets/kualalumpur/DSC06634.jpg", "assets/kualalumpur/DSC06639.jpg", "assets/kualalumpur/DSC06644.jpg", "assets/kualalumpur/DSC06649.jpg", "assets/kualalumpur/DSC06654.jpg", "assets/kualalumpur/DSC06659.jpg", "assets/kualalumpur/DSC06664.jpg", "assets/kualalumpur/DSC06669.jpg", "assets/kualalumpur/DSC06674.jpg", "assets/kualalumpur/DSC06679.jpg", "assets/kualalumpur/DSC06684.jpg", "assets/kualalumpur/DSC06689.jpg", "assets/kualalumpur/DSC06694.jpg", "assets/kualalumpur/DSC06699.jpg", "assets/kualalumpur/DSC06704.jpg", "assets/kualalumpur/DSC06709.jpg"
             ]
         }
+    ],
+
+    zhubeiSeries: [
+        {
+            id: "zhubei-01",
+            updatedAt: 1725116400000,
+            episode: "#01",
+            title: "高鐵特區的日光幾何",
+            excerpt: "午後三點的光線切過玻璃幕牆，在新舊街廓交界處灑下一片暖金。這座城市的節奏，總在垂直水平的結構線條裡找到呼吸。",
+            photo: "assets/luoyushan/A1_06285-編輯.jpg",
+            date: "2026-08-28",
+            threadsUrl: "https://www.threads.net/"
+        },
+        {
+            id: "zhubei-02",
+            updatedAt: 1725116400000,
+            episode: "#02",
+            title: "水圳邊的光影透色",
+            excerpt: "紅磚與格柵對話，陽光透過老樹在水泥牆上記錄下時光的軌跡。傳統紋理與現代空間的自然調和。",
+            photo: "assets/keelung/基隆櫻桃家小圖-7.jpg",
+            date: "2026-08-15",
+            threadsUrl: "https://www.threads.net/"
+        },
+        {
+            id: "zhubei-03",
+            updatedAt: 1725116400000,
+            episode: "#03",
+            title: "街角咖啡館的晨光微醺",
+            excerpt: "清晨透光的薄紗簾過濾掉城市喧囂，將光線柔化成溫潤層次。空間不只是建築，更是生活場域的容器。",
+            photo: "assets/cafe_social/space_09.jpg",
+            date: "2026-08-01",
+            threadsUrl: "https://www.threads.net/"
+        }
     ]
 };
 
@@ -291,7 +324,8 @@ window.GHSpatialDataEngine = {
             lastUpdated: Math.max(baseData.lastUpdated || 0, incomingData.lastUpdated || 0),
             adminPassword: incomingData.adminPassword || baseData.adminPassword,
             pageContent: {},
-            projects: []
+            projects: [],
+            zhubeiSeries: []
         };
 
         const baseContent = baseData.pageContent || {};
@@ -330,6 +364,27 @@ window.GHSpatialDataEngine = {
         });
 
         merged.projects = Array.from(projectMap.values());
+
+        // Merge zhubeiSeries
+        const baseSeries = baseData.zhubeiSeries || [];
+        const inSeries = incomingData.zhubeiSeries || [];
+        const seriesMap = new Map();
+
+        baseSeries.forEach(s => seriesMap.set(s.id, { ...s }));
+        inSeries.forEach(inS => {
+            if (!seriesMap.has(inS.id)) {
+                seriesMap.set(inS.id, { ...inS });
+            } else {
+                const baseS = seriesMap.get(inS.id);
+                if ((inS.updatedAt || 0) >= (baseS.updatedAt || 0)) {
+                    seriesMap.set(inS.id, { ...baseS, ...inS });
+                } else {
+                    seriesMap.set(inS.id, { ...inS, ...baseS });
+                }
+            }
+        });
+        merged.zhubeiSeries = Array.from(seriesMap.values());
+
         return merged;
     },
 

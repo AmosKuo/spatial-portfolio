@@ -42,6 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     galleryContainer.appendChild(itemA);
                 });
             }
+        // 1.5 動態渲染「看見竹北之美」Threads 照片連載區塊
+        const zhubeiContainer = document.getElementById('zhubeiContainer');
+        if (zhubeiContainer && activeData.zhubeiSeries) {
+            zhubeiContainer.innerHTML = '';
+            activeData.zhubeiSeries.forEach(s => {
+                const card = document.createElement('article');
+                card.className = 'zhubei-card fade-up';
+                card.innerHTML = `
+                    <div class="zhubei-card-img-wrapper">
+                        <span class="zhubei-episode-tag">${s.episode || ''}</span>
+                        <img src="${s.photo}" alt="${s.title}" loading="lazy">
+                    </div>
+                    <div class="zhubei-card-body">
+                        <h3 class="zhubei-card-title">${s.title}</h3>
+                        <p class="zhubei-card-excerpt">${s.excerpt}</p>
+                        <div class="zhubei-card-footer">
+                            <span>${s.date || ''}</span>
+                            <a href="${s.threadsUrl || 'https://www.threads.net/'}" target="_blank" rel="noopener" class="zhubei-threads-btn">
+                                在 Threads 閱讀 ↗
+                            </a>
+                        </div>
+                    </div>
+                `;
+                zhubeiContainer.appendChild(card);
+            });
         }
 
         // 2. 動態渲染全站頁面文字與價目表細項 (Page Text & Fine Pricing Details)
