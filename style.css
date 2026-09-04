@@ -169,11 +169,11 @@ h1, h2, h3 {
     margin: 0 auto;
 }
 
-/* Portfolio Section - Grand Spacious Layout */
+/* Portfolio Section - Grand 3-Column Layout */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4rem 3.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2.2rem;
     margin-top: 2rem;
 }
 
@@ -458,11 +458,12 @@ footer {
 .delay-2 { transition-delay: 0.4s; }
 
 /* Responsive Layouts */
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
     .page-content {
-        padding: 2rem 5% 4rem;
+        padding: 2.5rem 4% 5rem;
     }
     .gallery {
+        grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem 2rem;
     }
     .overlay {
