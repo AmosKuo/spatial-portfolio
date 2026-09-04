@@ -66,10 +66,11 @@ h1, h2, h3 {
 }
 
 .site-header .logo img {
-    height: 56px;
+    height: 200px;
     width: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
+    margin: -40px 0;
     transition: transform 0.3s ease;
 }
 
@@ -645,6 +646,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .site-header .logo img {
+        height: 140px;
+        margin: -20px 0;
+    }
     .nav-links {
         display: none;
     }
