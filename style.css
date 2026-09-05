@@ -646,31 +646,106 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Mobile Header & Nav Bar */
+    .site-header {
+        padding: 0.8rem 4% 1rem;
+        position: sticky;
+        top: 0;
+        background: rgba(253, 253, 253, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+    }
     .site-header .logo img {
-        height: 140px;
-        margin: -20px 0;
+        height: 110px;
+        margin: -15px 0;
     }
-    .nav-links {
-        display: none;
+    .site-header .nav-links {
+        display: flex;
+        gap: 1.2rem;
+        justify-content: center;
+        width: 100%;
+        overflow-x: auto;
+        padding: 0.3rem 0;
+        -webkit-overflow-scrolling: touch;
     }
-    .hero-content h1 {
-        font-size: 2.5rem;
+    .site-header .nav-links a {
+        font-size: 0.88rem;
+        letter-spacing: 1px;
+        white-space: nowrap;
     }
+
+    /* Mobile Splash Screen Entrance Logo */
+    .splash-screen img {
+        max-width: 88vw !important;
+        height: auto !important;
+        max-height: 460px !important;
+        margin-top: -30px !important;
+    }
+
+    /* Mobile Page Content & Titles */
+    .page-content {
+        padding: 1.5rem 3.5% 4rem;
+    }
+    .page-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    /* Mobile Portfolio Cards Grid */
     .gallery {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
     }
     .gallery-item {
         aspect-ratio: 16 / 10;
+        border-radius: 10px;
     }
     .overlay {
-        padding: 1.5rem;
+        padding: 1.5rem 1.2rem;
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 100%);
     }
     .overlay h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        transform: translateY(0);
+    }
+    .overlay p {
+        font-size: 0.88rem;
+        transform: translateY(0);
+    }
+
+    /* Mobile Project Detail Single Page */
+    .project-content {
+        padding: 1.8rem 3.5% 4rem;
+    }
+    .project-header {
+        margin-bottom: 3rem;
     }
     .project-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+    .project-description {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+    .project-images {
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    /* Mobile Pricing Cards */
+    .pricing-card {
+        padding: 2rem 1.2rem;
+    }
+    .price {
+        font-size: 2.2rem;
     }
 }
 
