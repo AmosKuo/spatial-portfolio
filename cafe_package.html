@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>咖啡廳社群素材包 ｜ ghspatial 光盒影像</title>
-    <meta name="description" content="專為咖啡廳、甜點店與風格餐飲打造的社群形象攝影專案。提供單次體驗包 (NT$ 9,800) 與季度維護方案 (NT$ 26,000)。">
+    <meta name="description" content="專為咖啡廳、甜點店與風格餐飲打造的社群形象攝影專案。單次特惠 NT$ 9,800 元，季度連續合作優惠 NT$ 26,000 元（三個月優惠，每個月2小時拍攝）。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -32,110 +32,19 @@
             color: #111;
             margin-bottom: 1rem;
         }
+        .cafe-hero-clean .price-tag {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #111;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
         .cafe-hero-clean .lead {
             font-size: 1.15rem;
             color: #555;
             line-height: 1.9;
             margin-bottom: 2.5rem;
             font-weight: 300;
-        }
-
-        /* Plans Comparison Grid */
-        .plans-comparison-grid {
-            max-width: 1000px;
-            margin: 0 auto 5rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            padding: 0 4%;
-        }
-        .plan-card-clean {
-            background: #fff;
-            border: 1px solid #eaeaea;
-            border-radius: 12px;
-            padding: 3rem 2.2rem;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .plan-card-clean:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-        }
-        .plan-card-clean.featured {
-            border: 2px solid #111;
-        }
-        .plan-badge {
-            display: inline-block;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: #888;
-            margin-bottom: 1rem;
-        }
-        .plan-badge.featured-badge {
-            color: #fff;
-            background: #111;
-            padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        .plan-card-clean h3 {
-            font-size: 1.6rem;
-            font-weight: 400;
-            margin-bottom: 0.8rem;
-            color: #111;
-        }
-        .plan-price {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: #111;
-            margin-bottom: 0.8rem;
-        }
-        .plan-sub {
-            font-size: 0.92rem;
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            min-height: 48px;
-        }
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2.5rem 0;
-            text-align: left;
-        }
-        .plan-features li {
-            font-size: 0.95rem;
-            color: #444;
-            padding: 0.7rem 0;
-            border-bottom: 1px solid #f2f2f2;
-            line-height: 1.5;
-        }
-        .btn-plan {
-            display: block;
-            width: 100%;
-            padding: 0.9rem 0;
-            background: #f4f4f4;
-            color: #111;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-        .btn-plan:hover {
-            background: #e5e5e5;
-        }
-        .btn-plan.featured-btn {
-            background: #111;
-            color: #fff;
-        }
-        .btn-plan.featured-btn:hover {
-            background: #333;
         }
 
         /* Photo Gallery Grid */
@@ -204,10 +113,6 @@
         }
 
         @media (max-width: 900px) {
-            .plans-comparison-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
             .editorial-gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -259,46 +164,13 @@
         <section class="cafe-hero-clean fade-up">
             <div class="tag">風格餐飲 ｜ 甜點店 ｜ 咖啡廳形象攝影</div>
             <h1>咖啡廳社群素材包</h1>
+            <div class="price-tag">單次 NT$ 9,800 ｜ 季度合作 NT$ 26,000</div>
             <p class="lead">
                 「客人還沒進門，就已經開始感受這個空間。」<br>
-                提供單次體驗包與季度維護方案，讓你未來三個月不再為發文照片煩惱。
+                專為咖啡廳與餐飲店家打造，提供單次素材建立與季度連續經營方案，讓你未來數月不再為發文照片煩惱。
             </p>
-        </section>
-
-        <!-- Plans Comparison Grid -->
-        <section class="plans-comparison-grid fade-up">
-            <!-- 方案 1：單次體驗包 -->
-            <div class="plan-card-clean">
-                <div>
-                    <span class="plan-badge">單次體驗包</span>
-                    <h3>單次拍攝素材包</h3>
-                    <div class="plan-price">NT$ 9,800</div>
-                    <p class="plan-sub">適合初次體驗、開幕宣傳或單次新品發布</p>
-                    <ul class="plan-features">
-                        <li>✓ 現場拍攝 2 小時</li>
-                        <li>✓ 交付 35 - 40 張高解析精修照片</li>
-                        <li>✓ 空間氛圍、座位動線、軟裝細節與亮點畫面</li>
-                        <li>✓ 全平台社群與門市宣傳使用授權</li>
-                    </ul>
-                </div>
-                <a href="contact.html" class="btn-plan">預約單次方案 &rarr;</a>
-            </div>
-
-            <!-- 方案 2：季度維護方案 -->
-            <div class="plan-card-clean featured">
-                <div>
-                    <span class="plan-badge featured-badge">推薦首選 ｜ 季度經營</span>
-                    <h3>季度維護方案</h3>
-                    <div class="plan-price">NT$ 26,000</div>
-                    <p class="plan-sub">專為需要定期更新菜單、新品與季節氛圍的店家打造</p>
-                    <ul class="plan-features">
-                        <li>✓ 全季共 3 次現場拍攝 (配合季節新品/活動)</li>
-                        <li>✓ 累計交付 100 - 120 張高解析精修照片</li>
-                        <li>✓ 持續更新門市動態，支撐全年社群高質量發文</li>
-                        <li>✓ 享有優先預約檔期與全平台宣傳授權</li>
-                    </ul>
-                </div>
-                <a href="contact.html" class="btn-plan featured-btn">預約季度方案 &rarr;</a>
+            <div>
+                <a href="contact.html" class="btn" style="background: #111; color: #fff; padding: 0.9rem 3rem; font-size: 1rem; border-radius: 4px; border: 1px solid #111;">預約拍攝諮詢 &rarr;</a>
             </div>
         </section>
 
@@ -312,16 +184,62 @@
             <img src="assets/zhubei_series/藍佐牛排.png" alt="藍佐牛排 風格餐飲">
         </section>
 
+        <!-- 方案選擇 (Pricing Plans Selection) -->
+        <section class="cafe-plans-section fade-up" style="max-width: 1000px; margin: 0 auto 5rem; padding: 0 4%;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2rem; font-weight: 300; letter-spacing: 3px; color: #111; margin-bottom: 0.8rem;">專案方案選擇</h2>
+                <p style="color: #666; font-size: 1rem;">靈活選擇單次素材建立或季度長效社群維運</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                
+                <!-- 單次素材包 -->
+                <div style="background: #fff; border: 1px solid #eaeaea; border-radius: 12px; padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+                    <div>
+                        <span style="font-size: 0.8rem; letter-spacing: 2px; color: #888; font-weight: 600; text-transform: uppercase;">單次體驗</span>
+                        <h3 style="font-size: 1.6rem; font-weight: 400; color: #111; margin: 0.5rem 0 1rem;">單次社群素材包</h3>
+                        <div style="font-size: 2.2rem; font-weight: 400; color: #111; margin-bottom: 1.2rem;">NT$ 9,800 <span style="font-size: 0.9rem; color: #888;">/ 次</span></div>
+                        <p style="font-size: 0.95rem; color: #666; line-height: 1.7; margin-bottom: 1.5rem;">適合初次合作、新店開幕或單次季節菜單更新，快速建立品牌基礎素材庫。</p>
+                        <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: #555; line-height: 1.8;">
+                            <li><strong>單次 2 小時</strong> 現場專業拍攝</li>
+                            <li>交付 <strong>35 - 40 張</strong> 高解析精修照片</li>
+                            <li>全平台社群與門市宣傳授權</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="btn" style="margin-top: 2rem; text-align: center; border: 1px solid #111; color: #111; background: transparent;">預約單次拍攝</a>
+                </div>
+
+                <!-- 季度連續方案 (推薦首選) -->
+                <div style="background: #faf8f5; border: 2px solid #3b2c23; border-radius: 12px; padding: 2.5rem 2rem; position: relative; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">
+                    <div style="position: absolute; top: -14px; right: 24px; background: #3b2c23; color: #fff; padding: 4px 16px; font-size: 0.8rem; border-radius: 20px; letter-spacing: 1px; font-weight: 500;">三個月優惠 ⚡ 現省 $3,400</div>
+                    <div>
+                        <span style="font-size: 0.8rem; letter-spacing: 2px; color: #8c6d53; font-weight: 600; text-transform: uppercase;">季度包月 ｜ 穩定經營</span>
+                        <h3 style="font-size: 1.6rem; font-weight: 400; color: #111; margin: 0.5rem 0 1rem;">季度連續合作方案</h3>
+                        <div style="font-size: 2.2rem; font-weight: 500; color: #3b2c23; margin-bottom: 1.2rem;">NT$ 26,000 <span style="font-size: 0.9rem; color: #888;">/ 季</span></div>
+                        <p style="font-size: 0.95rem; color: #555; line-height: 1.7; margin-bottom: 1.5rem;"><strong>專為重視社群持續質感的店家設計</strong>。連續三個月，每個月安排 2 小時拍攝，長期維持社群觸及與新穎品牌印象。</p>
+                        <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: #444; line-height: 1.8;">
+                            <li><strong>三個月優惠</strong>：每個月安排 2 小時拍攝 (共 3 次／6 小時)</li>
+                            <li>累計交付 <strong>100+ 張</strong> 季節菜單與門市氛圍照片</li>
+                            <li>即時捕捉新品上市、節慶活動與門市光影變化</li>
+                            <li>全平台社群與門市宣傳授權</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="btn" style="margin-top: 2rem; text-align: center; background: #3b2c23; color: #fff; border: 1px solid #3b2c23;">預約季度方案 &rarr;</a>
+                </div>
+
+            </div>
+        </section>
+
         <!-- Minimalist Specs Breakdown -->
         <section class="specs-container fade-up">
             <div class="specs-grid">
                 <div class="spec-item">
-                    <h4>拍攝時間安排</h4>
-                    <p>現場拍攝可安排於營業前、午後離峰或指定時段進行，降低對現場營運的影響。</p>
+                    <h4>拍攝安排</h4>
+                    <p>單次 2 小時現場拍攝（季度方案為連續三個月，每月安排 2 小時拍攝）。可安排於營業前、午後離峰或指定時段進行，降低對現場營運的影響。</p>
                 </div>
                 <div class="spec-item">
-                    <h4>成果交付細節</h4>
-                    <p>精修照片包含：</p>
+                    <h4>成果交付</h4>
+                    <p>單次交付 35 - 40 張高解析精修照片（季度方案共累計 100+ 張精修）：</p>
                     <ul>
                         <li>空間整體氛圍與光影特色</li>
                         <li>座位區動線與軟裝風格細節</li>
@@ -329,12 +247,12 @@
                     </ul>
                 </div>
                 <div class="spec-item">
-                    <h4>使用授權範圍</h4>
+                    <h4>使用授權</h4>
                     <p>全平台社群與門市宣傳。可用於 Instagram、Google 商家頁面、Facebook、官方網站、Threads、菜單與店內文宣。</p>
                 </div>
                 <div class="spec-item">
-                    <h4>靈活維護選擇</h4>
-                    <p>可選擇單次 $9,800 輕鬆體驗，或選擇 $26,000 季度方案享有更優惠的長期維護內容。</p>
+                    <h4>費用結算</h4>
+                    <p>單次 NT$ 9,800 元 ｜ 季度特惠 NT$ 26,000 元（三個月包月優惠，一次簽約獲得長效素材庫）。</p>
                 </div>
             </div>
             <div class="specs-notice">
