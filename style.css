@@ -399,6 +399,52 @@ h1, h2, h3 {
     border-radius: 4px;
 }
 
+/* 社群素材包 首頁引流 Banner */
+.zhubei-promo-cta {
+    margin: 2rem auto 0;
+    max-width: 1200px;
+    padding: 1.2rem 2.2rem;
+    background: #3b2c23;
+    color: #f7f3ee;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: 0 8px 24px rgba(59, 44, 35, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zhubei-promo-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(59, 44, 35, 0.18);
+}
+
+.zhubei-promo-cta .cta-question {
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: #f7f3ee;
+}
+
+.zhubei-promo-cta .cta-link-btn {
+    display: inline-block;
+    background: #c4a991;
+    color: #2e211a;
+    padding: 0.75rem 1.8rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.zhubei-promo-cta .cta-link-btn:hover {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
 @media (max-width: 1200px) {
     .slider-slide {
         min-width: 33.333%;
@@ -419,6 +465,21 @@ h1, h2, h3 {
     .next-arrow { right: 5px; }
     .zhubei-carousel-section { padding: 1.8rem 2%; }
     .zhubei-carousel-title { font-size: 1.8rem; }
+    .zhubei-promo-cta {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.2rem 1rem;
+        gap: 1rem;
+    }
+    .zhubei-promo-cta .cta-question {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .zhubei-promo-cta .cta-link-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
 }
 
 /* Project Single Page - Grand Architectural View */
