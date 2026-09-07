@@ -4,148 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>咖啡廳社群素材包 ｜ ghspatial 光盒影像</title>
-    <meta name="description" content="專為咖啡廳、甜點店與風格餐飲打造的社群形象攝影專案。2小時現場拍攝，交付 35-40 張精修照片，特惠價 NTD 9,800 元。">
+    <meta name="description" content="專為咖啡廳、甜點店與風格餐飲打造的社群形象攝影專案。2小時現場拍攝，交付 35-40 張精修照片，特惠價 NT$ 9,800 元。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .cafe-hero {
-            position: relative;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('assets/zhubei_series/composecoffe.png') center/cover no-repeat;
-            color: #fff;
-            padding: 8rem 5% 6rem;
+        /* Minimalist Landing Page Styling */
+        .cafe-hero-clean {
+            padding: 5rem 5% 3.5rem;
             text-align: center;
-            border-radius: 0 0 24px 24px;
-            margin-bottom: 4rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
-
-        .cafe-hero-badge {
-            display: inline-block;
-            background: rgba(184, 91, 52, 0.9);
-            color: #fff;
-            padding: 6px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
+        .cafe-hero-clean .tag {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
             font-weight: 500;
         }
-
-        .cafe-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .cafe-hero-clean h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
             font-weight: 300;
             letter-spacing: 4px;
-            margin-bottom: 1.2rem;
+            color: #111;
+            margin-bottom: 1rem;
         }
-
-        .cafe-hero p.subtitle {
-            font-size: 1.25rem;
-            color: #e0e0e0;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.8;
+        .cafe-hero-clean .price-tag {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: #111;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+        .cafe-hero-clean .lead {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
             font-weight: 300;
         }
 
-        .cafe-hero-price {
-            font-size: 3rem;
-            font-weight: 500;
-            color: #f7ab82;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-        }
-
-        .cafe-section {
+        /* Photo Gallery Grid */
+        .editorial-gallery {
             max-width: 1200px;
             margin: 0 auto 5rem;
             padding: 0 4%;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-heading h2 {
-            font-size: 2.2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: #111;
-            margin-bottom: 0.8rem;
-        }
-
-        .section-heading p {
-            color: #666;
-            font-size: 1.05rem;
-        }
-
-        .quote-box-large {
-            background: #faf8f5;
-            border-left: 4px solid #b85b34;
-            padding: 3rem;
-            border-radius: 0 16px 16px 0;
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #333;
-            margin-bottom: 5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-
-        .sample-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            margin-bottom: 4rem;
         }
-
-        .sample-item {
-            aspect-ratio: 4/3;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-        }
-
-        .sample-item img {
+        .editorial-gallery img {
             width: 100%;
-            height: 100%;
+            height: 380px;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            border-radius: 8px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+        }
+        .editorial-gallery img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
         }
 
-        .sample-item:hover img {
-            transform: scale(1.06);
+        /* Clean Specs Grid */
+        .specs-container {
+            max-width: 950px;
+            margin: 0 auto 5rem;
+            padding: 3.5rem 3rem;
+            background: #fafafa;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
         }
-
-        .cta-banner {
-            background: #111;
-            color: #fff;
-            padding: 4rem 3rem;
-            border-radius: 16px;
-            text-align: center;
-            margin-top: 5rem;
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem 3rem;
         }
-
-        .cta-banner h3 {
-            font-size: 2.2rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: 3px;
-        }
-
-        .cta-banner p {
-            color: #ccc;
+        .spec-item h4 {
             font-size: 1.1rem;
-            margin-bottom: 2.5rem;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
+        }
+        .spec-item p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
+        }
+        .spec-item ul {
+            padding-left: 1.2rem;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 0.4rem;
+        }
+
+        .specs-notice {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #ddd;
+            font-size: 0.88rem;
+            color: #888;
+            text-align: center;
         }
 
         @media (max-width: 900px) {
-            .sample-grid {
+            .editorial-gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .quote-box-large {
+            .editorial-gallery img {
+                height: 280px;
+            }
+            .specs-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .specs-container {
                 padding: 2rem 1.5rem;
-                font-size: 1.05rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .editorial-gallery {
+                grid-template-columns: 1fr;
+            }
+            .editorial-gallery img {
+                height: 240px;
             }
         }
     </style>
@@ -171,144 +158,80 @@
         </div>
     </header>
 
-    <!-- Landing Hero -->
-    <section class="cafe-hero fade-up">
-        <div class="cafe-hero-badge">專為咖啡廳、甜點店與風格餐飲打造</div>
-        <h1>咖啡廳社群素材包</h1>
-        <p class="subtitle">2 小時現場拍攝 ｜ 35 - 40 張精修照片<br>讓你未來三個月不再為發文照片煩惱。</p>
-        <div class="cafe-hero-price">NTD 9,800 元</div>
-        <div>
-            <a href="contact.html" class="btn" style="background: #b85b34; color: #fff; border-color: #b85b34; padding: 1.1rem 3.5rem; font-size: 1.1rem;">立即預約拍攝諮詢 &rarr;</a>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="page-content" style="padding-top: 0;">
+    <main class="page-content" style="padding-top: 1rem;">
         
-        <div class="cafe-section fade-up">
-            <div class="quote-box-large">
-                <strong style="color: #b85b34; font-size: 1.4rem; display: block; margin-bottom: 1rem;">“ 為什麼需要專業空間與社群形象攝影？”</strong>
-                當客人在 Google Maps、Instagram 或 Threads 看見你的店時，他們不是先看菜單，而是先感受空間。一張有氛圍的照片，往往比一段文案更能讓人產生「想去看看」的衝動。<br><br>
-                <strong>我們拍攝的不只是空間本身，而是消費者走進店裡之前所期待的那份感受。</strong>
+        <!-- Minimalist Hero -->
+        <section class="cafe-hero-clean fade-up">
+            <div class="tag">風格餐飲 ｜ 甜點店 ｜ 咖啡廳形象攝影</div>
+            <h1>咖啡廳社群素材包</h1>
+            <div class="price-tag">NT$ 9,800</div>
+            <p class="lead">
+                「客人還沒進門，就已經開始感受這個空間。」<br>
+                2 小時現場拍攝 ｜ 35 - 40 張高解析精修 ｜ 讓你未來三個月不再為發文照片煩惱。
+            </p>
+            <div>
+                <a href="contact.html" class="btn" style="background: #111; color: #fff; padding: 0.9rem 3rem; font-size: 1rem; border-radius: 4px; border: 1px solid #111;">預約拍攝諮詢 &rarr;</a>
             </div>
-        </div>
+        </section>
 
-        <!-- 專案內容詳細 Poster Card -->
-        <div class="cafe-section fade-up">
-            <div class="section-heading">
-                <h2>專案服務完整內容</h2>
-                <p>透明計價與全方位成果交付，一次建立專屬品牌素材庫</p>
-            </div>
+        <!-- Clean Editorial Photo Gallery (看見竹北之美連載精選) -->
+        <section class="editorial-gallery fade-up">
+            <img src="assets/zhubei_series/composecoffe.png" alt="Compose Coffee 空間氛圍">
+            <img src="assets/zhubei_series/keu日本抹茶.jpg" alt="KEU 日本抹茶 細節">
+            <img src="assets/zhubei_series/橋恩咖啡.png" alt="橋恩咖啡 座位光影">
+            <img src="assets/zhubei_series/卷卷烘焙.png" alt="卷卷烘焙 門市氛圍">
+            <img src="assets/zhubei_series/瓦法.png" alt="瓦法 空間畫面">
+            <img src="assets/zhubei_series/藍佐牛排.png" alt="藍佐牛排 風格餐飲">
+        </section>
 
-            <div class="cafe-package-poster-card" style="margin-bottom: 0;">
-                <div class="cafe-poster-left">
-                    <div class="cafe-poster-img-grid">
-                        <img src="assets/zhubei_series/composecoffe.png" alt="看見竹北之美 Compose Coffee">
-                        <img src="assets/zhubei_series/keu日本抹茶.jpg" alt="看見竹北之美 KEU日本抹茶">
-                    </div>
-                    <div class="cafe-poster-quote">
-                        <div class="brand-sublogo">GH SPATIAL 光盒影像 ｜ 看見竹北之美</div>
-                        <p class="quote-text">「客人還沒進門，就已經開始期待這個空間。」</p>
-                    </div>
+        <!-- Minimalist Specs Breakdown -->
+        <section class="specs-container fade-up">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h4>拍攝時間</h4>
+                    <p>現場拍攝 2 小時。可安排於營業前、午後離峰或指定時段進行，降低對現場營運的影響。</p>
                 </div>
-
-                <div class="cafe-poster-right">
-                    <div class="tag-badge">專案細節 ｜ 成果交付 ｜ 使用授權</div>
-                    <h2 class="cafe-poster-title">咖啡廳社群素材包</h2>
-                    <div class="cafe-poster-highlights">
-                        <span>2 小時拍攝</span> ｜ <span>35 - 40 張精修</span> ｜ <strong class="highlight-price">NTD 9,800</strong>
-                    </div>
-                    <p class="cafe-poster-sub">輕鬆打造高品質品牌社群形象。</p>
-
-                    <div class="cafe-details-list">
-                        <div class="detail-item">
-                            <div class="detail-icon">🕒</div>
-                            <div>
-                                <strong>拍攝時間：2 小時現場拍攝</strong>
-                                <p>可安排於營業前、午後離峰或指定時段進行，降低對現場營運的影響。</p>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-icon">🖼️</div>
-                            <div>
-                                <strong>成果交付：35 - 40 張高解析精修照片</strong>
-                                <ul>
-                                    <li>✓ 空間整體氛圍與光影特色畫面</li>
-                                    <li>✓ 座位區與動線呈現、軟裝細節與品牌風格元素</li>
-                                    <li>✓ 適合社群發文與廣告投放素材</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-icon">📄</div>
-                            <div>
-                                <strong>使用授權：全平台社群與店內宣傳</strong>
-                                <p>可用於 Instagram、Google 商家頁面、Facebook、官方網站、Threads、菜單與店內文宣。</p>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-icon">🏷️</div>
-                            <div>
-                                <strong>專案費用：NTD 9,800 元</strong>
-                                <p>一次拍攝，獲得可支撐數個月品牌經營的專屬素材庫。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="notice-box">
-                        <strong>關於授權條款：</strong>本專案之所有照片，授權僅限貴品牌自身使用，不得轉授權或提供第三方使用。
-                    </div>
+                <div class="spec-item">
+                    <h4>成果交付</h4>
+                    <p>交付 35 - 40 張高解析精修照片：</p>
+                    <ul>
+                        <li>空間整體氛圍與光影特色</li>
+                        <li>座位區動線與軟裝風格細節</li>
+                        <li>適合社群發文與廣告投放素材</li>
+                    </ul>
+                </div>
+                <div class="spec-item">
+                    <h4>使用授權</h4>
+                    <p>全平台社群與門市宣傳。可用於 Instagram、Google 商家頁面、Facebook、官方網站、Threads、菜單與店內文宣。</p>
+                </div>
+                <div class="spec-item">
+                    <h4>專案費用</h4>
+                    <p>NT$ 9,800 元。一次拍攝，獲得可支撐數個月品牌經營的專屬素材庫。</p>
                 </div>
             </div>
-        </div>
+            <div class="specs-notice">
+                註：本專案之所有照片，授權僅限貴品牌自身使用，不得轉授權或提供第三方使用。
+            </div>
+        </section>
 
-        <!-- 實景拍攝範例預覽 -->
-        <div class="cafe-section fade-up">
-            <div class="section-heading">
-                <h2>實景拍攝範例 (看見竹北之美連載精選)</h2>
-                <p>結合空間氛圍、光影幾何與在地風格餐飲細節</p>
-            </div>
-
-            <div class="sample-grid">
-                <div class="sample-item"><img src="assets/zhubei_series/composecoffe.png" alt="Compose Coffee"></div>
-                <div class="sample-item"><img src="assets/zhubei_series/keu日本抹茶.jpg" alt="KEU 日本抹茶"></div>
-                <div class="sample-item"><img src="assets/zhubei_series/橋恩咖啡.png" alt="橋恩咖啡"></div>
-                <div class="sample-item"><img src="assets/zhubei_series/卷卷烘焙.png" alt="卷卷烘焙"></div>
-                <div class="sample-item"><img src="assets/zhubei_series/瓦法.png" alt="瓦法"></div>
-                <div class="sample-item"><img src="assets/zhubei_series/瓦法局部.png" alt="瓦法局部"></div>
-                <div class="sample-item"><img src="assets/zhubei_series/藍佐牛排.png" alt="藍佐牛排"></div>
-                <div class="sample-item"><img src="assets/zhubei_series/隱焱匠.png" alt="隱焱匠"></div>
-            </div>
-            
-            <div style="text-align: center;">
-                <a href="cafe_social.html" class="btn-outline" style="display: inline-block; padding: 0.9rem 2.5rem;">觀看完整咖啡廳作品輯 &rarr;</a>
-            </div>
-        </div>
-
-        <!-- CTA Call To Action -->
-        <div class="cafe-section fade-up">
-            <div class="cta-banner">
-                <h3>準備好提升您的店面社群形象了嗎？</h3>
-                <p>歡迎告訴我們您的店面位置與預計拍攝時間，我們將竭誠為您服務。</p>
-                <a href="contact.html" class="btn" style="background: #fff; color: #111; border-color: #fff; padding: 1.1rem 3.5rem; font-size: 1.1rem;">立即預約拍攝諮詢 &rarr;</a>
-            </div>
-        </div>
+        <!-- Bottom CTA -->
+        <section style="text-align: center; margin-bottom: 6rem;" class="fade-up">
+            <h3 style="font-size: 1.8rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 1rem;">準備好提升您的店面社群形象了嗎？</h3>
+            <p style="color: #666; margin-bottom: 2rem;">歡迎告訴我們您的店面位置與預計拍攝時間</p>
+            <a href="contact.html" class="btn" style="background: #111; color: #fff; padding: 1rem 3.5rem; font-size: 1.05rem;">預約諮詢 &rarr;</a>
+        </section>
 
     </main>
 
     <!-- Footer -->
     <footer id="contact">
         <div class="socials">
-            <a href="portfolio.html">空間作品集</a>
-            <a href="about.html">關於光盒</a>
-            <a href="pricing.html">價目表</a>
-            <a href="contact.html">聯絡我</a>
+            <a href="https://www.facebook.com/profile.php?id=61586815444556" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/gh_spatial/" target="_blank">Instagram</a>
+            <a href="admin.html" style="opacity: 0.6; font-size: 0.85rem;">⚙️ 後台管理</a>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 ghspatial 光盒影像. All rights reserved.
-            <div style="margin-top: 0.8rem;">
-                <a href="admin.html" style="opacity: 0.6; font-size: 0.85rem;">⚙️ 後台管理</a>
-            </div>
+            <p>&copy; 2026 ghspatial 光盒影像. All rights reserved.</p>
         </div>
     </footer>
 
