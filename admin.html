@@ -342,6 +342,7 @@
         <nav class="admin-nav">
             <button class="admin-tab-btn active" data-tab="tab-projects">專案作品與封面/分類管理</button>
             <button class="admin-tab-btn" data-tab="tab-zhubei">看見竹北之美連載管理</button>
+            <button class="admin-tab-btn" data-tab="tab-cafe">☕ 咖啡廳頁照片選擇器</button>
             <button class="admin-tab-btn" data-tab="tab-pages">全站頁面文字與價目表細項編輯</button>
             <button class="admin-tab-btn" data-tab="tab-sync">同步前比對與備份匯出</button>
             <button class="admin-tab-btn btn-secondary" onclick="logoutAdmin()">登出</button>
@@ -432,6 +433,26 @@
                 </div>
 
                 <div id="zhubei-photos-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.2rem;">
+                    <!-- Photo thumbnails rendered via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: 咖啡廳獨立介紹頁照片管理 -->
+        <div class="tab-content" id="tab-cafe" style="display: none;">
+            <div class="panel-card">
+                <div class="panel-title">
+                    <span>☕ 咖啡廳獨立介紹頁作品集照片選擇器 (已選取 <span id="cafe-photos-selected-count">0</span> 張照片)</span>
+                    <span style="font-size: 0.8rem; font-weight: 400; color: #64748b;">點擊照片即可自由勾選/取消顯示於 `cafe_package.html` 藝廊展示（無數量限制）</span>
+                </div>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0; align-items: center;">
+                    <button type="button" class="btn-action" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;" onclick="setCafePreset('default12')">⚡ 一鍵選取 12 張精選照片 (4 排)</button>
+                    <button type="button" class="btn-action btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;" onclick="setCafePreset('zhubeiAll')">📸 全選「看見竹北之美」餐飲照片</button>
+                    <button type="button" class="btn-action btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;" onclick="setCafePreset('clear')">🗑️ 全部取消選取</button>
+                </div>
+
+                <div id="cafe-photos-selector-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.2rem;">
                     <!-- Photo thumbnails rendered via JS -->
                 </div>
             </div>
@@ -650,6 +671,7 @@
             setupTabs();
             renderProjectsList();
             renderZhubeiList();
+            renderCafePhotosManager();
             populatePageContentForm();
             checkDiffStatus();
         }
@@ -1098,6 +1120,139 @@
                 window.GHSpatialDataEngine.saveActiveData(currentData);
                 renderZhubeiList();
             }
+        }
+
+        /* --- ☕ 咖啡廳獨立介紹頁照片選擇器 Functions --- */
+        function renderCafePhotosManager() {
+            const container = document.getElementById('cafe-photos-selector-grid');
+            const countSpan = document.getElementById('cafe-photos-selected-count');
+            if (!container) return;
+
+            if (!currentData.cafePackagePhotos || currentData.cafePackagePhotos.length === 0) {
+                currentData.cafePackagePhotos = [
+                    "assets/zhubei_series/composecoffe.png",
+                    "assets/zhubei_series/keu日本抹茶.jpg",
+                    "assets/zhubei_series/橋恩咖啡.png",
+                    "assets/zhubei_series/卷卷烘焙.png",
+                    "assets/zhubei_series/瓦法.png",
+                    "assets/zhubei_series/瓦法局部.png",
+                    "assets/zhubei_series/藍佐牛排.png",
+                    "assets/zhubei_series/隱焱匠.png",
+                    "assets/cafe_social/space_09.jpg",
+                    "assets/cafe_social/space_02.jpg",
+                    "assets/cafe_social/food_01.jpg",
+                    "assets/cafe_social/food_04.jpg"
+                ];
+            }
+
+            const selectedSet = new Set(currentData.cafePackagePhotos);
+            if (countSpan) countSpan.textContent = selectedSet.size;
+
+            const candidates = [
+                "assets/zhubei_series/composecoffe.png",
+                "assets/zhubei_series/keu日本抹茶.jpg",
+                "assets/zhubei_series/橋恩咖啡.png",
+                "assets/zhubei_series/卷卷烘焙.png",
+                "assets/zhubei_series/瓦法.png",
+                "assets/zhubei_series/瓦法局部.png",
+                "assets/zhubei_series/藍佐牛排.png",
+                "assets/zhubei_series/隱焱匠.png",
+                "assets/zhubei_series/平室.png",
+                "assets/zhubei_series/茶棧.png",
+                "assets/zhubei_series/光鮮綠蔬.png",
+                "assets/zhubei_series/蘭英麵食館六家店.png",
+                "assets/cafe_social/space_01.jpg",
+                "assets/cafe_social/space_02.jpg",
+                "assets/cafe_social/space_03.jpg",
+                "assets/cafe_social/space_04.jpg",
+                "assets/cafe_social/space_05.jpg",
+                "assets/cafe_social/space_06.jpg",
+                "assets/cafe_social/space_07.jpg",
+                "assets/cafe_social/space_08.jpg",
+                "assets/cafe_social/space_09.jpg",
+                "assets/cafe_social/space_10.jpg",
+                "assets/cafe_social/space_11.jpg",
+                "assets/cafe_social/space_12.jpg",
+                "assets/cafe_social/space_13.jpg",
+                "assets/cafe_social/space_14.jpg",
+                "assets/cafe_social/space_15.jpg",
+                "assets/cafe_social/space_16.jpg",
+                "assets/cafe_social/food_01.jpg",
+                "assets/cafe_social/food_02.jpg",
+                "assets/cafe_social/food_03.jpg",
+                "assets/cafe_social/food_04.jpg",
+                "assets/cafe_social/food_05.jpg",
+                "assets/cafe_social/food_06.jpg"
+            ];
+
+            (currentData.zhubeiPhotos || []).forEach(p => {
+                if (!candidates.includes(p)) candidates.push(p);
+            });
+
+            container.innerHTML = candidates.map((url) => {
+                const isSelected = selectedSet.has(url);
+                const filename = url.split('/').pop();
+                return `
+                    <div onclick="toggleCafePhoto('${url}')" style="cursor: pointer; position: relative; border-radius: 8px; overflow: hidden; border: ${isSelected ? '3px solid #2563eb' : '1px solid #cbd5e1'}; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.2s ease;">
+                        ${isSelected ? `<div style="position: absolute; top: 6px; right: 6px; background: #2563eb; color: #fff; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; z-index: 2;">✓</div>` : ''}
+                        <img src="${url}" style="width: 100%; aspect-ratio: 1; object-fit: cover; display: block;" onerror="this.src='assets/cafe_social/space_09.jpg'">
+                        <div style="padding: 0.4rem 0.6rem; background: ${isSelected ? '#eff6ff' : '#f8fafc'}; font-size: 0.75rem; color: ${isSelected ? '#1e40af' : '#64748b'}; display: flex; align-items: center; justify-content: space-between; font-weight: 500;">
+                            <span>${isSelected ? '✓ 已選取' : '未選取'}</span>
+                            <span style="font-size: 0.7rem; color: #888; text-overflow: ellipsis; overflow: hidden; max-width: 90px; white-space: nowrap;" title="${filename}">${filename}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleCafePhoto(url) {
+            if (!currentData.cafePackagePhotos) currentData.cafePackagePhotos = [];
+            const idx = currentData.cafePackagePhotos.indexOf(url);
+            if (idx >= 0) {
+                currentData.cafePackagePhotos.splice(idx, 1);
+            } else {
+                currentData.cafePackagePhotos.push(url);
+            }
+            window.GHSpatialDataEngine.saveActiveData(currentData);
+            renderCafePhotosManager();
+        }
+
+        function setCafePreset(type) {
+            if (type === 'default12') {
+                currentData.cafePackagePhotos = [
+                    "assets/zhubei_series/composecoffe.png",
+                    "assets/zhubei_series/keu日本抹茶.jpg",
+                    "assets/zhubei_series/橋恩咖啡.png",
+                    "assets/zhubei_series/卷卷烘焙.png",
+                    "assets/zhubei_series/瓦法.png",
+                    "assets/zhubei_series/瓦法局部.png",
+                    "assets/zhubei_series/藍佐牛排.png",
+                    "assets/zhubei_series/隱焱匠.png",
+                    "assets/cafe_social/space_09.jpg",
+                    "assets/cafe_social/space_02.jpg",
+                    "assets/cafe_social/food_01.jpg",
+                    "assets/cafe_social/food_04.jpg"
+                ];
+            } else if (type === 'zhubeiAll') {
+                currentData.cafePackagePhotos = [
+                    "assets/zhubei_series/composecoffe.png",
+                    "assets/zhubei_series/keu日本抹茶.jpg",
+                    "assets/zhubei_series/橋恩咖啡.png",
+                    "assets/zhubei_series/卷卷烘焙.png",
+                    "assets/zhubei_series/瓦法.png",
+                    "assets/zhubei_series/瓦法局部.png",
+                    "assets/zhubei_series/藍佐牛排.png",
+                    "assets/zhubei_series/隱焱匠.png",
+                    "assets/zhubei_series/平室.png",
+                    "assets/zhubei_series/茶棧.png",
+                    "assets/zhubei_series/光鮮綠蔬.png",
+                    "assets/zhubei_series/蘭英麵食館六家店.png"
+                ];
+            } else if (type === 'clear') {
+                currentData.cafePackagePhotos = [];
+            }
+            window.GHSpatialDataEngine.saveActiveData(currentData);
+            renderCafePhotosManager();
         }
     </script>
 </body>

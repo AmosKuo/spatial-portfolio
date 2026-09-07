@@ -63,6 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
             initZhubeiSlider(activeData.zhubeiPhotos.length);
         }
 
+        // 1.8 動態渲染「咖啡廳社群素材包」作品輯 (cafe_package.html)
+        const cafeGallery = document.getElementById('cafePackageGallery');
+        if (cafeGallery && activeData.cafePackagePhotos && activeData.cafePackagePhotos.length > 0) {
+            cafeGallery.innerHTML = activeData.cafePackagePhotos.map(photo => `
+                <img src="${photo}" alt="咖啡廳社群素材 氛圍範例" loading="lazy">
+            `).join('');
+        }
+
         // 2. 動態渲染全站頁面文字與價目表細項 (Page Text & Fine Pricing Details)
         const pc = activeData.pageContent;
         if (pc) {

@@ -282,6 +282,21 @@ window.GHSpatialDataDefault = {
         "assets/zhubei_series/藍佐牛排.png",
         "assets/zhubei_series/蘭英麵食館六家店.png",
         "assets/zhubei_series/隱焱匠.png"
+    ],
+
+    cafePackagePhotos: [
+        "assets/zhubei_series/composecoffe.png",
+        "assets/zhubei_series/keu日本抹茶.jpg",
+        "assets/zhubei_series/橋恩咖啡.png",
+        "assets/zhubei_series/卷卷烘焙.png",
+        "assets/zhubei_series/瓦法.png",
+        "assets/zhubei_series/瓦法局部.png",
+        "assets/zhubei_series/藍佐牛排.png",
+        "assets/zhubei_series/隱焱匠.png",
+        "assets/cafe_social/space_09.jpg",
+        "assets/cafe_social/space_02.jpg",
+        "assets/cafe_social/food_01.jpg",
+        "assets/cafe_social/food_04.jpg"
     ]
 };
 
@@ -321,7 +336,8 @@ window.GHSpatialDataEngine = {
             adminPassword: incomingData.adminPassword || baseData.adminPassword,
             pageContent: {},
             projects: [],
-            zhubeiPhotos: baseData.zhubeiPhotos || []
+            zhubeiPhotos: incomingData.zhubeiPhotos || baseData.zhubeiPhotos || [],
+            cafePackagePhotos: incomingData.cafePackagePhotos || baseData.cafePackagePhotos || []
         };
 
         const baseContent = baseData.pageContent || {};
