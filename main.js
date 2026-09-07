@@ -112,28 +112,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
-                    // 小坪數 & 大坪數方案
-                    const cards = document.querySelectorAll('.pricing-container .pricing-card');
-                    if (cards.length >= 2) {
-                        // 小坪數
-                        if (pr.planSmall) {
-                            const c = cards[0];
-                            if (pr.planSmall.title) c.querySelector('h3').textContent = pr.planSmall.title;
-                            if (pr.planSmall.price) c.querySelector('.price').innerHTML = pr.planSmall.price + '<span> / 元</span>';
-                            if (pr.planSmall.desc) c.querySelector('.plan-desc').textContent = pr.planSmall.desc;
-                            if (pr.planSmall.items) {
-                                c.querySelector('ul').innerHTML = pr.planSmall.items.map(item => `<li>${item}</li>`).join('');
-                            }
+                    // 小坪數 & 大坪數方案 (精準 DOM ID 綁定)
+                    const cardSmall = document.getElementById('cardSmall');
+                    if (cardSmall && pr.planSmall) {
+                        if (pr.planSmall.title) cardSmall.querySelector('h3').textContent = pr.planSmall.title;
+                        if (pr.planSmall.price) cardSmall.querySelector('.price').innerHTML = pr.planSmall.price + '<span> / 元</span>';
+                        if (pr.planSmall.desc) cardSmall.querySelector('.plan-desc').textContent = pr.planSmall.desc;
+                        if (pr.planSmall.items) {
+                            cardSmall.querySelector('ul').innerHTML = pr.planSmall.items.map(item => `<li>${item}</li>`).join('');
                         }
-                        // 大坪數
-                        if (pr.planLarge) {
-                            const c = cards[1];
-                            if (pr.planLarge.title) c.querySelector('h3').textContent = pr.planLarge.title;
-                            if (pr.planLarge.price) c.querySelector('.price').innerHTML = pr.planLarge.price + '<span> / 元</span>';
-                            if (pr.planLarge.desc) c.querySelector('.plan-desc').textContent = pr.planLarge.desc;
-                            if (pr.planLarge.items) {
-                                c.querySelector('ul').innerHTML = pr.planLarge.items.map(item => `<li>${item}</li>`).join('');
-                            }
+                    }
+
+                    const cardLarge = document.getElementById('cardLarge');
+                    if (cardLarge && pr.planLarge) {
+                        if (pr.planLarge.title) cardLarge.querySelector('h3').textContent = pr.planLarge.title;
+                        if (pr.planLarge.price) cardLarge.querySelector('.price').innerHTML = pr.planLarge.price + '<span> / 元</span>';
+                        if (pr.planLarge.desc) cardLarge.querySelector('.plan-desc').textContent = pr.planLarge.desc;
+                        if (pr.planLarge.items) {
+                            cardLarge.querySelector('ul').innerHTML = pr.planLarge.items.map(item => `<li>${item}</li>`).join('');
                         }
                     }
 
