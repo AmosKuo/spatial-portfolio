@@ -409,6 +409,55 @@
             line-height: 1.7;
         }
 
+        .featured-plan-pdf-banner {
+            background: #faf8f5;
+            border: 2px solid #222;
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .featured-plan-pdf-banner .banner-badge {
+            position: absolute;
+            top: -11px;
+            right: 20px;
+            background: #222;
+            color: #fff;
+            padding: 2px 14px;
+            font-size: 10.5px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+        .featured-plan-pdf-banner .banner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        .featured-plan-pdf-banner h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #111;
+        }
+        .featured-plan-pdf-banner .price-tag-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111;
+            letter-spacing: 1px;
+        }
+        .featured-plan-pdf-banner p.desc {
+            font-size: 11.5px;
+            color: #555;
+            margin: 0 0 8px;
+        }
+        .featured-plan-pdf-banner .items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px 20px;
+            font-size: 11px;
+            color: #333;
+        }
+
         /* Slide 7: Process & Terms */
         .process-terms-grid {
             display: grid;
@@ -725,9 +774,25 @@
             <h2 class="section-title">拍攝服務方案與價目表</h2>
             <p class="section-subtitle">透明計價與全方位成果交付，滿足不同專案規模需求</p>
 
+            <!-- 首次合作方案 (Featured Banner) -->
+            <div class="featured-plan-pdf-banner">
+                <div class="banner-badge">首次合作限定</div>
+                <div class="banner-header">
+                    <h3>設計師首次合作方案</h3>
+                    <div class="price-tag-text">請預約洽詢 (享加碼優惠)</div>
+                </div>
+                <p class="desc">專為初次配合的設計團隊打造，以基本方案的價格，享有更充裕的拍攝時間與加碼照片。</p>
+                <div class="items-grid">
+                    <div>• 現場拍攝 4 小時 <strong>(+ 免費贈 1 小時軟裝微調)</strong></div>
+                    <div>• 可挑選精修圖 15 張 <strong>(+ 加碼贈 3 張，等值 $3,600)</strong></div>
+                    <div>• 超時費可完全折抵加挑照片費用</div>
+                    <div>• 10 個工作日提供挑片，挑片後 10 日內完成交付</div>
+                </div>
+            </div>
+
             <div class="pricing-pdf-grid">
                 <!-- 咖啡廳素材包 -->
-                <div class="price-pdf-card featured">
+                <div class="price-pdf-card">
                     <div>
                         <h3>咖啡廳社群素材包</h3>
                         <div class="amount">NT$ 9,800 <span style="font-size: 13px; color: #777;">/ 次</span></div>
