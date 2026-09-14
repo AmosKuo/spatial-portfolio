@@ -88,7 +88,7 @@
 
         /* Shared Components */
         .page-header {
-            padding: 30px 45px 15px;
+            padding: 28px 45px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -108,7 +108,7 @@
         }
 
         .page-footer {
-            padding: 15px 45px 25px;
+            padding: 14px 45px 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -118,7 +118,7 @@
         }
 
         .page-body-content {
-            padding: 25px 45px;
+            padding: 22px 45px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -144,7 +144,7 @@
             font-size: 13px;
             color: #666;
             letter-spacing: 1px;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
         }
 
         /* Slide 1: Cover */
@@ -186,7 +186,7 @@
             color: #f7f5f0;
         }
         .cover-titles p.sub {
-            font-size: 16px;
+            font-size: 15px;
             color: #b3a89e;
             letter-spacing: 2px;
             line-height: 1.8;
@@ -228,11 +228,11 @@
             padding-top: 15px;
         }
 
-        /* Slide 2: Bio & Philosophy */
+        /* Slide 2: Bio & Philosophy (Live Synced with site_data.js) */
         .bio-grid {
             display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 45px;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
             align-items: center;
         }
         .bio-sidebar img {
@@ -247,51 +247,61 @@
             padding: 16px;
             border-radius: 6px;
             border-left: 3px solid #3b2c23;
-            font-size: 13px;
+            font-size: 12.5px;
             color: #3b2c23;
             line-height: 1.7;
         }
 
         .bio-main-text h2 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 300;
             letter-spacing: 3px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .bio-main-text .role {
             font-size: 13px;
             color: #888;
             letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .bio-desc-box {
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 18px 22px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #444;
+            line-height: 1.85;
             margin-bottom: 20px;
         }
-        .bio-desc {
-            font-size: 13.5px;
-            color: #444;
-            line-height: 1.8;
-            margin-bottom: 25px;
+        .bio-desc-box p {
+            margin: 0 0 10px;
         }
-        .pillars-grid {
+        .bio-desc-box p:last-child {
+            margin: 0;
+        }
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
         }
-        .pillar-card {
-            background: #fafafa;
-            border: 1px solid #eee;
-            padding: 16px;
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            padding: 14px 16px;
             border-radius: 6px;
+            text-align: center;
         }
-        .pillar-card h4 {
-            font-size: 14px;
+        .stat-card .val {
+            font-size: 20px;
             font-weight: 600;
             color: #111;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
-        .pillar-card p {
-            font-size: 11.5px;
+        .stat-card .lbl {
+            font-size: 11px;
             color: #666;
-            line-height: 1.6;
-            margin: 0;
+            letter-spacing: 1px;
         }
 
         /* Slide 3 & 4: Showcase Grids */
@@ -327,7 +337,7 @@
             margin: 0;
         }
 
-        /* Slide 5: Cafe & Social Package Showcase */
+        /* Slide 5: Cafe & Social Media Showcase */
         .cafe-showcase-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -361,60 +371,12 @@
         }
 
         /* Slide 6: Pricing */
-        .pricing-pdf-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .price-pdf-card {
-            background: #fff;
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
-            padding: 24px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .price-pdf-card.featured {
-            background: #faf8f5;
-            border: 2px solid #3b2c23;
-        }
-        .price-pdf-card h3 {
-            font-size: 17px;
-            font-weight: 500;
-            color: #111;
-            margin-bottom: 8px;
-        }
-        .price-pdf-card .amount {
-            font-size: 26px;
-            font-weight: 500;
-            color: #111;
-            margin-bottom: 12px;
-        }
-        .price-pdf-card.featured .amount {
-            color: #3b2c23;
-        }
-        .price-pdf-card p.desc {
-            font-size: 11.5px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            min-height: 38px;
-        }
-        .price-pdf-card ul {
-            padding-left: 15px;
-            margin: 0;
-            font-size: 11.5px;
-            color: #444;
-            line-height: 1.7;
-        }
-
         .featured-plan-pdf-banner {
             background: #faf8f5;
             border: 2px solid #222;
             border-radius: 8px;
             padding: 14px 20px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             position: relative;
         }
         .featured-plan-pdf-banner .banner-badge {
@@ -435,7 +397,7 @@
             margin-bottom: 4px;
         }
         .featured-plan-pdf-banner h3 {
-            font-size: 16px;
+            font-size: 16.5px;
             font-weight: 500;
             color: #111;
         }
@@ -458,59 +420,90 @@
             color: #333;
         }
 
-        /* Slide 7: Process & Terms */
+        .pricing-pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .price-pdf-card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .price-pdf-card h3 {
+            font-size: 15px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 6px;
+        }
+        .price-pdf-card .amount {
+            font-size: 22px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 10px;
+        }
+        .price-pdf-card p.desc {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            min-height: 34px;
+        }
+        .price-pdf-card ul {
+            padding-left: 14px;
+            margin: 0;
+            font-size: 11px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* Slide 7: Process & Terms (Synced with site_data.js) */
         .process-terms-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 25px;
         }
-        .step-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .step-card {
-            background: #fafafa;
-            border: 1px solid #eee;
-            padding: 12px 16px;
-            border-radius: 6px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .step-card .num {
+        .process-column h3, .terms-column h3 {
             font-size: 16px;
-            font-weight: 700;
-            color: #3b2c23;
-            min-width: 25px;
-        }
-        .step-card .info h4 {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        .step-card .info p {
-            font-size: 11.5px;
-            color: #666;
-            margin: 0;
-        }
-        .terms-box {
-            background: #fafafa;
-            border: 1px solid #eee;
-            padding: 20px;
-            border-radius: 6px;
-        }
-        .terms-box h3 {
-            font-size: 15px;
-            font-weight: 600;
+            font-weight: 500;
+            color: #111;
             margin-bottom: 12px;
+            letter-spacing: 1px;
         }
-        .terms-box ul {
-            padding-left: 16px;
+        .process-list-pdf {
+            list-style-type: decimal;
+            padding-left: 18px;
             margin: 0;
-            font-size: 11.5px;
-            color: #555;
-            line-height: 1.8;
+            font-size: 11px;
+            color: #444;
+            line-height: 1.7;
+        }
+        .process-list-pdf li {
+            margin-bottom: 6px;
+        }
+
+        .terms-list-pdf {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 11px;
+            color: #444;
+            line-height: 1.7;
+        }
+        .terms-list-pdf li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 6px;
+        }
+        .terms-list-pdf li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #888;
         }
 
         /* Slide 8: Back Cover & Contact */
@@ -581,7 +574,7 @@
         <div class="cover-body">
             <div class="cover-titles">
                 <h1>ghspatial 光盒影像<br>空間與建築攝影作品集</h1>
-                <p class="sub">以精準的光影幾何與結構美學<br>呈現設計師的理念與空間生命力</p>
+                <p class="sub">高階室內設計 ｜ 建築場域 ｜ 商業品牌視覺攝影<br>捕捉結構幾何與自然還原的光影美學</p>
                 <div class="cover-author">
                     <strong>郭耿宏 Amos Kuo</strong>
                     <span>攝影總監 / Spatial Photographer</span>
@@ -598,7 +591,7 @@
         </div>
     </div>
 
-    <!-- SLIDE 2: ABOUT & PHILOSOPHY -->
+    <!-- SLIDE 2: ABOUT & PHILOSOPHY (Live Synced with site_data.js) -->
     <div class="pdf-page">
         <div class="page-header">
             <span class="brand-name">ghspatial 光盒影像</span>
@@ -610,28 +603,30 @@
                 <div class="bio-sidebar">
                     <img src="assets/logo-cards.jpg" alt="名片實體與品牌視覺">
                     <div class="quote-callout">
-                        「比起拍攝空間，我更在意如何讓人想住進這個空間。」
+                        「精準控光與自然還原 ｜ 捕捉空間流動的生活氛圍」
                     </div>
                 </div>
                 <div class="bio-main-text">
-                    <h2>Amos 耿宏</h2>
-                    <div class="role">GH Spatial 光盒影像 ｜ 攝影總監</div>
-                    <p class="bio-desc">
-                        從婚禮現場到建築空間，20年來始終透過觀景窗觀察人與環境的關係。專業結合兩個不同領域的累積：裝潢實務背景與專業攝影。專注於建築、住宅、商業空間與室內設計攝影，致力於以精準且富有溫度的影像，完整呈現設計師的理念與作品價值。
-                    </p>
+                    <h2>關於光盒影像</h2>
+                    <div class="role">GH Spatial 光盒影像 ｜ 攝影總監 郭耿宏</div>
+                    
+                    <div class="bio-desc-box">
+                        <p><strong>光盒影像（ghspatial）</strong>專注於高階室內設計、建築場域與商業品牌視覺攝影。我們深知一幅優秀的空間作品，包含了設計師無數個日夜的雕琢與業主對生活的寄託。</p>
+                        <p>我們的拍攝核心在於「精準控光與自然還原」。不使用誇張變形的超廣角干擾視野，而是透過專業移軸鏡頭與自然光影補光，捕捉垂直水平的結構幾何、材質紋理的微細觸感，以及空氣中流動的生活氛圍。</p>
+                    </div>
 
-                    <div class="pillars-grid">
-                        <div class="pillar-card">
-                            <h4>📐 懂結構</h4>
-                            <p>具備木工裝潢實務背景，理解設計圖面與工法邏輯，堅持垂直水平線條，忠實呈現設計比例。</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="val">100%</div>
+                            <div class="lbl">專業控光與移軸透視</div>
                         </div>
-                        <div class="pillar-card">
-                            <h4>☀️ 懂光影</h4>
-                            <p>超過十年婚禮紀錄經驗，擅長觀察自然光線流動與空間氣氛變化，傳達未來的生活感與情感溫度。</p>
+                        <div class="stat-card">
+                            <div class="val">商業 & 住宅</div>
+                            <div class="lbl">高質感空間視覺拍攝</div>
                         </div>
-                        <div class="pillar-card">
-                            <h4>📷 頂級設備</h4>
-                            <p>採用 Sony A1 旗艦級全片幅系統與 G Master 專業鏡頭群，5000萬畫素高解析影像，滿足行銷與賽事投稿。</p>
+                        <div class="stat-card">
+                            <div class="val">設計師信任</div>
+                            <div class="lbl">國際設計大獎作品紀錄</div>
                         </div>
                     </div>
                 </div>
@@ -660,21 +655,21 @@
                     <img src="assets/luoyushan/A1_06285-編輯.jpg" alt="豪宅落餘山">
                     <div class="meta">
                         <h3>豪宅_落餘山竹北</h3>
-                        <p>極簡開闊空間 ｜ 光影幾何呈現</p>
+                        <p>住宅豪宅 ｜ 竹北</p>
                     </div>
                 </div>
                 <div class="showcase-item">
                     <img src="assets/keelung/基隆櫻桃家小圖-7.jpg" alt="兩房公寓基隆">
                     <div class="meta">
                         <h3>兩房公寓溫馨宅_基隆</h3>
-                        <p>軟裝設計 ｜ 溫馨木質暖色調</p>
+                        <p>住宅室內 ｜ 軟裝設計</p>
                     </div>
                 </div>
                 <div class="showcase-item">
                     <img src="assets/roman_holiday/DSC02068-HDR.jpg" alt="羅馬假期內湖">
                     <div class="meta">
                         <h3>精緻小宅_羅馬假期內湖</h3>
-                        <p>鼎禾設計 ｜ 精緻現代小坪數</p>
+                        <p>住宅室內 ｜ 鼎禾設計</p>
                     </div>
                 </div>
             </div>
@@ -702,21 +697,21 @@
                     <img src="assets/pan_pan/立得建設-盼盼-18.jpg" alt="透天建案盼盼">
                     <div class="meta">
                         <h3>透天建案_盼盼湖口</h3>
-                        <p>立得建設 ｜ 建案外觀與大器公設</p>
+                        <p>建築透天 ｜ 立得建設</p>
                     </div>
                 </div>
                 <div class="showcase-item">
                     <img src="assets/fifi/DSC02946.jpg" alt="台中軟裝設計">
                     <div class="meta">
                         <h3>軟裝設計_台中</h3>
-                        <p>FIFI DECO ｜ 商業與展示空間美學</p>
+                        <p>軟裝陳設 ｜ FIFI DECO</p>
                     </div>
                 </div>
                 <div class="showcase-item">
                     <img src="assets/kualalumpur/DSC06629.jpg" alt="吉隆坡建築">
                     <div class="meta">
                         <h3>建築巡禮_吉隆坡</h3>
-                        <p>馬來西亞 ｜ 國際都市建築幾何</p>
+                        <p>建築巡禮 ｜ 馬來西亞</p>
                     </div>
                 </div>
             </div>
@@ -763,7 +758,7 @@
         </div>
     </div>
 
-    <!-- SLIDE 6: SERVICE PACKAGES & PRICING -->
+    <!-- SLIDE 6: SERVICE PACKAGES & PRICING (Synced with site_data.js Live Pricing) -->
     <div class="pdf-page">
         <div class="page-header">
             <span class="brand-name">ghspatial 光盒影像</span>
@@ -772,7 +767,7 @@
 
         <div class="page-body-content">
             <h2 class="section-title">拍攝服務方案與價目表</h2>
-            <p class="section-subtitle">透明計價與全方位成果交付，滿足不同專案規模需求</p>
+            <p class="section-subtitle">依據空間坪數、拍攝類型與視覺需求提供專屬規劃，歡迎預約諮詢</p>
 
             <!-- 首次合作方案 (Featured Banner) -->
             <div class="featured-plan-pdf-banner">
@@ -783,10 +778,10 @@
                 </div>
                 <p class="desc">專為初次配合的設計團隊打造，以基本方案的價格，享有更充裕的拍攝時間與加碼照片。</p>
                 <div class="items-grid">
-                    <div>• 現場拍攝 4 小時 <strong>(+ 免費贈 1 小時軟裝微調)</strong></div>
-                    <div>• 可挑選精修圖 15 張 <strong>(+ 加碼贈 3 張，等值 $3,600)</strong></div>
-                    <div>• 超時費可完全折抵加挑照片費用</div>
-                    <div>• 10 個工作日提供挑片，挑片後 10 日內完成交付</div>
+                    <div>• 現場拍攝 4 小時 <strong>(免費贈 1 小時軟裝微調)</strong></div>
+                    <div>• 高解析度精修圖 15 張 <strong>(加碼贈 3 張，等值 $3,600)</strong></div>
+                    <div>• 超時費可以折抵加挑照片之費用</div>
+                    <div>• 10 個工作日提供挑片，挑片後 10 日交件</div>
                 </div>
             </div>
 
@@ -795,13 +790,13 @@
                 <div class="price-pdf-card">
                     <div>
                         <h3>咖啡廳社群素材包</h3>
-                        <div class="amount">NT$ 9,800 <span style="font-size: 13px; color: #777;">/ 次</span></div>
-                        <p class="desc">專為咖啡廳、甜點店與風格餐飲打造，快速建立門市形象素材庫。</p>
+                        <div class="amount">$ 9,800 <span style="font-size: 11px; color: #777;">/ 元</span></div>
+                        <p class="desc">專為咖啡廳、甜點店與風格餐飲打造，讓你未來三個月不再為發文照片煩惱。</p>
                         <ul>
                             <li><strong>拍攝時間</strong>：現場拍攝 2 小時</li>
-                            <li><strong>成果交付</strong>：35 - 40 張高解析精修照片</li>
-                            <li><strong>季度特惠</strong>：NT$ 26,000 / 季 (每月2小時/共3次)</li>
-                            <li><strong>授權範圍</strong>：IG, Google商家, FB, 官網, 菜單</li>
+                            <li><strong>成果交付</strong>：35 - 40 張高解析精修</li>
+                            <li><strong>季度優惠</strong>：NT$ 26,000 / 季 (每月2小時/共3次)</li>
+                            <li><strong>使用授權</strong>：多平台與門市宣傳</li>
                         </ul>
                     </div>
                 </div>
@@ -809,14 +804,14 @@
                 <!-- 小坪數方案 -->
                 <div class="price-pdf-card">
                     <div>
-                        <h3>小坪數方案 (基本款)</h3>
-                        <div class="amount">NT$ 18,000 <span style="font-size: 13px; color: #777;">/ 元</span></div>
-                        <p class="desc">最受歡迎方案，適合單一空間或小型住宅案完整紀錄。</p>
+                        <h3>小坪數方案</h3>
+                        <div class="amount">$ 18,000 <span style="font-size: 11px; color: #777;">/ 元</span></div>
+                        <p class="desc">我們最受歡迎的方案，適合單一空間或小型住宅案的完整紀錄，完美呈現你的設計細節。</p>
                         <ul>
-                            <li><strong>拍攝時間</strong>：現場拍攝最多 4 小時</li>
-                            <li><strong>成果交付</strong>：15 張高解析度精修圖</li>
-                            <li><strong>超時折抵</strong>：超時費可折抵加挑照片費用</li>
-                            <li><strong>交付平台</strong>：專屬線上雲端圖庫供下載</li>
+                            <li><strong>拍攝時間</strong>：現場拍攝最多 4 小時 (超時一小時 1200 元)</li>
+                            <li><strong>成果交付</strong>：可挑選高解析度精修圖 15 張</li>
+                            <li><strong>超時折抵</strong>：超時費可以折抵加挑照片之費用</li>
+                            <li><strong>挑片交件</strong>：10個工作日挑片，挑片後10個工作日交件</li>
                         </ul>
                     </div>
                 </div>
@@ -824,14 +819,14 @@
                 <!-- 大坪數方案 -->
                 <div class="price-pdf-card">
                     <div>
-                        <h3>大坪數方案 (全天深度)</h3>
-                        <div class="amount">NT$ 32,000 <span style="font-size: 13px; color: #777;">/ 元</span></div>
-                        <p class="desc">針對多空間、全戶設計或商業空間深度拍攝。</p>
+                        <h3>大坪數方案</h3>
+                        <div class="amount">$ 32,000 <span style="font-size: 11px; color: #777;">/ 元</span></div>
+                        <p class="desc">針對多空間、全戶設計或商業空間的深度拍攝，提供最完整的影像紀錄與最高規格服務。</p>
                         <ul>
                             <li><strong>拍攝時間</strong>：現場拍攝最多 8 小時 (全天)</li>
-                            <li><strong>成果交付</strong>：30 張高解析度精修圖</li>
-                            <li><strong>進階服務</strong>：含進階修圖與社群適用尺寸</li>
-                            <li><strong>交付平台</strong>：專屬線上雲端圖庫供下載</li>
+                            <li><strong>成果交付</strong>：可挑選高解析度精修圖 30 張</li>
+                            <li><strong>超時折抵</strong>：超時費可以折抵加挑照片之費用</li>
+                            <li><strong>進階服務</strong>：含進階修圖與社群媒體適用尺寸</li>
                         </ul>
                     </div>
                 </div>
@@ -839,12 +834,12 @@
         </div>
 
         <div class="page-footer">
-            <span>註：設計師首次合作另有專屬限定優惠，歡迎洽詢。</span>
+            <span>ghspatial 光盒影像 ｜ 拍攝方案與細項（100% 同步官網最新數據）</span>
             <span>www.ghspatial.com</span>
         </div>
     </div>
 
-    <!-- SLIDE 7: PROCESS & TERMS -->
+    <!-- SLIDE 7: PROCESS & TERMS (Synced 100% with site_data.js) -->
     <div class="pdf-page">
         <div class="page-header">
             <span class="brand-name">ghspatial 光盒影像</span>
@@ -853,55 +848,38 @@
 
         <div class="page-body-content">
             <h2 class="section-title">合作流程與服務須知</h2>
-            <p class="section-subtitle">標準化執行步驟，確保專案順利推進與完美交件</p>
+            <p class="section-subtitle">標準化執行步驟與條款說明，確保專案順利推進與完美交件</p>
 
             <div class="process-terms-grid">
-                <div class="step-list">
-                    <div class="step-card">
-                        <div class="num">01</div>
-                        <div class="info">
-                            <h4>需求確認與預約</h4>
-                            <p>了解專案規模、拍攝重點、提供現場照片與約定日期</p>
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="num">02</div>
-                        <div class="info">
-                            <h4>報價與訂金保留檔期</h4>
-                            <p>確認服務方案並收取 NT$ 5,000 訂金保留拍攝檔期</p>
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="num">03</div>
-                        <div class="info">
-                            <h4>現場拍攝執行</h4>
-                            <p>現場光為主搭配標準校色，現場軟裝佈置視情況微調</p>
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="num">04</div>
-                        <div class="info">
-                            <h4>挑片與高解析交件</h4>
-                            <p>拍攝後約 2 週提供挑片，挑片後 2-3 週交付雲端高解析檔</p>
-                        </div>
-                    </div>
+                <div class="process-column">
+                    <h3>預約及拍攝執行流程</h3>
+                    <ol class="process-list-pdf">
+                        <li>填寫預約表單 (建議拍攝前一個月預約)</li>
+                        <li>雙方約定拍攝日期並確認相關拍攝資訊</li>
+                        <li>收取拍攝訂金 5000 元以保留檔期</li>
+                        <li>請客戶提供現場照片或影片 (手機拍攝即可) 或模擬圖</li>
+                        <li>執行拍攝 (如遇不可抗力因素需延期，請於 2 週前告知)</li>
+                        <li>「挑片檔」於拍攝後約 2 週提供客戶挑片使用</li>
+                        <li>「交件檔」於客戶挑片後約 2-3 週提供雲端下載與確認</li>
+                        <li>拍攝尾款請於交件前結清費用</li>
+                    </ol>
                 </div>
 
-                <div class="terms-box">
-                    <h3>拍攝注意事項條款</h3>
-                    <ul>
-                        <li>上述報價為未稅價，拍攝計費以案場計算，不可多場合併。</li>
-                        <li>拍攝前請客戶先行完成清潔及軟裝佈置，以免影響進度。</li>
-                        <li>拍攝方式以現場光為主(不打攝影燈)，照片經過顏色校正與調光。</li>
-                        <li>新竹縣市以外車馬費：台南高雄 $4,000 ｜ 台北彰雲嘉 $3,000 ｜ 新北台中 $2,000 ｜ 桃園苗栗 $1,000。</li>
-                        <li>著作權歸攝影師所有，客戶可在行銷範圍內使用，不得轉授權第三方。</li>
+                <div class="terms-column">
+                    <h3>注意事項與服務條款</h3>
+                    <ul class="terms-list-pdf">
+                        <li>上述報價為未稅價，拍攝計費以案場計算，不得多場合併計算。</li>
+                        <li>檔期確認後先預收 5000 元訂金，尾款為挑片確認張數後結算。</li>
+                        <li>拍攝方式以現場光為主(不打攝影燈)，經過標準顏色校正及基本調光。</li>
+                        <li>新竹縣市以外車馬費：台南高雄 4000 ｜ 台北彰雲嘉 3000 ｜ 新北台中 2000 ｜ 桃園苗栗 1000。</li>
+                        <li>著作權歸光盒影像郭耿宏所有，客戶在自身行銷範圍內均可利用，不得轉授權第三人。</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="page-footer">
-            <span>ghspatial 光盒影像 ｜ 專業合作規範</span>
+            <span>ghspatial 光盒影像 ｜ 專業合作規範與注意事項</span>
             <span>www.ghspatial.com</span>
         </div>
     </div>
