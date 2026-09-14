@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>ghspatial 光盒影像 ｜ 品牌作品集與服務簡介</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
+            background: #eef0f3;
+            color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Slide Dimensions for A4 Landscape */
+        .pdf-page {
+            width: 297mm;
+            height: 210mm;
+            page-break-after: always;
+            page-break-inside: avoid;
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Screen Preview Styling */
+        @media screen {
+            body {
+                padding: 30px 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                background: #1e1e1e;
+            }
+            .pdf-page {
+                box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+                border-radius: 4px;
+            }
+            .print-bar {
+                position: fixed;
+                top: 15px;
+                right: 20px;
+                z-index: 9999;
+                display: flex;
+                gap: 12px;
+            }
+            .print-btn {
+                background: #2563eb;
+                color: #fff;
+                border: none;
+                padding: 10px 22px;
+                font-size: 14px;
+                font-weight: 500;
+                border-radius: 6px;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+                transition: background 0.2s ease;
+            }
+            .print-btn:hover {
+                background: #1d4ed8;
+            }
+        }
+
+        @media print {
+            .print-bar {
+                display: none !important;
+            }
+        }
+
+        /* Shared Components */
+        .page-header {
+            padding: 30px 45px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .page-header .brand-name {
+            font-size: 13px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: #111;
+            text-transform: uppercase;
+        }
+        .page-header .page-num {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 2px;
+        }
+
+        .page-footer {
+            padding: 15px 45px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eaeaea;
+            font-size: 11px;
+            color: #888;
+        }
+
+        .page-body-content {
+            padding: 25px 45px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: #666;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        /* Slide 1: Cover */
+        .cover-page {
+            background: #161513;
+            color: #ffffff;
+            padding: 45px;
+            justify-content: space-between;
+        }
+        .cover-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cover-logo img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+        .cover-tag {
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: #a89685;
+            text-transform: uppercase;
+        }
+
+        .cover-body {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .cover-titles h1 {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            line-height: 1.25;
+            margin-bottom: 18px;
+            color: #f7f5f0;
+        }
+        .cover-titles p.sub {
+            font-size: 16px;
+            color: #b3a89e;
+            letter-spacing: 2px;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .cover-author {
+            border-left: 2px solid #a89685;
+            padding-left: 15px;
+        }
+        .cover-author strong {
+            font-size: 16px;
+            display: block;
+            color: #ffffff;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+        .cover-author span {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        .cover-hero-img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .cover-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #666;
+            letter-spacing: 2px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+        }
+
+        /* Slide 2: Bio & Philosophy */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+        .bio-sidebar img {
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            display: block;
+            margin-bottom: 15px;
+        }
+        .bio-sidebar .quote-callout {
+            background: #faf8f5;
+            padding: 16px;
+            border-radius: 6px;
+            border-left: 3px solid #3b2c23;
+            font-size: 13px;
+            color: #3b2c23;
+            line-height: 1.7;
+        }
+
+        .bio-main-text h2 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 6px;
+        }
+        .bio-main-text .role {
+            font-size: 13px;
+            color: #888;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .bio-desc {
+            font-size: 13.5px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .pillar-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 16px;
+            border-radius: 6px;
+        }
+        .pillar-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 6px;
+        }
+        .pillar-card p {
+            font-size: 11.5px;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Slide 3 & 4: Showcase Grids */
+        .showcase-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .showcase-item {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .showcase-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        .showcase-item .meta {
+            padding: 14px 16px;
+        }
+        .showcase-item .meta h3 {
+            font-size: 15px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 4px;
+        }
+        .showcase-item .meta p {
+            font-size: 12px;
+            color: #777;
+            margin: 0;
+        }
+
+        /* Slide 5: Cafe & Social Package Showcase */
+        .cafe-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .cafe-showcase-grid img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .banner-box-light {
+            background: #faf8f5;
+            border: 1px solid #e8dfd5;
+            padding: 16px 24px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner-box-light h3 {
+            font-size: 16px;
+            color: #3b2c23;
+            margin-bottom: 4px;
+        }
+        .banner-box-light p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Slide 6: Pricing */
+        .pricing-pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .price-pdf-card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .price-pdf-card.featured {
+            background: #faf8f5;
+            border: 2px solid #3b2c23;
+        }
+        .price-pdf-card h3 {
+            font-size: 17px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 8px;
+        }
+        .price-pdf-card .amount {
+            font-size: 26px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 12px;
+        }
+        .price-pdf-card.featured .amount {
+            color: #3b2c23;
+        }
+        .price-pdf-card p.desc {
+            font-size: 11.5px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            min-height: 38px;
+        }
+        .price-pdf-card ul {
+            padding-left: 15px;
+            margin: 0;
+            font-size: 11.5px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* Slide 7: Process & Terms */
+        .process-terms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .step-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 12px 16px;
+            border-radius: 6px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .step-card .num {
+            font-size: 16px;
+            font-weight: 700;
+            color: #3b2c23;
+            min-width: 25px;
+        }
+        .step-card .info h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .step-card .info p {
+            font-size: 11.5px;
+            color: #666;
+            margin: 0;
+        }
+        .terms-box {
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 6px;
+        }
+        .terms-box h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .terms-box ul {
+            padding-left: 16px;
+            margin: 0;
+            font-size: 11.5px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Slide 8: Back Cover & Contact */
+        .back-cover-page {
+            background: #161513;
+            color: #ffffff;
+            padding: 50px 60px;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .back-cover-body h2 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+            color: #f7f5f0;
+        }
+        .back-cover-body p.sub {
+            font-size: 15px;
+            color: #a89685;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+        .contact-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .contact-card-dark {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 22px 15px;
+            border-radius: 8px;
+        }
+        .contact-card-dark h4 {
+            font-size: 12px;
+            color: #a89685;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .contact-card-dark p {
+            font-size: 15px;
+            color: #ffffff;
+            font-weight: 400;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-bar">
+        <button class="print-btn" onclick="window.print()">🖨️ 匯出列印 / 另存為 PDF</button>
+    </div>
+
+    <!-- SLIDE 1: COVER -->
+    <div class="pdf-page cover-page">
+        <div class="cover-header">
+            <div class="cover-logo">
+                <img src="assets/logo.jpg" alt="ghspatial 光盒影像">
+            </div>
+            <div class="cover-tag">SPATIAL & ARCHITECTURAL PHOTOGRAPHY</div>
+        </div>
+
+        <div class="cover-body">
+            <div class="cover-titles">
+                <h1>ghspatial 光盒影像<br>空間與建築攝影作品集</h1>
+                <p class="sub">以精準的光影幾何與結構美學<br>呈現設計師的理念與空間生命力</p>
+                <div class="cover-author">
+                    <strong>郭耿宏 Amos Kuo</strong>
+                    <span>攝影總監 / Spatial Photographer</span>
+                </div>
+            </div>
+            <div>
+                <img src="assets/luoyushan/A1_06285-編輯.jpg" class="cover-hero-img" alt="豪宅落餘山">
+            </div>
+        </div>
+
+        <div class="cover-footer">
+            <span>&copy; 2026 ghspatial 光盒影像. All rights reserved.</span>
+            <span>www.ghspatial.com ｜ burberryamos@gmail.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: ABOUT & PHILOSOPHY -->
+    <div class="pdf-page">
+        <div class="page-header">
+            <span class="brand-name">ghspatial 光盒影像</span>
+            <span class="page-num">02 ｜ ABOUT & PHILOSOPHY</span>
+        </div>
+
+        <div class="page-body-content">
+            <div class="bio-grid">
+                <div class="bio-sidebar">
+                    <img src="assets/logo-cards.jpg" alt="名片實體與品牌視覺">
+                    <div class="quote-callout">
+                        「比起拍攝空間，我更在意如何讓人想住進這個空間。」
+                    </div>
+                </div>
+                <div class="bio-main-text">
+                    <h2>Amos 耿宏</h2>
+                    <div class="role">GH Spatial 光盒影像 ｜ 攝影總監</div>
+                    <p class="bio-desc">
+                        從婚禮現場到建築空間，20年來始終透過觀景窗觀察人與環境的關係。專業結合兩個不同領域的累積：裝潢實務背景與專業攝影。專注於建築、住宅、商業空間與室內設計攝影，致力於以精準且富有溫度的影像，完整呈現設計師的理念與作品價值。
+                    </p>
+
+                    <div class="pillars-grid">
+                        <div class="pillar-card">
+                            <h4>📐 懂結構</h4>
+                            <p>具備木工裝潢實務背景，理解設計圖面與工法邏輯，堅持垂直水平線條，忠實呈現設計比例。</p>
+                        </div>
+                        <div class="pillar-card">
+                            <h4>☀️ 懂光影</h4>
+                            <p>超過十年婚禮紀錄經驗，擅長觀察自然光線流動與空間氣氛變化，傳達未來的生活感與情感溫度。</p>
+                        </div>
+                        <div class="pillar-card">
+                            <h4>📷 頂級設備</h4>
+                            <p>採用 Sony A1 旗艦級全片幅系統與 G Master 專業鏡頭群，5000萬畫素高解析影像，滿足行銷與賽事投稿。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>ghspatial 光盒影像 ｜ 品牌簡介與核心優勢</span>
+            <span>burberryamos@gmail.com ｜ 0930-991-370</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: RESIDENTIAL SHOWCASE -->
+    <div class="pdf-page">
+        <div class="page-header">
+            <span class="brand-name">ghspatial 光盒影像</span>
+            <span class="page-num">03 ｜ RESIDENTIAL INTERIORS</span>
+        </div>
+
+        <div class="page-body-content">
+            <h2 class="section-title">住宅空間作品集</h2>
+            <p class="section-subtitle">精準掌控空間透視與材質紋理，呈現自然居住溫度</p>
+
+            <div class="showcase-grid-3">
+                <div class="showcase-item">
+                    <img src="assets/luoyushan/A1_06285-編輯.jpg" alt="豪宅落餘山">
+                    <div class="meta">
+                        <h3>豪宅_落餘山竹北</h3>
+                        <p>極簡開闊空間 ｜ 光影幾何呈現</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/keelung/基隆櫻桃家小圖-7.jpg" alt="兩房公寓基隆">
+                    <div class="meta">
+                        <h3>兩房公寓溫馨宅_基隆</h3>
+                        <p>軟裝設計 ｜ 溫馨木質暖色調</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/roman_holiday/DSC02068-HDR.jpg" alt="羅馬假期內湖">
+                    <div class="meta">
+                        <h3>精緻小宅_羅馬假期內湖</h3>
+                        <p>鼎禾設計 ｜ 精緻現代小坪數</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>ghspatial 光盒影像 ｜ 住宅空間攝影系列</span>
+            <span>www.ghspatial.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: COMMERCIAL & ARCHITECTURE SHOWCASE -->
+    <div class="pdf-page">
+        <div class="page-header">
+            <span class="brand-name">ghspatial 光盒影像</span>
+            <span class="page-num">04 ｜ COMMERCIAL & ARCHITECTURE</span>
+        </div>
+
+        <div class="page-body-content">
+            <h2 class="section-title">商業空間與建築攝影</h2>
+            <p class="section-subtitle">強調建築量體語彙、空間動線與公設氣勢紀錄</p>
+
+            <div class="showcase-grid-3">
+                <div class="showcase-item">
+                    <img src="assets/pan_pan/立得建設-盼盼-18.jpg" alt="透天建案盼盼">
+                    <div class="meta">
+                        <h3>透天建案_盼盼湖口</h3>
+                        <p>立得建設 ｜ 建案外觀與大器公設</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/fifi/DSC02946.jpg" alt="台中軟裝設計">
+                    <div class="meta">
+                        <h3>軟裝設計_台中</h3>
+                        <p>FIFI DECO ｜ 商業與展示空間美學</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/kualalumpur/DSC06629.jpg" alt="吉隆坡建築">
+                    <div class="meta">
+                        <h3>建築巡禮_吉隆坡</h3>
+                        <p>馬來西亞 ｜ 國際都市建築幾何</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>ghspatial 光盒影像 ｜ 商業與建築攝影系列</span>
+            <span>www.ghspatial.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: CAFÉ & SOCIAL MEDIA SHOWCASE -->
+    <div class="pdf-page">
+        <div class="page-header">
+            <span class="brand-name">ghspatial 光盒影像</span>
+            <span class="page-num">05 ｜ CAFÉ & SOCIAL MEDIA CONTENT</span>
+        </div>
+
+        <div class="page-body-content">
+            <h2 class="section-title">咖啡廳與風格餐飲社群素材</h2>
+            <p class="section-subtitle">「看見竹北之美」連載精選 ｜ 讓門市未來三個月不再為發文照片煩惱</p>
+
+            <div class="cafe-showcase-grid">
+                <img src="assets/zhubei_series/composecoffe.png" alt="Compose Coffee">
+                <img src="assets/zhubei_series/keu日本抹茶.jpg" alt="KEU 日本抹茶">
+                <img src="assets/zhubei_series/橋恩咖啡.png" alt="橋恩咖啡">
+                <img src="assets/zhubei_series/卷卷烘焙.png" alt="卷卷烘焙">
+            </div>
+
+            <div class="banner-box-light">
+                <div>
+                    <h3>☕ 專為咖啡廳、甜點店與風格餐飲打造的形象攝影</h3>
+                    <p>捕捉門市光影氣氛、座位區動線與精緻餐點質感，一次建立可支撐數月行銷的素材庫。</p>
+                </div>
+                <div style="font-weight: 500; font-size: 14px; color: #3b2c23; white-space: nowrap; margin-left: 20px;">
+                    單次方案 NT$ 9,800 ｜ 季度合作 NT$ 26,000
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>ghspatial 光盒影像 ｜ 咖啡廳社群素材包專案</span>
+            <span>www.ghspatial.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: SERVICE PACKAGES & PRICING -->
+    <div class="pdf-page">
+        <div class="page-header">
+            <span class="brand-name">ghspatial 光盒影像</span>
+            <span class="page-num">06 ｜ SERVICE PACKAGES & PRICING</span>
+        </div>
+
+        <div class="page-body-content">
+            <h2 class="section-title">拍攝服務方案與價目表</h2>
+            <p class="section-subtitle">透明計價與全方位成果交付，滿足不同專案規模需求</p>
+
+            <div class="pricing-pdf-grid">
+                <!-- 咖啡廳素材包 -->
+                <div class="price-pdf-card featured">
+                    <div>
+                        <h3>咖啡廳社群素材包</h3>
+                        <div class="amount">NT$ 9,800 <span style="font-size: 13px; color: #777;">/ 次</span></div>
+                        <p class="desc">專為咖啡廳、甜點店與風格餐飲打造，快速建立門市形象素材庫。</p>
+                        <ul>
+                            <li><strong>拍攝時間</strong>：現場拍攝 2 小時</li>
+                            <li><strong>成果交付</strong>：35 - 40 張高解析精修照片</li>
+                            <li><strong>季度特惠</strong>：NT$ 26,000 / 季 (每月2小時/共3次)</li>
+                            <li><strong>授權範圍</strong>：IG, Google商家, FB, 官網, 菜單</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 小坪數方案 -->
+                <div class="price-pdf-card">
+                    <div>
+                        <h3>小坪數方案 (基本款)</h3>
+                        <div class="amount">NT$ 18,000 <span style="font-size: 13px; color: #777;">/ 元</span></div>
+                        <p class="desc">最受歡迎方案，適合單一空間或小型住宅案完整紀錄。</p>
+                        <ul>
+                            <li><strong>拍攝時間</strong>：現場拍攝最多 4 小時</li>
+                            <li><strong>成果交付</strong>：15 張高解析度精修圖</li>
+                            <li><strong>超時折抵</strong>：超時費可折抵加挑照片費用</li>
+                            <li><strong>交付平台</strong>：專屬線上雲端圖庫供下載</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 大坪數方案 -->
+                <div class="price-pdf-card">
+                    <div>
+                        <h3>大坪數方案 (全天深度)</h3>
+                        <div class="amount">NT$ 32,000 <span style="font-size: 13px; color: #777;">/ 元</span></div>
+                        <p class="desc">針對多空間、全戶設計或商業空間深度拍攝。</p>
+                        <ul>
+                            <li><strong>拍攝時間</strong>：現場拍攝最多 8 小時 (全天)</li>
+                            <li><strong>成果交付</strong>：30 張高解析度精修圖</li>
+                            <li><strong>進階服務</strong>：含進階修圖與社群適用尺寸</li>
+                            <li><strong>交付平台</strong>：專屬線上雲端圖庫供下載</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>註：設計師首次合作另有專屬限定優惠，歡迎洽詢。</span>
+            <span>www.ghspatial.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: PROCESS & TERMS -->
+    <div class="pdf-page">
+        <div class="page-header">
+            <span class="brand-name">ghspatial 光盒影像</span>
+            <span class="page-num">07 ｜ PROCESS & TERMS</span>
+        </div>
+
+        <div class="page-body-content">
+            <h2 class="section-title">合作流程與服務須知</h2>
+            <p class="section-subtitle">標準化執行步驟，確保專案順利推進與完美交件</p>
+
+            <div class="process-terms-grid">
+                <div class="step-list">
+                    <div class="step-card">
+                        <div class="num">01</div>
+                        <div class="info">
+                            <h4>需求確認與預約</h4>
+                            <p>了解專案規模、拍攝重點、提供現場照片與約定日期</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="num">02</div>
+                        <div class="info">
+                            <h4>報價與訂金保留檔期</h4>
+                            <p>確認服務方案並收取 NT$ 5,000 訂金保留拍攝檔期</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="num">03</div>
+                        <div class="info">
+                            <h4>現場拍攝執行</h4>
+                            <p>現場光為主搭配標準校色，現場軟裝佈置視情況微調</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="num">04</div>
+                        <div class="info">
+                            <h4>挑片與高解析交件</h4>
+                            <p>拍攝後約 2 週提供挑片，挑片後 2-3 週交付雲端高解析檔</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terms-box">
+                    <h3>拍攝注意事項條款</h3>
+                    <ul>
+                        <li>上述報價為未稅價，拍攝計費以案場計算，不可多場合併。</li>
+                        <li>拍攝前請客戶先行完成清潔及軟裝佈置，以免影響進度。</li>
+                        <li>拍攝方式以現場光為主(不打攝影燈)，照片經過顏色校正與調光。</li>
+                        <li>新竹縣市以外車馬費：台南高雄 $4,000 ｜ 台北彰雲嘉 $3,000 ｜ 新北台中 $2,000 ｜ 桃園苗栗 $1,000。</li>
+                        <li>著作權歸攝影師所有，客戶可在行銷範圍內使用，不得轉授權第三方。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>ghspatial 光盒影像 ｜ 專業合作規範</span>
+            <span>www.ghspatial.com</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: BACK COVER & CONTACT -->
+    <div class="pdf-page back-cover-page">
+        <div></div>
+
+        <div class="back-cover-body">
+            <h2>期待與您共同呈現美好的空間作品</h2>
+            <p class="sub">Let's Capture the Architecture & Spatial Aesthetics Together</p>
+
+            <div class="contact-cards-grid">
+                <div class="contact-card-dark">
+                    <h4>聯絡電話</h4>
+                    <p>0930-991-370</p>
+                </div>
+                <div class="contact-card-dark">
+                    <h4>電子信箱</h4>
+                    <p style="font-size: 13.5px;">burberryamos@gmail.com</p>
+                </div>
+                <div class="contact-card-dark">
+                    <h4>LINE 洽詢</h4>
+                    <p>burberryamos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cover-footer">
+            <span>ghspatial 光盒影像 ｜ 攝影總監 郭耿宏 (Amos Kuo)</span>
+            <span>Instagram: @gh_spatial ｜ Facebook: 光盒影像</span>
+        </div>
+    </div>
+
+</body>
+</html>
