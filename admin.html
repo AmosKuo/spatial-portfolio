@@ -625,8 +625,18 @@
         document.addEventListener("DOMContentLoaded", function() {
             currentData = window.GHSpatialDataDefault;
             if (window.GHSpatialDataEngine) {
-                currentData = window.GHSpatialDataEngine.getActiveData();
+                try {
+                    currentData = window.GHSpatialDataEngine.getActiveData();
+                } catch(e) {
+                    console.error("getActiveData failed, using default:", e);
+                    currentData = window.GHSpatialDataDefault;
+                }
             }
+            // 防護：確保必要欄位一定存在
+            if (!currentData.projects) currentData.projects = window.GHSpatialDataDefault.projects || [];
+            if (!currentData.zhubeiPhotos) currentData.zhubeiPhotos = window.GHSpatialDataDefault.zhubeiPhotos || [];
+            if (!currentData.cafePackagePhotos) currentData.cafePackagePhotos = window.GHSpatialDataDefault.cafePackagePhotos || [];
+            if (!currentData.pageContent) currentData.pageContent = window.GHSpatialDataDefault.pageContent || {};
 
             document.getElementById("project-manage-grid").addEventListener("click", function(e) {
                 const btn = e.target.closest(".thumb-set-cover-btn");
@@ -669,11 +679,11 @@
 
         function initAdminPanel() {
             setupTabs();
-            renderProjectsList();
-            renderZhubeiList();
-            renderCafePhotosManager();
-            populatePageContentForm();
-            checkDiffStatus();
+            try { renderProjectsList(); } catch(e) { console.error("renderProjectsList error:", e); }
+            try { renderZhubeiList(); } catch(e) { console.error("renderZhubeiList error:", e); }
+            try { renderCafePhotosManager(); } catch(e) { console.error("renderCafePhotosManager error:", e); }
+            try { populatePageContentForm(); } catch(e) { console.error("populatePageContentForm error:", e); }
+            try { checkDiffStatus(); } catch(e) { console.error("checkDiffStatus error:", e); }
         }
 
         function setupTabs() {
