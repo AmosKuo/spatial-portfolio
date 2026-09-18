@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cardSmall = document.getElementById('cardSmall');
                     if (cardSmall && pr.planSmall) {
                         if (pr.planSmall.title) cardSmall.querySelector('h3').textContent = pr.planSmall.title;
-                        if (pr.planSmall.price) cardSmall.querySelector('.price').innerHTML = pr.planSmall.price + '<span> / 元</span>';
+                        if (pr.planSmall.price) cardSmall.querySelector('.price').textContent = pr.planSmall.price;
                         if (pr.planSmall.desc) cardSmall.querySelector('.plan-desc').textContent = pr.planSmall.desc;
                         if (pr.planSmall.items) {
                             cardSmall.querySelector('ul').innerHTML = pr.planSmall.items.map(item => `<li>${item}</li>`).join('');
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cardMedium = document.getElementById('cardMedium');
                     if (cardMedium && pr.planMedium) {
                         if (pr.planMedium.title) cardMedium.querySelector('h3').textContent = pr.planMedium.title;
-                        if (pr.planMedium.price) cardMedium.querySelector('.price').innerHTML = pr.planMedium.price + '<span> / 元</span>';
+                        if (pr.planMedium.price) cardMedium.querySelector('.price').textContent = pr.planMedium.price;
                         if (pr.planMedium.desc) cardMedium.querySelector('.plan-desc').textContent = pr.planMedium.desc;
                         if (pr.planMedium.items) {
                             cardMedium.querySelector('ul').innerHTML = pr.planMedium.items.map(item => `<li>${item}</li>`).join('');
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cardLarge = document.getElementById('cardLarge');
                     if (cardLarge && pr.planLarge) {
                         if (pr.planLarge.title) cardLarge.querySelector('h3').textContent = pr.planLarge.title;
-                        if (pr.planLarge.price) cardLarge.querySelector('.price').innerHTML = pr.planLarge.price + '<span> / 元</span>';
+                        if (pr.planLarge.price) cardLarge.querySelector('.price').textContent = pr.planLarge.price;
                         if (pr.planLarge.desc) cardLarge.querySelector('.plan-desc').textContent = pr.planLarge.desc;
                         if (pr.planLarge.items) {
                             cardLarge.querySelector('ul').innerHTML = pr.planLarge.items.map(item => `<li>${item}</li>`).join('');
