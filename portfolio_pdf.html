@@ -372,52 +372,95 @@
 
         /* Slide 6: Pricing */
         .featured-plan-pdf-banner {
-            background: #faf8f5;
-            border: 2px solid #222;
-            border-radius: 8px;
-            padding: 14px 20px;
-            margin-bottom: 16px;
+            background: #111;
+            color: #fff;
+            border-radius: 10px;
+            padding: 0;
+            margin-bottom: 18px;
             position: relative;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            overflow: hidden;
         }
         .featured-plan-pdf-banner .banner-badge {
             position: absolute;
-            top: -11px;
-            right: 20px;
-            background: #222;
-            color: #fff;
-            padding: 2px 14px;
-            font-size: 10.5px;
-            border-radius: 4px;
-            letter-spacing: 1px;
-        }
-        .featured-plan-pdf-banner .banner-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px;
-        }
-        .featured-plan-pdf-banner h3 {
-            font-size: 16.5px;
-            font-weight: 500;
+            top: 0;
+            left: 0;
+            background: #c9a96e;
             color: #111;
-        }
-        .featured-plan-pdf-banner .price-tag-text {
-            font-size: 15px;
+            padding: 4px 18px;
+            font-size: 9.5px;
             font-weight: 600;
-            color: #111;
+            border-radius: 10px 0 8px 0;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .featured-plan-pdf-banner .banner-left {
+            background: #111;
+            padding: 32px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .featured-plan-pdf-banner .banner-left h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+            margin: 0 0 10px;
             letter-spacing: 1px;
         }
-        .featured-plan-pdf-banner p.desc {
-            font-size: 11.5px;
-            color: #555;
-            margin: 0 0 8px;
+        .featured-plan-pdf-banner .banner-left .price-tag-text {
+            font-size: 26px;
+            font-weight: 700;
+            color: #c9a96e;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 8px;
         }
-        .featured-plan-pdf-banner .items-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4px 20px;
+        .featured-plan-pdf-banner .banner-left .price-sub {
             font-size: 11px;
-            color: #333;
+            color: rgba(255,255,255,0.5);
+        }
+        .featured-plan-pdf-banner .banner-left p.desc {
+            font-size: 10.5px;
+            color: rgba(255,255,255,0.65);
+            margin: 10px 0 0;
+            line-height: 1.6;
+        }
+        .featured-plan-pdf-banner .banner-right {
+            padding: 22px 24px 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .featured-plan-pdf-banner .detail-item {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 11px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.5;
+        }
+        .featured-plan-pdf-banner .detail-item:nth-child(odd) {
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .featured-plan-pdf-banner .detail-item .detail-label {
+            font-size: 9px;
+            color: #c9a96e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+        .featured-plan-pdf-banner .detail-item .detail-value {
+            font-size: 12px;
+            color: #fff;
+            font-weight: 500;
+        }
+        .featured-plan-pdf-banner .detail-item .detail-note {
+            font-size: 9.5px;
+            color: rgba(255,255,255,0.45);
+            margin-top: 1px;
         }
 
         .pricing-pdf-grid {
@@ -771,19 +814,38 @@
 
             <!-- 首次合作方案 (Featured Banner) -->
             <div class="featured-plan-pdf-banner">
-                <div class="banner-badge">首次合作限定</div>
-                <div class="banner-header">
+                <div class="banner-badge">✦ 首次合作限定</div>
+                <div class="banner-left">
                     <h3>設計師首次合作方案</h3>
-                    <div class="price-tag-text">基本10張 1200/張</div>
+                    <div class="price-tag-text">基本 10 張</div>
+                    <div class="price-sub">NT$ 1,200 / 張</div>
+                    <p class="desc">專為初次配合的設計團隊打造，以基本方案的價格，享有更充裕的拍攝時間與加碼照片。</p>
                 </div>
-                <p class="desc">專為初次配合的設計團隊打造，以基本方案的價格，享有更充裕的拍攝時間與加碼照片。</p>
-                <div class="items-grid">
-                    <div>• 現場拍攝 4 小時 <strong>(免費贈 1 小時軟裝微調)</strong></div>
-                    <div>• (超時一小時 1200 元)</div>
-                    <div>• 基本張數10張 <strong>(加挑張數 1200 元/張計費)</strong></div>
-                    <div>• 超時費可以折抵加挑照片之費用</div>
-                    <div>• 專屬線上雲端圖庫供預覽與下載</div>
-                    <div>• 10 個工作日提供挑片，挑片後 10 日交件</div>
+                <div class="banner-right">
+                    <div class="detail-item">
+                        <div class="detail-label">拍攝時間</div>
+                        <div class="detail-value">現場拍攝 4 小時</div>
+                        <div class="detail-note">+ 免費贈 1 小時軟裝微調</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">超時費用</div>
+                        <div class="detail-value">NT$ 1,200 / 小時</div>
+                        <div class="detail-note">超時費可折抵加挑照片費用</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">基本張數</div>
+                        <div class="detail-value">10 張精修圖</div>
+                        <div class="detail-note">加挑 NT$ 1,200 / 張</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">雲端交付</div>
+                        <div class="detail-value">專屬線上圖庫</div>
+                        <div class="detail-note">供預覽與高解析下載</div>
+                    </div>
+                    <div class="detail-item" style="grid-column: 1 / -1; border-right: none; text-align: center; border-bottom: none;">
+                        <div class="detail-label">交件時程</div>
+                        <div class="detail-value">10 個工作日提供挑片，挑片後 10 日交件</div>
+                    </div>
                 </div>
             </div>
 
