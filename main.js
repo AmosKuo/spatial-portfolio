@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
-                    // 小坪數 & 大坪數方案 (精準 DOM ID 綁定)
+                    // 小坪數、中大坪數 & 大坪數方案 (精準 DOM ID 綁定)
                     const cardSmall = document.getElementById('cardSmall');
                     if (cardSmall && pr.planSmall) {
                         if (pr.planSmall.title) cardSmall.querySelector('h3').textContent = pr.planSmall.title;
@@ -128,6 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (pr.planSmall.desc) cardSmall.querySelector('.plan-desc').textContent = pr.planSmall.desc;
                         if (pr.planSmall.items) {
                             cardSmall.querySelector('ul').innerHTML = pr.planSmall.items.map(item => `<li>${item}</li>`).join('');
+                        }
+                    }
+
+                    const cardMedium = document.getElementById('cardMedium');
+                    if (cardMedium && pr.planMedium) {
+                        if (pr.planMedium.title) cardMedium.querySelector('h3').textContent = pr.planMedium.title;
+                        if (pr.planMedium.price) cardMedium.querySelector('.price').innerHTML = pr.planMedium.price + '<span> / 元</span>';
+                        if (pr.planMedium.desc) cardMedium.querySelector('.plan-desc').textContent = pr.planMedium.desc;
+                        if (pr.planMedium.items) {
+                            cardMedium.querySelector('ul').innerHTML = pr.planMedium.items.map(item => `<li>${item}</li>`).join('');
                         }
                     }
 

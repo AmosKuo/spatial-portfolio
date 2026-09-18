@@ -465,43 +465,44 @@
 
         .pricing-pdf-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
         }
         .price-pdf-card {
             background: #fff;
             border: 1px solid #eaeaea;
             border-radius: 8px;
-            padding: 18px 16px;
+            padding: 14px 12px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
         .price-pdf-card h3 {
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 4px;
+            line-height: 1.35;
+        }
+        .price-pdf-card .amount {
+            font-size: 20px;
+            font-weight: 600;
             color: #111;
             margin-bottom: 6px;
         }
-        .price-pdf-card .amount {
-            font-size: 22px;
-            font-weight: 500;
-            color: #111;
-            margin-bottom: 10px;
-        }
         .price-pdf-card p.desc {
-            font-size: 11px;
+            font-size: 10px;
             color: #666;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            min-height: 34px;
+            line-height: 1.45;
+            margin-bottom: 8px;
+            min-height: 38px;
         }
         .price-pdf-card ul {
-            padding-left: 14px;
+            padding-left: 12px;
             margin: 0;
-            font-size: 11px;
+            font-size: 10px;
             color: #444;
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
         /* Slide 7: Process & Terms (Synced with site_data.js) */
@@ -809,73 +810,73 @@
         </div>
 
         <div class="page-body-content">
-            <h2 class="section-title">拍攝服務方案與價目表</h2>
+            <h2 class="section-title">空間視覺專案報價模組</h2>
             <p class="section-subtitle">依據空間坪數、拍攝類型與視覺需求提供專屬規劃，歡迎預約諮詢</p>
 
             <!-- 首次合作方案 (Featured Banner) -->
             <div class="featured-plan-pdf-banner">
-                <div class="banner-badge">✦ 首次合作限定</div>
+                <div class="banner-badge">✦ 設計師首案限定</div>
                 <div class="banner-left">
-                    <h3>設計師首次合作方案</h3>
-                    <div class="price-tag-text">基本 10 張</div>
-                    <div class="price-sub">NT$ 1,200 / 張</div>
-                    <p class="desc">專為初次配合的設計團隊打造，以基本方案的價格，享有更充裕的拍攝時間與加碼照片。</p>
+                    <h3>打樣專案</h3>
+                    <div class="price-tag-text">$ 12,000</div>
+                    <div class="price-sub">專為初次配合設計團隊打造</div>
+                    <p class="desc">半日專案（4 小時內），交付 15 張旗艦級精修圖，無痛體驗建商級光影視覺。</p>
                 </div>
                 <div class="banner-right">
                     <div class="detail-item">
-                        <div class="detail-label">拍攝時間</div>
-                        <div class="detail-value">現場拍攝 4 小時</div>
-                        <div class="detail-note">+ 免費贈 1 小時軟裝微調</div>
+                        <div class="detail-label">專案時數</div>
+                        <div class="detail-value">半日專案 (4 小時內)</div>
+                        <div class="detail-note">體驗建商級光影視覺</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">超時費用</div>
                         <div class="detail-value">NT$ 1,200 / 小時</div>
-                        <div class="detail-note">超時費可折抵加挑照片費用</div>
+                        <div class="detail-note">可全額折抵加挑照片</div>
                     </div>
                     <div class="detail-item">
-                        <div class="detail-label">基本張數</div>
-                        <div class="detail-value">10 張精修圖</div>
-                        <div class="detail-note">加挑 NT$ 1,200 / 張</div>
+                        <div class="detail-label">交付張數</div>
+                        <div class="detail-value">15 張旗艦級精修圖</div>
+                        <div class="detail-note">單張加購價 NT$ 1,200</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">雲端交付</div>
-                        <div class="detail-value">專屬線上圖庫</div>
-                        <div class="detail-note">供預覽與高解析下載</div>
+                        <div class="detail-value">專屬高階雲端圖庫</div>
+                        <div class="detail-note">挑片僅供確認不得轉載</div>
                     </div>
                     <div class="detail-item" style="grid-column: 1 / -1; border-right: none; text-align: center; border-bottom: none;">
                         <div class="detail-label">交件時程</div>
-                        <div class="detail-value">10 個工作日提供挑片，挑片後 10 日交件</div>
+                        <div class="detail-value">10 個工作日內提供挑片，確認後 10 個工作日交付成品大檔</div>
                     </div>
                 </div>
             </div>
 
             <div class="pricing-pdf-grid">
-                <!-- 咖啡廳素材包 -->
+                <!-- 小坪數方案 -->
                 <div class="price-pdf-card">
                     <div>
-                        <h3>咖啡廳社群素材包</h3>
-                        <div class="amount">$ 9,800 <span style="font-size: 11px; color: #777;">/ 元</span></div>
-                        <p class="desc">專為咖啡廳、甜點店與風格餐飲打造，讓你未來三個月不再為發文照片煩惱。</p>
+                        <h3>標準小坪數<br>光影專案（25 坪內）</h3>
+                        <div class="amount">$ 18,000</div>
+                        <p class="desc">半日專案（4 小時內），交付 15 張旗艦級精修圖，完美呈現公領域與主臥室頂級質感。</p>
                         <ul>
-                            <li><strong>拍攝時間</strong>：現場拍攝 2 小時</li>
-                            <li><strong>成果交付</strong>：35 - 40 張高解析精修</li>
-                            <li><strong>季度優惠</strong>：NT$ 26,000 / 季 (每月2小時/共3次)</li>
-                            <li><strong>使用授權</strong>：多平台與門市宣傳</li>
+                            <li><strong>拍攝時間</strong>：半日專案 (4 小時內)</li>
+                            <li><strong>交付成果</strong>：15 張旗艦級精修圖</li>
+                            <li><strong>單張加購</strong>：加購價 $ 1,200 / 張</li>
+                            <li><strong>挑片交件</strong>：10工作日挑片/10日交件</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- 小坪數方案 -->
+                <!-- 中大坪數方案 -->
                 <div class="price-pdf-card">
                     <div>
-                        <h3>小坪數方案</h3>
-                        <div class="amount">$ 18,000 <span style="font-size: 11px; color: #777;">/ 元</span></div>
-                        <p class="desc">我們最受歡迎的方案，適合單一空間或小型住宅案的完整紀錄，完美呈現你的設計細節。</p>
+                        <h3>主力中大坪數<br>經典專案（26-49坪）</h3>
+                        <div class="amount">$ 25,000</div>
+                        <p class="desc">延伸專案（6 小時內），交付 20-25 張旗艦級精修圖，完整紀錄標準三至四房細節。</p>
                         <ul>
-                            <li><strong>拍攝時間</strong>：現場拍攝最多 4 小時 (超時一小時 1200 元)</li>
-                            <li><strong>成果交付</strong>：可挑選高解析度精修圖 15 張</li>
-                            <li><strong>超時折抵</strong>：超時費可以折抵加挑照片之費用</li>
-                            <li><strong>挑片交件</strong>：10個工作日挑片，挑片後10個工作日交件</li>
+                            <li><strong>拍攝時間</strong>：延伸專案 (6 小時內)</li>
+                            <li><strong>交付成果</strong>：20-25 張旗艦級精修圖</li>
+                            <li><strong>單張加購</strong>：加購價 $ 1,200 / 張</li>
+                            <li><strong>挑片交件</strong>：10工作日挑片/10日交件</li>
                         </ul>
                     </div>
                 </div>
@@ -883,14 +884,29 @@
                 <!-- 大坪數方案 -->
                 <div class="price-pdf-card">
                     <div>
-                        <h3>大坪數方案</h3>
-                        <div class="amount">$ 32,000 <span style="font-size: 11px; color: #777;">/ 元</span></div>
-                        <p class="desc">針對多空間、全戶設計或商業空間的深度拍攝，提供最完整的影像紀錄與最高規格服務。</p>
+                        <h3>大坪數豪宅<br>旗艦專案（50坪以上）</h3>
+                        <div class="amount">$ 32,000</div>
+                        <p class="desc">全日專案（8 小時內），交付 30-40 張旗艦級精修圖，確保每個角落光影皆達最高水準。</p>
                         <ul>
-                            <li><strong>拍攝時間</strong>：現場拍攝最多 8 小時 (全天)</li>
-                            <li><strong>成果交付</strong>：可挑選高解析度精修圖 30 張</li>
-                            <li><strong>超時折抵</strong>：超時費可以折抵加挑照片之費用</li>
-                            <li><strong>進階服務</strong>：含進階修圖與社群媒體適用尺寸</li>
+                            <li><strong>拍攝時間</strong>：全日專案 (8 小時內)</li>
+                            <li><strong>交付成果</strong>：30-40 張旗艦級精修圖</li>
+                            <li><strong>單張加購</strong>：加購價 $ 1,200 / 張</li>
+                            <li><strong>挑片交件</strong>：10工作日挑片/10日交件</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 咖啡廳素材包 -->
+                <div class="price-pdf-card">
+                    <div>
+                        <h3>咖啡廳社群素材包<br><span style="font-size: 10px; font-weight: normal; color: #888;">風格餐飲與品牌視覺</span></h3>
+                        <div class="amount">$ 9,800</div>
+                        <p class="desc">專為咖啡廳、甜點店與風格餐飲打造，讓你未來三個月不再為發文照片煩惱。</p>
+                        <ul>
+                            <li><strong>拍攝時間</strong>：現場拍攝 2 小時</li>
+                            <li><strong>交付成果</strong>：35-40 張高解析精修</li>
+                            <li><strong>季度優惠</strong>：NT$ 26,000 / 季</li>
+                            <li><strong>使用授權</strong>：多平台門市宣傳</li>
                         </ul>
                     </div>
                 </div>
@@ -898,7 +914,7 @@
         </div>
 
         <div class="page-footer">
-            <span>ghspatial 光盒影像 ｜ 拍攝方案與細項（100% 同步官網最新數據）</span>
+            <span>ghspatial 光盒影像 ｜ 空間視覺專案報價模組</span>
             <span>www.ghspatial.com</span>
         </div>
     </div>
@@ -911,32 +927,32 @@
         </div>
 
         <div class="page-body-content">
-            <h2 class="section-title">合作流程與服務須知</h2>
-            <p class="section-subtitle">標準化執行步驟與條款說明，確保專案順利推進與完美交件</p>
+            <h2 class="section-title">合作流程與服務規範</h2>
+            <p class="section-subtitle">標準化執行步驟、顧問級彈性條款與交付規範說明</p>
 
             <div class="process-terms-grid">
                 <div class="process-column">
-                    <h3>預約及拍攝執行流程</h3>
+                    <h3>📅 預約與專案執行流程</h3>
                     <ol class="process-list-pdf">
-                        <li>填寫預約表單 (建議拍攝前一個月預約)</li>
-                        <li>雙方約定拍攝日期並確認相關拍攝資訊</li>
-                        <li>收取拍攝訂金 5000 元以保留檔期</li>
-                        <li>請客戶提供現場照片或影片 (手機拍攝即可) 或模擬圖</li>
-                        <li>執行拍攝 (如遇不可抗力因素需延期，請於 2 週前告知)</li>
-                        <li>「挑片檔」於拍攝後約 2 週提供客戶挑片使用</li>
-                        <li>「交件檔」於客戶挑片後約 2-3 週提供雲端下載與確認</li>
-                        <li>拍攝尾款請於交件前結清費用</li>
+                        <li>建議於交件前一個月填寫表單預約。</li>
+                        <li>雙方確認檔期後，預收 $ 5,000 專案訂金以保留時段。</li>
+                        <li>請客戶協助提供現場手機照片或模擬圖以利光影規劃。</li>
+                        <li>執行專案拍攝與現場光影調度控光。</li>
+                        <li>拍攝後 10 個工作日內，透過專屬高階雲端提供圖庫預覽 (挑片檔僅供確認)。</li>
+                        <li>客戶確認挑片後 10 個工作日內，交付最終標準校色與基本調光之高階精修大檔。</li>
+                        <li>尾款請於最終大檔交付前結清 (若有企業固定請款流程請事先告知)。</li>
+                        <li><strong>車馬費說明：</strong> 新竹縣市免收。桃園/苗栗 $1,000、新北/台中 $2,000、台北/彰雲嘉 $3,000、台南/高雄 $4,000。</li>
                     </ol>
                 </div>
 
                 <div class="terms-column">
-                    <h3>注意事項與服務條款</h3>
+                    <h3>🛡️ 彈性條款與企業級交付規範</h3>
                     <ul class="terms-list-pdf">
-                        <li>上述報價為未稅價，拍攝計費以案場計算，不得多場合併計算。</li>
-                        <li>檔期確認後先預收 5000 元訂金，尾款為挑片確認張數後結算。</li>
-                        <li>拍攝方式以現場光為主(不打攝影燈)，經過標準顏色校正及基本調光。</li>
-                        <li>新竹縣市以外車馬費：台南高雄 4000 ｜ 台北彰雲嘉 3000 ｜ 新北台中 2000 ｜ 桃園苗栗 1000。</li>
-                        <li>著作權歸光盒影像郭耿宏所有，客戶在自身行銷範圍內均可利用，不得轉授權第三人。</li>
+                        <li><strong>頂級單張加購：</strong> 專案額度外，單張高階精修加購價為 $ 1,200。（若產生超時費用 $ 1,200/小時，可全額折抵加挑照片費用，100%轉化為視覺資產）。</li>
+                        <li><strong>顧問級免超時費：</strong> 若案場微幅超過坪數級距，但空間動線單純且團隊高度配合，只要能於預定時數內順利殺青，將由主理人主動評估免收超時費。</li>
+                        <li><strong>光影與現場調度：</strong> 拍攝將以自然光與現場光影調度為主（不干擾原空間氣場）。請於拍攝前完成清潔及軟裝佈置；建商級短影音另提專屬打樣報價。</li>
+                        <li><strong>高階雲端交付：</strong> 拍攝後 10 工作日內提供雲端預覽。確認挑片後 10 工作日內交付最終標準校色與基本調光高階精修大檔。</li>
+                        <li><strong>版權與商務授權：</strong> 著作權歸 GH光盒影像 主理人耿宏所有。客戶結清尾款後可於品牌行銷範圍內無限期使用，不得轉授權第三人。</li>
                     </ul>
                 </div>
             </div>

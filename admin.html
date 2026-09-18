@@ -548,9 +548,30 @@
                         <textarea id="pr-small-items" class="form-control" style="min-height: 120px;"></textarea>
                     </div>
 
+                    <!-- 中大坪數方案 -->
+                    <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: #111;">3. 主力中大坪數方案 (26 - 49 坪)</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-med-title">方案標題</label>
+                        <input type="text" id="pr-med-title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pr-med-price">方案價格 (例如：$ 25,000)</label>
+                        <input type="text" id="pr-med-price" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-med-desc">方案簡述</label>
+                        <input type="text" id="pr-med-desc" class="form-control">
+                    </div>
+                    <div class="form-group full">
+                        <label for="pr-med-items">包含細項 (每行一個細項點)</label>
+                        <textarea id="pr-med-items" class="form-control" style="min-height: 120px;"></textarea>
+                    </div>
+
                     <!-- 大坪數方案 -->
                     <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
-                        <h4 style="margin-bottom: 0.8rem; color: #111;">3. 大坪數方案</h4>
+                        <h4 style="margin-bottom: 0.8rem; color: #111;">4. 大坪數豪宅方案 (50 坪以上)</h4>
                     </div>
                     <div class="form-group">
                         <label for="pr-large-title">方案標題</label>
@@ -571,7 +592,7 @@
 
                     <!-- 注意事項清單 -->
                     <div class="form-group full" style="border-top: 1px solid #eee; padding-top: 1.2rem; margin-top: 0.5rem;">
-                        <h4 style="margin-bottom: 0.8rem; color: #dc2626;">4. 注意事項細項清單</h4>
+                        <h4 style="margin-bottom: 0.8rem; color: #dc2626;">5. 畫面擴充、服務規範與注意事項</h4>
                         <label for="pr-notes">注意事項細項 (每行一個條款說明點)</label>
                         <textarea id="pr-notes" class="form-control" style="min-height: 180px;"></textarea>
                     </div>
@@ -950,6 +971,12 @@
                     document.getElementById("pr-small-desc").value = pr.planSmall.desc || "";
                     document.getElementById("pr-small-items").value = (pr.planSmall.items || []).join("\n");
                 }
+                if (pr.planMedium) {
+                    document.getElementById("pr-med-title").value = pr.planMedium.title || "";
+                    document.getElementById("pr-med-price").value = pr.planMedium.price || "";
+                    document.getElementById("pr-med-desc").value = pr.planMedium.desc || "";
+                    document.getElementById("pr-med-items").value = (pr.planMedium.items || []).join("\n");
+                }
                 if (pr.planLarge) {
                     document.getElementById("pr-large-title").value = pr.planLarge.title || "";
                     document.getElementById("pr-large-price").value = pr.planLarge.price || "";
@@ -996,6 +1023,12 @@
             pr.planSmall.price = document.getElementById("pr-small-price").value;
             pr.planSmall.desc = document.getElementById("pr-small-desc").value;
             pr.planSmall.items = document.getElementById("pr-small-items").value.split("\n").filter(i => i.trim());
+
+            if (!pr.planMedium) pr.planMedium = {};
+            pr.planMedium.title = document.getElementById("pr-med-title").value;
+            pr.planMedium.price = document.getElementById("pr-med-price").value;
+            pr.planMedium.desc = document.getElementById("pr-med-desc").value;
+            pr.planMedium.items = document.getElementById("pr-med-items").value.split("\n").filter(i => i.trim());
 
             if (!pr.planLarge) pr.planLarge = {};
             pr.planLarge.title = document.getElementById("pr-large-title").value;
