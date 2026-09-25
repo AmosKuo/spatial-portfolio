@@ -257,6 +257,10 @@ window.GHSpatialDataDefault = {
         "assets/zhubei_series/sejr3.png",
         "assets/zhubei_series/光明六路夕陽黑白.png",
         "assets/zhubei_series/光鮮綠蔬.png",
+        "assets/zhubei_series/出口咖啡1.png",
+        "assets/zhubei_series/出口咖啡2.png",
+        "assets/zhubei_series/出口咖啡3.png",
+        "assets/zhubei_series/出口咖啡4.png",
         "assets/zhubei_series/卷卷烘焙.png",
         "assets/zhubei_series/坤山君峰.png",
         "assets/zhubei_series/客肉.png",
@@ -267,6 +271,7 @@ window.GHSpatialDataDefault = {
         "assets/zhubei_series/星球公園.png",
         "assets/zhubei_series/時代花園側.png",
         "assets/zhubei_series/時代花園大廈.png",
+        "assets/zhubei_series/普林司肯咖啡.png",
         "assets/zhubei_series/椰林掬.png",
         "assets/zhubei_series/橋恩咖啡.png",
         "assets/zhubei_series/民宅樹影.png",
@@ -283,10 +288,13 @@ window.GHSpatialDataDefault = {
         "assets/zhubei_series/茶棧.png",
         "assets/zhubei_series/藍佐牛排.png",
         "assets/zhubei_series/蘭英麵食館六家店.png",
+        "assets/zhubei_series/隘口新房子1.png",
+        "assets/zhubei_series/隘口新房子2.png",
+        "assets/zhubei_series/隘口新房子3.png",
         "assets/zhubei_series/隱焱匠.png",
         "assets/zhubei_series/馥邸橫.png",
         "assets/zhubei_series/馥邸直.png"
-    ],
+],
 
     cafePackagePhotos: [
         "assets/zhubei_series/composecoffe.png",
@@ -340,7 +348,7 @@ window.GHSpatialDataEngine = {
             adminPassword: incomingData.adminPassword || baseData.adminPassword,
             pageContent: {},
             projects: [],
-            zhubeiPhotos: incomingData.zhubeiPhotos || baseData.zhubeiPhotos || [],
+            zhubeiPhotos: Array.from(new Set([...(baseData.zhubeiPhotos || []), ...(incomingData.zhubeiPhotos || [])])),
             cafePackagePhotos: incomingData.cafePackagePhotos || baseData.cafePackagePhotos || []
         };
 
