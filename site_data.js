@@ -129,6 +129,19 @@ window.GHSpatialDataDefault = {
 
     projects: [
         {
+            "id": "proj_laozhai_zhubei",
+            "updatedAt": 1794409000000,
+            "title": "老宅透天改建_竹北",
+            "subtitle": "銓太空間設計",
+            "category": "residential",
+            "categoryName": "住宅室內",
+            "coverImg": "assets/xintairoad/銓太空間-新泰路-社群-1.jpg",
+            "link": "laozhai_zhubei.html",
+            "photos": [
+                "assets/xintairoad/銓太空間-新泰路-社群-1.jpg", "assets/xintairoad/銓太空間-新泰路-社群-2.jpg", "assets/xintairoad/銓太空間-新泰路-社群-3.jpg", "assets/xintairoad/銓太空間-新泰路-社群-4.jpg", "assets/xintairoad/銓太空間-新泰路-社群-5.jpg", "assets/xintairoad/銓太空間-新泰路-社群-6.jpg", "assets/xintairoad/銓太空間-新泰路-社群-7.jpg", "assets/xintairoad/銓太空間-新泰路-社群-8.jpg", "assets/xintairoad/銓太空間-新泰路-社群-9.jpg", "assets/xintairoad/銓太空間-新泰路-社群-10.jpg", "assets/xintairoad/銓太空間-新泰路-社群-11.jpg", "assets/xintairoad/銓太空間-新泰路-社群-12.jpg", "assets/xintairoad/銓太空間-新泰路-社群-13.jpg", "assets/xintairoad/銓太空間-新泰路-社群-14.jpg", "assets/xintairoad/銓太空間-新泰路-社群-15.jpg", "assets/xintairoad/銓太空間-新泰路-社群-16.jpg", "assets/xintairoad/銓太空間-新泰路-社群-17.jpg", "assets/xintairoad/銓太空間-新泰路-社群-18.jpg", "assets/xintairoad/A1_01729.jpg", "assets/xintairoad/A1_01732.jpg", "assets/xintairoad/A1_01738.jpg", "assets/xintairoad/A1_01865.jpg", "assets/xintairoad/A1_01886.jpg", "assets/xintairoad/A1_02087.jpg"
+            ]
+        },
+        {
             "id": "proj_cafe_social",
             "updatedAt": 1725116400000,
             "title": "咖啡廳社群氛圍素材",

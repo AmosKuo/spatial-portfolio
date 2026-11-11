@@ -813,7 +813,7 @@
             }
         }
 
-        // 將上傳照片縮圖壓縮為 JPEG (最長邊 1600px)，避免瀏覽器 localStorage 容量爆滿
+        // 將上傳照片縮圖壓縮為 JPEG (最長邊 1400px)，避免瀏覽器 localStorage 容量爆滿
         function compressImageFile(file, maxSize, quality) {
             return new Promise((resolve) => {
                 const reader = new FileReader();
@@ -837,7 +837,7 @@
         function handleCoverUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
-            compressImageFile(file, 1600, 0.8).then(dataUrl => {
+            compressImageFile(file, 1400, 0.75).then(dataUrl => {
                 document.getElementById("proj-cover-url").value = dataUrl;
             });
         }
@@ -850,7 +850,7 @@
             const strip = document.getElementById("photos-preview-strip");
 
             files.forEach(file => {
-                compressImageFile(file, 1600, 0.8).then(dataUrl => {
+                compressImageFile(file, 1400, 0.75).then(dataUrl => {
                     uploadedPhotosTemp.push({
                         url: dataUrl,
                         tag: targetSubcat
@@ -869,6 +869,15 @@
 
         function handleSaveProject(e) {
             e.preventDefault();
+            try {
+                doSaveProject();
+            } catch (err) {
+                console.error("儲存作品專案失敗：", err);
+                alert("儲存失敗：" + err.name + " - " + err.message);
+            }
+        }
+
+        function doSaveProject() {
             const projId = document.getElementById("edit-proj-id").value;
             const title = document.getElementById("proj-title").value.trim();
             const subtitle = document.getElementById("proj-subtitle").value.trim();
@@ -941,7 +950,7 @@
             document.getElementById("proj-subtitle").value = proj.subtitle;
             document.getElementById("proj-category").value = proj.category;
             document.getElementById("proj-cover-url").value = proj.coverImg;
-            document.getElementById("btn-save-proj").textContent = "更新專案資料 &rarr;";
+            document.getElementById("btn-save-proj").textContent = "更新專案資料 \u2192";
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -958,7 +967,7 @@
             document.getElementById("proj-cover-url").value = "";
             document.getElementById("photos-preview-strip").innerHTML = "";
             uploadedPhotosTemp = [];
-            document.getElementById("btn-save-proj").textContent = "儲存作品專案 &rarr;";
+            document.getElementById("btn-save-proj").textContent = "儲存作品專案 \u2192";
         }
 
         function populatePageContentForm() {
