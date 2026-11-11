@@ -813,14 +813,33 @@
             }
         }
 
+        // 將上傳照片縮圖壓縮為 JPEG (最長邊 1600px)，避免瀏覽器 localStorage 容量爆滿
+        function compressImageFile(file, maxSize, quality) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+                        const canvas = document.createElement("canvas");
+                        canvas.width = Math.round(img.width * scale);
+                        canvas.height = Math.round(img.height * scale);
+                        canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL("image/jpeg", quality));
+                    };
+                    img.onerror = function() { resolve(evt.target.result); };
+                    img.src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
         function handleCoverUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                document.getElementById("proj-cover-url").value = evt.target.result;
-            };
-            reader.readAsDataURL(file);
+            compressImageFile(file, 1600, 0.8).then(dataUrl => {
+                document.getElementById("proj-cover-url").value = dataUrl;
+            });
         }
 
         function handleBatchPhotoUpload(e) {
@@ -831,9 +850,7 @@
             const strip = document.getElementById("photos-preview-strip");
 
             files.forEach(file => {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    const dataUrl = evt.target.result;
+                compressImageFile(file, 1600, 0.8).then(dataUrl => {
                     uploadedPhotosTemp.push({
                         url: dataUrl,
                         tag: targetSubcat
@@ -846,8 +863,7 @@
                         <img src="${dataUrl}">
                     `;
                     strip.appendChild(thumb);
-                };
-                reader.readAsDataURL(file);
+                });
             });
         }
 
@@ -907,7 +923,10 @@
                 });
             }
 
-            window.GHSpatialDataEngine.saveActiveData(currentData);
+            if (!window.GHSpatialDataEngine.saveActiveData(currentData)) {
+                // 儲存失敗（通常是儲存空間已滿），保留表單內容讓使用者調整後重試
+                return;
+            }
             resetProjectForm();
             renderProjectsList();
             alert("專案作品與分類照片成功儲存！前端頁面已連動更新！");

@@ -392,7 +392,13 @@ window.GHSpatialDataEngine = {
 
     saveActiveData: function(data) {
         data.lastUpdated = Date.now();
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+        try {
+            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {
+            console.error("Failed to save site data:", e);
+            alert("儲存失敗：瀏覽器儲存空間已滿（" + e.name + "）。\n請減少一次上傳的照片數量，或先刪除不需要的作品後再試。");
+            return false;
+        }
         return data;
     },
 
