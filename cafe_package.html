@@ -74,8 +74,8 @@
             max-width: 950px;
             margin: 0 auto 5rem;
             padding: 3.5rem 3rem;
-            background: #f4f0e8;
-            border: 1px solid #e6dfd5;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
         }
         .specs-grid {
@@ -144,7 +144,7 @@
         <div class="header-container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/logo.png" alt="GH Spatial 光盒影像">
+                    <img src="assets/GH_Spatial_Logo_Transparent.png" alt="GH Spatial 光盒影像">
                 </a>
             </div>
             <nav class="main-nav">
@@ -200,37 +200,37 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
                 
                 <!-- 單次素材包 -->
-                <div style="background: #fff; border: 1px solid #eaeaea; border-radius: 12px; padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+                <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 16px rgba(59, 45, 34, 0.03);">
                     <div>
-                        <span style="font-size: 0.8rem; letter-spacing: 2px; color: #888; font-weight: 600; text-transform: uppercase;">單次體驗</span>
-                        <h3 style="font-size: 1.6rem; font-weight: 400; color: #111; margin: 0.5rem 0 1rem;">單次社群素材包</h3>
-                        <div style="font-size: 2.2rem; font-weight: 400; color: #111; margin-bottom: 1.2rem;">NT$ 9,800 <span style="font-size: 0.9rem; color: #888;">/ 次</span></div>
-                        <p style="font-size: 0.95rem; color: #666; line-height: 1.7; margin-bottom: 1.5rem;">適合初次合作、新店開幕或單次季節菜單更新，快速建立品牌基礎素材庫。</p>
-                        <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: #555; line-height: 1.8;">
+                        <span style="font-size: 0.8rem; letter-spacing: 2px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">單次體驗</span>
+                        <h3 style="font-size: 1.6rem; font-weight: 400; color: var(--text-primary); margin: 0.5rem 0 1rem;">單次社群素材包</h3>
+                        <div style="font-size: 2.2rem; font-weight: 400; color: var(--text-primary); margin-bottom: 1.2rem;">NT$ 9,800 <span style="font-size: 0.9rem; color: var(--text-secondary);">/ 次</span></div>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">適合初次合作、新店開幕或單次季節菜單更新，快速建立品牌基礎素材庫。</p>
+                        <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
                             <li><strong>單次 2 小時</strong> 現場專業拍攝</li>
                             <li>交付 <strong>35 - 40 張</strong> 高解析風格調色照片</li>
                             <li>全平台社群與門市宣傳授權</li>
                         </ul>
                     </div>
-                    <a href="contact.html" class="btn" style="margin-top: 2rem; text-align: center; border: 1px solid #111; color: #111; background: transparent;">預約單次拍攝</a>
+                    <a href="contact.html" class="btn" style="margin-top: 2rem; text-align: center; border: 1px solid var(--text-primary); color: var(--text-primary); background: transparent;">預約單次拍攝</a>
                 </div>
 
                 <!-- 季度連續方案 (推薦首選) -->
-                <div style="background: #faf8f5; border: 2px solid #3b2c23; border-radius: 12px; padding: 2.5rem 2rem; position: relative; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">
-                    <div style="position: absolute; top: -14px; right: 24px; background: #3b2c23; color: #fff; padding: 4px 16px; font-size: 0.8rem; border-radius: 20px; letter-spacing: 1px; font-weight: 500;">三個月優惠 ⚡ 現省 $3,400</div>
+                <div style="background: var(--card-bg); border: 2px solid var(--brand-espresso); border-radius: 12px; padding: 2.5rem 2rem; position: relative; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 24px rgba(59, 45, 34, 0.06);">
+                    <div style="position: absolute; top: -14px; right: 24px; background: var(--brand-espresso); color: #F6F3EE; padding: 4px 16px; font-size: 0.8rem; border-radius: 20px; letter-spacing: 1px; font-weight: 500;">三個月優惠 ⚡ 現省 $3,400</div>
                     <div>
                         <span style="font-size: 0.8rem; letter-spacing: 2px; color: #8c6d53; font-weight: 600; text-transform: uppercase;">季度包月 ｜ 穩定經營</span>
-                        <h3 style="font-size: 1.6rem; font-weight: 400; color: #111; margin: 0.5rem 0 1rem;">季度連續合作方案</h3>
-                        <div style="font-size: 2.2rem; font-weight: 500; color: #3b2c23; margin-bottom: 1.2rem;">NT$ 26,000 <span style="font-size: 0.9rem; color: #888;">/ 季</span></div>
-                        <p style="font-size: 0.95rem; color: #555; line-height: 1.7; margin-bottom: 1.5rem;"><strong>專為重視社群持續質感的店家設計</strong>。連續三個月，每個月安排 2 小時拍攝，長期維持社群觸及與新穎品牌印象。</p>
-                        <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: #444; line-height: 1.8;">
+                        <h3 style="font-size: 1.6rem; font-weight: 400; color: var(--text-primary); margin: 0.5rem 0 1rem;">季度連續合作方案</h3>
+                        <div style="font-size: 2.2rem; font-weight: 500; color: var(--brand-espresso); margin-bottom: 1.2rem;">NT$ 26,000 <span style="font-size: 0.9rem; color: var(--text-secondary);">/ 季</span></div>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;"><strong>專為重視社群持續質感的店家設計</strong>。連續三個月，每個月安排 2 小時拍攝，長期維持社群觸及與新穎品牌印象。</p>
+                        <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
                             <li><strong>三個月優惠</strong>：每個月安排 2 小時拍攝 (共 3 次／6 小時)</li>
                             <li>累計交付 <strong>100+ 張</strong> 季節菜單與門市氛圍照片</li>
                             <li>即時捕捉新品上市、節慶活動與門市光影變化</li>
                             <li>全平台社群與門市宣傳授權</li>
                         </ul>
                     </div>
-                    <a href="contact.html" class="btn" style="margin-top: 2rem; text-align: center; background: #3b2c23; color: #fff; border: 1px solid #3b2c23;">預約季度方案 &rarr;</a>
+                    <a href="contact.html" class="btn" style="margin-top: 2rem; text-align: center; background: var(--brand-espresso); color: #F6F3EE; border: 1px solid var(--brand-espresso);">預約季度方案 &rarr;</a>
                 </div>
 
             </div>

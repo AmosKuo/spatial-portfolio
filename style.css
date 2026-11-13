@@ -1,8 +1,23 @@
 :root {
-    --bg-color: #FAF8F5;
-    --text-color: #1a1a1a;
-    --accent-color: #666;
-    --nav-bg: rgba(250, 248, 245, 0.95);
+    /* 溫潤美術館紙質風格色票 (Warm Museum Paper Palette) */
+    --bg-color: #F6F3EE;
+    --card-bg: #FCFBF9;
+    --surface-warm: #EFECE5;
+    --nav-bg: rgba(246, 243, 238, 0.95);
+    --border-color: #E6E1D8;
+
+    /* 文字色階 (Warm Charcoal Ink Scale) */
+    --text-color: #2B2927;
+    --text-primary: #2B2927;
+    --text-secondary: #6B665F;
+    --accent-color: #6B665F;
+
+    /* 品牌深焙咖與拿鐵色系 */
+    --brand-espresso: #3B2D22;
+    --brand-espresso-deep: #2E2219;
+    --brand-latte: #C8B39C;
+    --dot-inactive: #D5CFC5;
+
     --font-primary: 'Inter', 'Noto Sans TC', sans-serif;
 }
 
@@ -44,7 +59,7 @@ h1, h2, h3 {
     background-color: var(--bg-color);
     position: relative;
     z-index: 100;
-    border-bottom: 1px solid #ece6de;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header-container {
@@ -57,19 +72,21 @@ h1, h2, h3 {
 
 .site-header .logo {
     margin-bottom: 0;
+    background: transparent;
 }
 
 .site-header .logo a {
     display: flex;
     align-items: center;
     text-decoration: none;
+    background: transparent;
 }
 
 .site-header .logo img {
     height: 96px;
     width: auto;
     object-fit: contain;
-    mix-blend-mode: multiply;
+    background: transparent;
     margin: 0;
     transition: transform 0.3s ease;
 }
@@ -278,9 +295,9 @@ h1, h2, h3 {
 .zhubei-carousel-section {
     margin: 1.5rem 0 4rem;
     padding: 2.5rem 2.5%;
-    background: #FAF8F5;
+    background: var(--card-bg);
     border-radius: 16px;
-    border: 1px solid #e6dfd5;
+    border: none;
 }
 
 .zhubei-carousel-header {
@@ -292,7 +309,7 @@ h1, h2, h3 {
     font-size: 2.2rem;
     font-weight: 300;
     letter-spacing: 4px;
-    color: #111;
+    color: var(--text-primary);
 }
 
 .zhubei-slider-container {
@@ -327,8 +344,8 @@ h1, h2, h3 {
     border-radius: 10px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    background: #f0f0f0;
+    box-shadow: 0 6px 18px rgba(43, 41, 39, 0.06);
+    background: var(--surface-warm);
 }
 
 .slider-slide-inner img {
@@ -344,9 +361,9 @@ h1, h2, h3 {
 }
 
 .slider-arrow {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid #ddd;
-    color: #111;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--brand-espresso);
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -357,16 +374,16 @@ h1, h2, h3 {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(59, 45, 34, 0.08);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .slider-arrow:hover {
-    background: #111;
-    color: #fff;
-    border-color: #111;
+    background: var(--brand-espresso);
+    color: var(--card-bg);
+    border-color: var(--brand-espresso);
 }
 
 .prev-arrow {
@@ -388,13 +405,13 @@ h1, h2, h3 {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #ccc;
+    background: var(--dot-inactive);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .slider-dot.active {
-    background: #111;
+    background: var(--brand-espresso);
     width: 24px;
     border-radius: 4px;
 }
@@ -404,33 +421,33 @@ h1, h2, h3 {
     margin: 2rem auto 0;
     max-width: 1200px;
     padding: 1.2rem 2.2rem;
-    background: #3b2c23;
-    color: #f7f3ee;
+    background: var(--brand-espresso);
+    color: #F6F3EE;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    box-shadow: 0 8px 24px rgba(59, 44, 35, 0.12);
+    box-shadow: 0 8px 24px rgba(59, 45, 34, 0.12);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .zhubei-promo-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(59, 44, 35, 0.18);
+    box-shadow: 0 12px 32px rgba(59, 45, 34, 0.18);
 }
 
 .zhubei-promo-cta .cta-question {
     font-size: 1.05rem;
     letter-spacing: 1px;
     font-weight: 400;
-    color: #f7f3ee;
+    color: #F6F3EE;
 }
 
 .zhubei-promo-cta .cta-link-btn {
     display: inline-block;
-    background: #c4a991;
-    color: #2e211a;
+    background: var(--brand-latte);
+    color: var(--brand-espresso);
     padding: 0.75rem 1.8rem;
     border-radius: 30px;
     font-size: 0.95rem;
@@ -441,8 +458,8 @@ h1, h2, h3 {
 }
 
 .zhubei-promo-cta .cta-link-btn:hover {
-    background: #ffffff;
-    color: #1a1a1a;
+    background: var(--card-bg);
+    color: var(--text-primary);
 }
 
 @media (max-width: 1200px) {
@@ -501,7 +518,7 @@ h1, h2, h3 {
 
 .project-description {
     font-size: 1.15rem;
-    color: #555;
+    color: var(--text-secondary);
     max-width: 750px;
     margin: 0 auto;
     line-height: 1.9;
@@ -519,13 +536,13 @@ h1, h2, h3 {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    box-shadow: 0 10px 30px rgba(43, 41, 39, 0.04);
 }
 
 .project-nav {
     text-align: center;
     margin-top: 4rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     padding-top: 4rem;
 }
 
@@ -539,7 +556,7 @@ h1, h2, h3 {
 .about-text p {
     font-size: 1.2rem;
     line-height: 2;
-    color: #444;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
 }
 
@@ -551,9 +568,9 @@ h1, h2, h3 {
 }
 
 .pricing-card {
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 2.5rem 2rem;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -564,41 +581,43 @@ h1, h2, h3 {
 
 .pricing-card:hover {
     transform: translateY(-10px);
-    border-color: #ccc;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-color: var(--brand-latte);
+    box-shadow: 0 10px 30px rgba(59, 45, 34, 0.06);
 }
 
 .pricing-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    color: var(--text-primary);
 }
 
 .price {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     font-weight: 300;
+    color: var(--text-primary);
 }
 
 .price span {
     font-size: 1rem;
-    color: #888;
+    color: var(--text-secondary);
 }
 
 /* 咖啡廳社群素材包 Poster Card (Featured Poster Design) */
 .cafe-package-poster-card {
     max-width: 1100px;
     margin: 0 auto 5rem;
-    background: #faf8f5;
-    border: 1px solid #e5dfd5;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 42% 58%;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+    box-shadow: 0 16px 48px rgba(59, 45, 34, 0.06);
 }
 
 .cafe-poster-left {
-    background: #3b2c23;
+    background: var(--brand-espresso);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -620,14 +639,14 @@ h1, h2, h3 {
 
 .cafe-poster-quote {
     padding: 2.5rem 2rem;
-    background: #2e211a;
+    background: var(--brand-espresso-deep);
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .brand-sublogo {
     font-size: 0.8rem;
     letter-spacing: 3px;
-    color: #c4a991;
+    color: var(--brand-latte);
     margin-bottom: 0.8rem;
     font-weight: 500;
 }
@@ -635,7 +654,7 @@ h1, h2, h3 {
 .quote-text {
     font-size: 1.15rem;
     line-height: 1.8;
-    color: #f0e8e0;
+    color: #F6F3EE;
     font-weight: 300;
     letter-spacing: 1px;
 }
@@ -660,13 +679,13 @@ h1, h2, h3 {
     font-size: 2.5rem;
     font-weight: 400;
     letter-spacing: 3px;
-    color: #1a1a1a;
+    color: var(--text-primary);
     margin-bottom: 1rem;
 }
 
 .cafe-poster-highlights {
     font-size: 1.1rem;
-    color: #555;
+    color: var(--text-secondary);
     margin-bottom: 0.8rem;
     letter-spacing: 1px;
 }
@@ -680,12 +699,12 @@ h1, h2, h3 {
 
 .cafe-poster-sub {
     font-size: 1rem;
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
 }
 
 .cafe-poster-intro {
-    background: #fff;
+    background: var(--bg-color);
     border-left: 3px solid #b85b34;
     padding: 1.2rem 1.5rem;
     border-radius: 0 8px 8px 0;
@@ -695,7 +714,7 @@ h1, h2, h3 {
 
 .cafe-poster-intro p {
     font-size: 0.95rem;
-    color: #444;
+    color: var(--text-secondary);
     line-height: 1.8;
 }
 
@@ -726,14 +745,14 @@ h1, h2, h3 {
 
 .detail-item strong {
     font-size: 1.05rem;
-    color: #111;
+    color: var(--text-primary);
     display: block;
     margin-bottom: 0.3rem;
 }
 
 .detail-item p {
     font-size: 0.92rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -745,7 +764,7 @@ h1, h2, h3 {
 
 .detail-item ul li {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--text-secondary);
     padding: 0.25rem 0;
 }
 
@@ -756,9 +775,9 @@ h1, h2, h3 {
 }
 
 .btn-dark {
-    background: #1a1a1a;
-    color: #fff;
-    border: 1px solid #1a1a1a;
+    background: var(--text-primary);
+    color: var(--card-bg);
+    border: 1px solid var(--text-primary);
     padding: 0.9rem 2rem;
     border-radius: 6px;
     text-decoration: none;
@@ -768,14 +787,15 @@ h1, h2, h3 {
 }
 
 .btn-dark:hover {
-    background: #333;
-    color: #fff;
+    background: var(--brand-espresso);
+    border-color: var(--brand-espresso);
+    color: var(--card-bg);
 }
 
 .btn-outline {
     background: transparent;
-    color: #333;
-    border: 1px solid #ccc;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
     padding: 0.9rem 1.8rem;
     border-radius: 6px;
     text-decoration: none;
@@ -785,16 +805,16 @@ h1, h2, h3 {
 }
 
 .btn-outline:hover {
-    border-color: #111;
-    color: #111;
+    border-color: var(--text-primary);
+    color: var(--text-primary);
 }
 
 .notice-box {
-    background: #f0ebe4;
+    background: var(--surface-warm);
     border-radius: 8px;
     padding: 1rem 1.2rem;
     font-size: 0.85rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -817,8 +837,8 @@ h1, h2, h3 {
 
 .pricing-card ul li {
     padding: 0.8rem 0;
-    border-bottom: 1px solid #eee;
-    color: #444;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
     font-size: 0.95rem;
 }
 
@@ -839,7 +859,7 @@ h1, h2, h3 {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #444;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     letter-spacing: 1px;
 }
@@ -849,9 +869,9 @@ h1, h2, h3 {
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    color: #111;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
     font-family: inherit;
     font-size: 1rem;
     transition: border-color 0.3s ease;
@@ -861,7 +881,7 @@ h1, h2, h3 {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #888;
+    border-color: var(--text-secondary);
 }
 
 .submit-btn {
@@ -874,8 +894,8 @@ h1, h2, h3 {
 footer {
     padding: 4rem 5% 2rem;
     text-align: center;
-    background-color: #f3efe8;
-    border-top: 1px solid #e6dfd5;
+    background-color: var(--surface-warm);
+    border-top: 1px solid var(--border-color);
 }
 
 .socials {
@@ -900,7 +920,7 @@ footer {
 
 .footer-bottom {
     padding-top: 2rem;
-    color: #888;
+    color: var(--text-secondary);
     font-size: 0.8rem;
 }
 
@@ -942,9 +962,9 @@ footer {
         padding: 0.8rem 4% 1rem;
         position: sticky;
         top: 0;
-        background: rgba(250, 248, 245, 0.98);
+        background: rgba(246, 243, 238, 0.98);
         backdrop-filter: blur(10px);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        box-shadow: 0 2px 10px rgba(43, 41, 39, 0.03);
     }
     .header-container {
         flex-direction: column;
@@ -1071,13 +1091,13 @@ footer {
 .feature-card h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    color: var(--text-color);
-    border-bottom: 1px solid #eee;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
 }
 
 .feature-card p {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 0.5rem;
@@ -1090,19 +1110,19 @@ footer {
     margin-top: 2rem;
 }
 .process-step {
-    background: #f4f0e8;
+    background: var(--card-bg);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #e6dfd5;
+    border: 1px solid var(--border-color);
 }
 .process-step h3 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 .process-step p {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.5;
 }
 
