@@ -6,37 +6,40 @@
     <title>關於光盒 | ghspatial 光盒影像</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        .about-section-heading {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            font-size: 1.45rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
         .about-detailed {
-            max-width: 800px;
-            margin: 2rem auto;
-            color: #444;
+            max-width: 100%;
+            margin: 0;
+            color: var(--text-secondary);
             text-align: left;
             line-height: 1.8;
-            font-size: 1.05rem;
-        }
-        .about-quote {
-            font-size: 1.5rem;
-            color: #111;
-            text-align: center;
-            margin: 4rem 0;
-            font-weight: 300;
+            font-size: 1rem;
         }
         .about-section-block {
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 6px 20px rgba(59, 45, 34, 0.03);
         }
         .about-section-block h4 {
             color: var(--text-primary);
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
             display: inline-block;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.5rem;
             letter-spacing: 2px;
         }
@@ -45,37 +48,43 @@
             padding: 0;
         }
         .exp-list li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.75rem;
             padding-left: 1.5rem;
             position: relative;
+            color: var(--text-secondary);
         }
         .exp-list li::before {
             content: '•';
             position: absolute;
             left: 0;
-            color: #888;
+            color: var(--brand-latte);
         }
         .contact-info-box {
-            text-align: center;
-            margin-top: 5rem;
-            padding: 3rem;
-            border: 1px dashed var(--border-color);
+            text-align: left;
+            margin-top: 2.5rem;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
             background: var(--card-bg);
-            border-radius: 8px;
+            border-radius: 12px;
         }
         .contact-info-box h4 {
             color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.25rem;
+            font-size: 1.25rem;
+            font-weight: 500;
             letter-spacing: 2px;
         }
         .contact-info-box p {
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
         }
         .contact-info-box a {
-            color: #111;
+            color: var(--text-primary);
             text-decoration: underline;
+            text-decoration-color: var(--brand-latte);
+            text-underline-offset: 4px;
         }
     </style>
 </head>
@@ -99,43 +108,47 @@
     </header>
 
     <main class="page-content">
-        <div class="about-banner fade-up" style="margin-bottom: 4rem; text-align: center;">
-            <img src="assets/logo-cards.jpg" alt="GH Spatial Business Cards" style="max-width: 360px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-        </div>
-
-        <div class="about-container fade-up delay-1">
+        <div class="about-container fade-up">
+            <!-- 頂部：左右雙欄工作側拍版面（手機版上圖下文） -->
             <div class="about-header-grid">
                 <div class="about-bio">
-                    <h1 class="page-title" style="text-align: left; margin-bottom: 1rem;">Amos 耿宏</h1>
-                    <p style="color: #666; margin-bottom: 1.5rem; letter-spacing: 1px;"><strong>GH Spatial 光盒影像｜攝影總監</strong></p>
-                    <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">從婚禮現場到建築空間，20年來始終透過觀景窗觀察人與環境的關係。我的專業來自兩個不同領域的累積：攝影與裝潢實務。</p>
-                    <p style="color: #555; line-height: 1.8;">GH Spatial 專注於建築、住宅、商業空間與室內設計攝影，致力於以精準且富有溫度的影像，完整呈現設計師的理念與作品價值。</p>
+                    <img src="assets/GH_Spatial_Logo_Transparent.png" alt="GH Spatial 光盒影像 Logo" class="about-bio-logo">
+                    <h1 class="page-title about-main-title">關於光盒影像</h1>
+                    <p class="about-subtitle">GH Spatial 光盒影像 | 攝影總監</p>
+                    <p class="about-intro-p">從婚禮現場到建築空間，20年來始終透過觀景窗觀察人與環境的關係。我的專業來自兩個不同領域的累積：<span style="white-space: nowrap;">攝影與裝潢實務。</span></p>
+                    <p class="about-intro-p">GH Spatial 專注於建築、住宅、商業空間與室內設計攝影，致力於以精準且富有溫度的影像，完整呈現設計師的理念與<span style="white-space: nowrap;">作品價值。</span></p>
                 </div>
-                <div class="about-quote-box">
-                    「比起拍攝空間，我更在意如何讓人想住進這個空間。」
+                <div class="about-photo-col">
+                    <img src="assets/about-photographer.jpg" alt="Amos 耿宏 攝影工作側拍組合圖" class="about-photographer-img">
                 </div>
             </div>
 
-            <div class="about-features-grid">
+            <!-- 獨立品牌核心引言 -->
+            <blockquote class="about-quote-band fade-up">
+                <p>「比起拍攝空間，<br>我更在意如何讓人想住進這個空間。」</p>
+            </blockquote>
+
+            <!-- 三個核心優勢（電腦版橫向三欄並排） -->
+            <div class="about-features-grid fade-up">
                 <div class="feature-card">
                     <h2>懂結構</h2>
                     <p>具備木工裝潢實務背景，理解設計圖面、工法細節與施工邏輯。</p>
-                    <p>拍攝時不只是記錄空間，更能看懂空間，並堅持精準的垂直水平線條，忠實呈現設計比例與建築語彙。</p>
+                    <p>拍攝時不只是記錄空間，更能看懂空間，並堅持精準的垂直水平線條，忠實呈現設計比例與<span style="white-space: nowrap;">建築語彙。</span></p>
                 </div>
                 <div class="feature-card">
                     <h2>懂光影</h2>
                     <p>累積超過十年的婚禮紀錄經驗，擅長觀察自然光線的流動與空間氛圍的變化。</p>
-                    <p>除了呈現設計，更希望讓照片傳達空間未來的生活感與情感溫度。</p>
+                    <p>除了呈現設計，更希望讓照片傳達空間未來的生活感與<span style="white-space: nowrap;">情感溫度。</span></p>
                 </div>
                 <div class="feature-card">
                     <h2>設備規格</h2>
-                    <p>採用 Sony A1 旗艦級全片幅系統與 G Master 專業鏡頭群。</p>
-                    <p>5000萬畫素高解析影像，滿足社群行銷、平面出版與國際賽事投稿等多種需求。</p>
+                    <p>採用 Sony A1 旗艦級全片幅系統與 G Master <span style="white-space: nowrap;">專業鏡頭群。</span></p>
+                    <p>5000萬畫素高解析影像，滿足社群行銷、平面出版與國際賽事投稿等<span style="white-space: nowrap;">多種需求。</span></p>
                 </div>
             </div>
 
-            <div class="process-section" style="margin-bottom: 4rem;">
-                <h2 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 2px;">合作流程</h2>
+            <div class="process-section fade-up" style="margin-bottom: 4rem;">
+                <h2 class="about-section-heading">合作流程</h2>
                 <div class="process-grid">
                     <div class="process-step">
                         <h3>Step 1. 需求確認</h3>

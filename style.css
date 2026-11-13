@@ -548,9 +548,9 @@ h1, h2, h3 {
 
 /* About Page */
 .about-container {
-    max-width: 800px;
+    max-width: 1120px;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 .about-text p {
@@ -1065,73 +1065,166 @@ footer {
 /* About Page Grid Layouts */
 .about-header-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
+    grid-template-columns: 55fr 45fr;
+    gap: 3.5rem;
+    margin-bottom: 4.5rem;
     align-items: center;
 }
 
-.about-quote-box {
-    font-size: 1.6rem;
+.about-bio {
+    text-align: left;
+}
+
+.about-bio-logo {
+    width: 120px;
+    height: auto;
+    display: block;
+    background: transparent;
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+.about-main-title {
+    text-align: left;
+    font-size: clamp(2rem, 3.2vw, 2.6rem);
+    color: var(--text-primary);
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-bottom: 0.6rem;
+}
+
+.about-subtitle {
+    text-align: left;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    margin-bottom: 1.8rem;
+}
+
+.about-intro-p {
+    text-align: left;
+    color: var(--text-secondary);
+    font-size: 1.02rem;
     line-height: 1.8;
-    color: var(--text-color);
-    font-weight: 300;
-    border-left: 2px solid var(--text-color);
-    padding-left: 2rem;
+    max-width: 56ch;
+    margin-bottom: 1.2rem;
+    text-wrap: pretty;
+}
+
+.about-intro-p:last-child {
+    margin-bottom: 0;
+}
+
+.about-photo-col {
+    background: transparent;
+}
+
+.about-photographer-img {
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    border: none;
+    background: transparent;
+    box-shadow: 0 12px 36px rgba(59, 45, 34, 0.08);
+}
+
+.about-quote-band {
+    margin: 0 0 4.5rem;
+    padding: 1.2rem 0 1.2rem 2rem;
+    border-left: 3px solid var(--brand-latte);
+    text-align: left;
+}
+
+.about-quote-band p {
+    font-family: 'Noto Serif TC', 'Inter', serif;
+    font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+    line-height: 1.75;
+    color: var(--text-primary);
+    font-weight: 500;
     letter-spacing: 2px;
 }
 
 .about-features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4.5rem;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: none;
+    padding: 2rem 1.8rem;
+    text-align: left;
+    box-shadow: 0 6px 20px rgba(59, 45, 34, 0.03);
 }
 
 .feature-card h2 {
     font-size: 1.2rem;
+    font-weight: 500;
     margin-bottom: 1rem;
     color: var(--text-primary);
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.65rem;
+    letter-spacing: 1.5px;
 }
 
 .feature-card p {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 0.5rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    text-wrap: pretty;
+}
+
+.feature-card p:last-child {
+    margin-bottom: 0;
 }
 
 .process-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 .process-step {
     background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+    padding: 1.75rem;
+    border-radius: 12px;
+    border: none;
+    text-align: left;
+    box-shadow: 0 6px 20px rgba(59, 45, 34, 0.03);
 }
 .process-step h3 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
+    font-weight: 500;
 }
 .process-step p {
     font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.5;
+    line-height: 1.7;
 }
 
 @media (max-width: 768px) {
     .about-header-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.2rem;
+        margin-bottom: 3.2rem;
     }
-    .about-quote-box {
-        font-size: 1.4rem;
+    .about-photo-col {
+        order: -1;
+    }
+    .about-features-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-quote-band {
+        padding-left: 1.25rem;
+        margin-bottom: 3.2rem;
     }
 }
