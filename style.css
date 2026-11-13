@@ -1,8 +1,8 @@
 :root {
-    --bg-color: #fdfdfd;
+    --bg-color: #FAF8F5;
     --text-color: #1a1a1a;
     --accent-color: #666;
-    --nav-bg: rgba(253, 253, 253, 0.95);
+    --nav-bg: rgba(250, 248, 245, 0.95);
     --font-primary: 'Inter', 'Noto Sans TC', sans-serif;
 }
 
@@ -44,7 +44,7 @@ h1, h2, h3 {
     background-color: var(--bg-color);
     position: relative;
     z-index: 100;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #ece6de;
 }
 
 .header-container {
@@ -66,11 +66,11 @@ h1, h2, h3 {
 }
 
 .site-header .logo img {
-    height: 200px;
+    height: 96px;
     width: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
-    margin: -40px 0;
+    margin: 0;
     transition: transform 0.3s ease;
 }
 
@@ -278,9 +278,9 @@ h1, h2, h3 {
 .zhubei-carousel-section {
     margin: 1.5rem 0 4rem;
     padding: 2.5rem 2.5%;
-    background: #fcfcfc;
+    background: #FAF8F5;
     border-radius: 16px;
-    border: 1px solid #eaeaea;
+    border: 1px solid #e6dfd5;
 }
 
 .zhubei-carousel-header {
@@ -874,8 +874,8 @@ h1, h2, h3 {
 footer {
     padding: 4rem 5% 2rem;
     text-align: center;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
+    background-color: #f3efe8;
+    border-top: 1px solid #e6dfd5;
 }
 
 .socials {
@@ -942,7 +942,7 @@ footer {
         padding: 0.8rem 4% 1rem;
         position: sticky;
         top: 0;
-        background: rgba(253, 253, 253, 0.98);
+        background: rgba(250, 248, 245, 0.98);
         backdrop-filter: blur(10px);
         box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
@@ -952,8 +952,8 @@ footer {
         gap: 0.6rem;
     }
     .site-header .logo img {
-        height: 110px;
-        margin: -15px 0;
+        height: 58px;
+        margin: 0;
     }
     .site-header .nav-links {
         display: flex;
@@ -972,10 +972,12 @@ footer {
 
     /* Mobile Splash Screen Entrance Logo */
     .splash-screen img {
-        max-width: 88vw !important;
-        height: auto !important;
-        max-height: 460px !important;
-        margin-top: -30px !important;
+        max-width: 72vw !important;
+        height: 240px !important;
+        width: auto !important;
+        max-height: 40vh !important;
+        margin-top: -20px !important;
+        object-fit: contain;
     }
 
     /* Mobile Page Content & Titles */
@@ -1088,10 +1090,10 @@ footer {
     margin-top: 2rem;
 }
 .process-step {
-    background: #f9f9f9;
+    background: #f4f0e8;
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid #e6dfd5;
 }
 .process-step h3 {
     font-size: 1rem;
